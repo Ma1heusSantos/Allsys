@@ -5,7 +5,7 @@ use App\Http\Controllers\homeController;
 use App\Http\Controllers\authController;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 Route::get('/home',[homeController::class,"home"])->name("home");
