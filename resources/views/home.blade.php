@@ -22,7 +22,6 @@
         <x-Sidebar>
             <div id="grafico" style="width: 800px; height: 800px"></div>
         </x-Sidebar>
-
     </div>
 
 </body>
@@ -37,6 +36,7 @@
     function getDados() {
         axios
             .get("/getData").then(function(response) {
+                console.log(response.data)
                 let dados = response.data;
                 let processedData = treatDados(dados);
                 renderGraphic(processedData);

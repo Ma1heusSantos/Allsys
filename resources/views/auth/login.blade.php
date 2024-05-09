@@ -26,7 +26,7 @@
                                         {{-- @include('flash::message') --}}
                                     </div>
                                     <form method="POST" action="{{ route('autenticaUsuario') }}" class="user">
-                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                        @csrf
                                         <div class="form-group">
                                             <input type="email" class="form-control form-control-user" name="email"
                                                 placeholder="E-Mail" required>
