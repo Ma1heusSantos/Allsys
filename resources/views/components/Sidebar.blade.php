@@ -35,7 +35,7 @@
                 </ul>
                 <hr>
                 <div class="row-gap-2 text-center mb-3" style='margin-left: 20%'>
-                    <a class="text-decoration-none text-light" href="#">
+                    <a class="text-decoration-none text-light" href="{{ route('deslogar') }}">
                         <i class="fa-solid fa-arrow-right-from-bracket" style="color: #ffffff;"></i>
                         Sair
                     </a>

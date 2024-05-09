@@ -25,16 +25,15 @@
                                     <div class="" role="alert">
                                         {{-- @include('flash::message') --}}
                                     </div>
-                                    <form method="POST" action="#" class="user">
+                                    <form method="POST" action="{{ route('autenticaUsuario') }}" class="user">
                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                         <div class="form-group">
                                             <input type="email" class="form-control form-control-user" name="email"
-                                                placeholder="{{ __('E-Mail') }}" value="{{ old('email') }}" required
-                                                autofocus>
+                                                placeholder="E-Mail" required>
                                         </div>
                                         <div class="form-group">
                                             <input type="password" class="form-control form-control-user" name="password"
-                                                placeholder="{{ __('Senha') }}" required>
+                                                placeholder="Digite sua Senha" required>
                                         </div>
                                         <div class="form-group">
                                             <div class="custom-control custom-checkbox small">
@@ -46,7 +45,7 @@
                                         </div>
                                         <div class="form-group">
                                             <button type="submit" class="btn btn-primary btn-user btn-block">
-                                                {{ __('Entrar') }}
+                                                Entrar
                                             </button>
                                         </div>
                                         <hr>
