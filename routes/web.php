@@ -10,6 +10,7 @@ Route::get('/', function () {
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/home',[homeController::class,"home"])->name("home");
     Route::get('/getData',[homeController::class,"getData"])->name("getData");
+    Route::get('/teste',[authController::class,'teste'])->name('teste');
 });
 Route::post('/autenticaUsuario',[authController::class,'autenticaUsuario'])->name('autenticaUsuario');
 Route::get('/deslogar',[authController::class,'deslogar'])->name('deslogar');

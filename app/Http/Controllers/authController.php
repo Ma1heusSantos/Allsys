@@ -26,6 +26,9 @@ class authController extends Controller
             'email' => 'The provided credentials do not match our records.',
         ])->onlyInput('email');
     }
+    public function teste(){
+        return view('teste');
+    }
     public function deslogar(){
         Auth::logout();
         return view('auth.login');
