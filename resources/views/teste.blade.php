@@ -5,9 +5,5 @@
 @endsection
 
 @section('conteudo')
-    <ul>
-        <li>lista</li>
-        <li>lista 1</li>
-        <li><i class="fa-solid fa-user"></i></li>
-    </ul>
+    <h1>Você é um Admin</h1>
 @endsection
