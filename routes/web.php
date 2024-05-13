@@ -4,13 +4,14 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\homeController;
 use App\Http\Controllers\authController;
 use App\Http\Middleware\adminAcess;
+use App\Http\Middleware\Authorization;
 
 
 
 Route::get('/', function () {
     return view('auth.login');
 });
-Route::middleware(auth()::class)->group( function () {
+Route::middleware(Authorization::class)->group( function () {
     Route::get('/home',[homeController::class,"home"])->name("home");
     Route::get('/getData',[homeController::class,"getData"])->name("getData");
 
@@ -23,4 +24,5 @@ Route::get('/login',[authController::class,"login"])->name("login");
 Route::middleware(adminAcess::class)->group(function () {
     Route::get('/teste', [authController::class, 'teste'])->name('teste');
     Route::get('/createUser', [userController::class, 'createUser'])->name('create.user');
+    Route::post('/storeUser',[userController::class,'storeUser'])->name('store.user');
 });
