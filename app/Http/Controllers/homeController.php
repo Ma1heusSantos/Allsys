@@ -11,7 +11,6 @@ class homeController extends Controller
         return view("home");
     }
     public function getData(){
-        // $token  = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE3MTUyODI3NzUsImlkIjoiODkyMiIsIm5hbWUiOiJDQUlYQSJ9.Fnn3wvFRXM_lfs6n-J0mcHcUi_r8ModSITqjYdNOggc";
         $dados = [
             'usuario' => 'CAIXA',
             'senha' => '123'
