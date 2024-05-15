@@ -25,4 +25,6 @@ Route::middleware(adminAcess::class)->group(function () {
     Route::get('/teste', [authController::class, 'teste'])->name('teste');
     Route::get('/createUser', [userController::class, 'createUser'])->name('create.user');
     Route::post('/storeUser',[userController::class,'storeUser'])->name('store.user');
+    Route::get('/showUser',[userController::class,'show'])->name('show.user');
+    Route::get('/destroyUser/{id}',[userController::class,'destroy'])->name('destroy.user');
 });

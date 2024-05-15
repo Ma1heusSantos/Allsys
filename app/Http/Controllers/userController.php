@@ -14,6 +14,14 @@ class userController extends Controller
     public function createUser(){
         return view("user.create");
     }
+    public function destroy($id){
+        $user = User::findOrFail($id);
+        if(!$user){
+            return redirect()->route('show.user')->with('error','Erro ao Excluir o usuário');
+        }
+        $user->delete();
+        return redirect()->route('show.user')->with('sucess','Usuário excluido com sucesso');
+    }
     public function storeUser(Request $request){
         $user = new User();
 
@@ -58,5 +66,12 @@ class userController extends Controller
             ->withInput();
 
         }
+    }
+
+    public function show(){
+        $atualUser = auth()->id();
+        $users = User::where('id', '!=', $atualUser)->get(); 
+        
+        return view('user.show',['users'=>$users]);
     }
 }
