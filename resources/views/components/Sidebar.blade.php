@@ -1,50 +1,91 @@
 <head>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"> 
+    <link href="{{ asset('css/sidebars.css') }}" rel="stylesheet"> 
+    <style>
+        body {
+            background-image: url('{{ asset('img/bomba.svg') }}');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100vh;
+        }
+    </style>
 </head>
-<div class="container-fluid">
-    <div class="row flex-nowrap">
-        <div class="col-auto col-md-2 col-lg-1 px-sm-0 px-0" style="background-color:#0087F9;">
-            <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
-                <img style="width: 100%;" src="/img/LogoHBranco.png" alt="Logo">
-                <a href="/"
-                    class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-                    <i class="fa-solid fa-chart-line"></i>
-                    <span class="fs-5 d-none d-sm-inline ms-2">Dashboard</span>
-                </a>
-                <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start"
-                    id="menu">
-                    <li class="nav-item">
-                        <a class="nav-link d-flex justify-content-center align-items-center text-white">
-                            <i class="fas fa-user-alt"></i>
-                            <span class="ms-2">Clientes</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link d-flex justify-content-center align-items-center text-white">
-                            <i class="fas fa-oil-can"></i>
-                            <span class="ms-2">Postos</span>
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link d-flex justify-content-center align-items-center text-white">
-                            <i class="fas fa-users"></i>
-                            <span class="ms-2">Usuário</span>
-                        </a>
-                    </li>
-                </ul>
-                <hr>
-                <div class="row-gap-2 text-center mb-3" style='margin-left: 20%'>
-                    <a class="text-decoration-none text-light" href="{{ route('deslogar') }}">
-                        <i class="fa-solid fa-arrow-right-from-bracket" style="color: #ffffff;"></i>
-                        Sair
-                    </a>
-                </div>
-
+  
+  <body>
+   
+    <!---Navbar horizontal-->
+    <nav class="navbar navbar backgroud_sidemenu shadow">
+      <div class="container-fluid">
+        <button class="navbar-toggler border-0" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" id="btmenu">
+         <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"/>
+          </svg>
+          
+        </button> 
+        <span class="navbar-brand mb-0 h1 text-white">Gerencial AllSYS X</span>
+      </div>
+    </nav> 
+    
+    <!--- fim Navbar vertical-->
+    <!---modal-->
+    <div class="modal true backgroud_sidemenu" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-fullscreen">
+        <div class="modal-content" id="listmenu">
+          <!---cabecalho do modal botao fechar e nome Menu-->
+          <div class="modal-header">
+            <h5 class="modal-title text-white" id="exampleModalLabel">MENU</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ></button>
+          </div>
+         <!--- fim cabecalho do modal botao fechar e nome Menu-->
+          <div class="modal-body ">
+            <!--- lista do menu-->
+        <ul class="list-unstyled ps-0">
+          <li class="mb-1">
+            <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed text-white" data-bs-toggle="collapse" data-bs-target="#menu1-collapse" aria-expanded="false" aria-controls=" menu1-collapse">
+              Graficos                                                               
+            </button>
+            <div class="collapse" id="menu1-collapse">
+              <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Tanques</a></li>
+                <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Vendas dia</a></li>
+                <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Vendas Mes</a></li>
+                <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Vendas Frentista</a></li>
+                <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Troca Preco</a></li>
+              </ul>
             </div>
+          </li> 
+          <li class="mb-1">
+            <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed text-white" data-bs-toggle="collapse" data-bs-target="#menu2-collapse" aria-expanded="false" aria-controls=" menu2-collapse">
+              Admin                                                              
+            </button>
+            <div class="collapse" id="menu2-collapse">
+              <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Empresa</a></li>
+                <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Usuarios</a></li>
+                
+              </ul>
+            </div>
+            
+          </li> 
+        </ul>  
+         <!--- fim lista do menu-->                
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
         </div>
-        <div class="col py-3">
+      </div>
+    </div>
+    <!---fim modal-->
+     <div class="container text-center">
+      <h1 class="text-uppercase"></h1>
+    </div> 
+    <div class="col py-3">
             {{ $slot }}
         </div>
-    </div>
-</div>
+  </body >
+  
+</html>

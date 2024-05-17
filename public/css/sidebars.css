@@ -1,0 +1,44 @@
+
+body {
+ background-color: #dfdfe6fd!important;
+ 
+}
+
+.btn-toggle-nav a {
+  padding: .1875rem .5rem;
+  margin-top: .125rem;
+  margin-left: 1.25rem;
+  
+}
+
+
+.scrollarea {
+  overflow-y: auto;
+}
+
+
+.modal {
+  width: 300px;
+}
+.modal-content{
+  width: 300px;
+}
+#listmenu {
+
+  background-color:#4e73df!important;
+}
+.backgroud_sidemenu{
+   background-color: #4e73df!important;
+   border-radius: 20px;
+   opacity: 0.9;
+   margin-left: 5px;
+   margin-top: 3px;
+}
+#btmenu{
+color: white;
+
+}
+.img-fluid{
+  opacity: 0.4;
+  
+}
