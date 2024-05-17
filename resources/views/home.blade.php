@@ -5,7 +5,11 @@
 @endsection
 
 @section('conteudo')
-    <div id="grafico" style="width: 800px; height: 800px"></div>
+
+    <div class="container" id="grafico" style="width: 800px; height: 800px;width: auto;
+    text-align: center;
+    padding: 40px 20px; align-items: center;"></div>
+    
 @endsection
 
 @section('script')
