@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
 class userController extends Controller
 {
@@ -73,5 +74,61 @@ class userController extends Controller
         $users = User::where('id', '!=', $atualUser)->get(); 
         
         return view('user.show',['users'=>$users]);
+    }
+    public function edit($id){
+        $user = User::find($id);
+        return view('user.edit',['user'=>$user]);
+    }
+    public function editUser(Request $request,$id){
+
+        Log::info("---Atualização de usuário-----");
+        Log::info($request->all());
+        Log::info("---- Atualizado por: ".Auth::user()->name."-----");
+
+        try {
+            $validate = Validator::make($request->all(),[
+                'id' => 'exists:users,id',
+                'email' =>'required|email:rfc,dns',
+                'password' => 'nullable|min:8',
+                'confirmePassword'=> 'nullable|same:password',
+            ],[
+                'id.exists'=>'Esse usuario não existe no sistema',
+                'email.required' => 'O campo E-mail é obrigatório.',
+                'email.email' => 'Por favor, insira um endereço de e-mail válido.', 
+                'password.min' => 'A senha deve ter no mínimo :min caracteres.',
+                'confirmePassword.same' => 'As senhas informadas não coincidem.',
+            ]);
+
+           if($validate->fails()){
+            return redirect()->back()->withErrors($validate);
+           }
+           $user = User::find($id);
+           $data = $this->verificaCampos($request);
+           $user->update($data);
+     
+        $user->save();
+        return redirect()->route('show.user')->with('success', 'Usuário atualizado com sucesso!');
+
+        } catch(Exception $e) {
+            Log::warning("Erro ao atualizar o usuário [ ... ] Erro: ".$e->getMessage());
+            return redirect()
+                ->back()
+                ->withErrors($e->getMessage())
+            ->withInput();
+
+        }
+    }
+    public function verificaCampos($request){
+        $data = [
+            'email_verified_at' => now(),
+        ];
+
+        $request->filled('name') ? $data['name'] = $request->input('name') : "";
+        $request->filled('password') ? $data['password'] = bcrypt($request->input('password')) : "";
+        $request->filled('email') ? $data['email'] = $request->input('email') : "";
+        $request->filled('role') && $request->input('role') !== 'Selecione o tipo de usuário' ? $data['role'] = $request->input('role') : "";
+
+        return $data;
+
     }
 }

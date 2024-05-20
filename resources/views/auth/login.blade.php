@@ -25,10 +25,16 @@
                                     <div class="" role="alert">
                                         {{-- @include('flash::message') --}}
                                     </div>
-                                    <form method="POST" action="{{ route('autenticaUsuario') }}" class="user">
+                                    <form method="POST" action="{{ route('autenticaUsuario') }}" id='cnpj'
+                                        class="user">
                                         @csrf
+
                                         <div class="form-group">
-                                            <input type="email" class="form-control form-control-user" name="email"
+                                            <input type="text" class="form-control form-control-user cnpj" name="cnpj"
+                                                placeholder="CNPJ">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control form-control-user" name="email"
                                                 placeholder="E-Mail" required>
                                         </div>
                                         <div class="form-group">

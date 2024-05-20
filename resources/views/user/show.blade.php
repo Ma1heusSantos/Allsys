@@ -28,7 +28,7 @@
                                     <td>{{ $user->email }}</td>
                                     <td>{{ $user->role }}</td>
                                     <td>
-                                        <a href="{{ route('destroy.user', [$user->id]) }}">
+                                        <a href="{{ route('edit.user', [$user->id]) }}">
                                             <i class="fa-regular fa-pen-to-square fa-xl p-3" style="color: #FFD43B;"></i>
                                         </a>
                                     </td>

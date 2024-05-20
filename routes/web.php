@@ -23,9 +23,10 @@ Route::get('/login',[authController::class,"login"])->name("login");
 
 //rotas admin
 Route::middleware(adminAcess::class)->group(function () {
-    Route::get('/teste', [authController::class, 'teste'])->name('teste');
     Route::get('/createUser', [userController::class, 'createUser'])->name('create.user');
     Route::post('/storeUser',[userController::class,'storeUser'])->name('store.user');
     Route::get('/showUser',[userController::class,'show'])->name('show.user');
     Route::get('/destroyUser/{id}',[userController::class,'destroy'])->name('destroy.user');
+    Route::get('/editUser/{id}',[userController::class,'edit'])->name('edit.user');
+    Route::get('/updateUser/{id}',[userController::class,'editUser'])->name('update.user');
 });
