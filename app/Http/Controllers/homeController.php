@@ -7,9 +7,14 @@ use Illuminate\Support\Facades\Http;
 
 class homeController extends Controller
 {
+    public function tanques(){
+        return view("tanques");
+    }
+
     public function home(){
         return view("home");
     }
+    
     public function getData(){
         $dados = [
             'usuario' => 'CAIXA',

@@ -39,6 +39,15 @@ color: white;
 
 }
 .img-fluid{
-  opacity: 0.9;
+  opacity: 0.9; 
   
+}
+#btlogar{
+  border-radius: 50%;
+  padding: 0;
+  
+ 
+  background-color: #4e73df!important;
+  border: #4e73df;   
+
 }
