@@ -15,6 +15,9 @@ Route::middleware(Authorization::class)->group( function () {
     Route::get('/tanques',[homeController::class,"tanques"])->name("tanques");
     Route::get('/getData',[homeController::class,"getData"])->name("getData");
     Route::get('/home',[homeController::class,"home"])->name("home");
+    Route::get('/getDataByPeriod', function () {
+        return view('dadosPorPeriodo');
+    });
 
 });
 Route::post('/autenticaUsuario',[authController::class,'autenticaUsuario'])->name('autenticaUsuario');
