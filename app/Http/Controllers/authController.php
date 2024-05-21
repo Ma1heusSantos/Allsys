@@ -28,7 +28,7 @@ class authController extends Controller
             "senha"=> $request->password
         ];
        try{
-        $url = "http://{$cnpj}.ddns.net:8097/api/svrpista/login";
+        $url = "http://{$cnpj}.ddns.net:8098/api/svrpista/login";
         $response = Http::put($url, $dados);
         $data = json_decode($response,false);
         if ($data->msg == 'usuario cadastrado.') {
