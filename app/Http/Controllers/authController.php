@@ -15,13 +15,7 @@ class authController extends Controller
         return view ('auth.login');
     }
     public function autenticaUsuario(Request $request){
-        // endpoint teste: http://19979567000180.ddns.net:8098/api/svrpista/login
-        // Validator::make($request->all(), [
-        //     'cnpj' => 'required',
-        //     'email' => 'required|email',
-        //     'password' => 'required|min:8',
-        // ]);
-            
+        // endpoint teste: http://19979567000180.ddns.net:8098/api/svrpista/login  
         $cnpj = $this->limparCNPJ($request->cnpj);
         $dados =[
             "usuario"=>$request->email,
@@ -36,7 +30,8 @@ class authController extends Controller
                 ['email' => $request->email],
                 [
                     'nivel' => $data->nivel,
-                    'password' => $request->password
+                    'password' => $request->password,
+                    'token' => $data->token
                 ]
             );
             Auth::login($user);

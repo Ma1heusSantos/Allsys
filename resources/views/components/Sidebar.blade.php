@@ -86,7 +86,7 @@
                                     <li><a href="{{ route('tanques') }}"
                                             class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Tanques</a>
                                     </li>
-                                    <li><a href="#"
+                                    <li><a href="{{ route('vendas.dia') }}"
                                             class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Vendas
                                             dia</a></li>
                                     <li><a href="#"
