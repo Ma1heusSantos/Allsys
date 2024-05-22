@@ -1,5 +1,6 @@
 body {
     background-color: #dfdfe6fd !important;
+    
 }
 
 .btn-toggle-nav a {
@@ -15,12 +16,15 @@ body {
 .modal {
     width: 300px;
 }
+
 .modal-content {
     width: 300px;
 }
+
 #listmenu {
     background-color: #1c41b2 !important;
 }
+
 .backgroud_sidemenu {
     background-color: #1c41b2 !important;
     border-radius: 20px;
@@ -28,16 +32,40 @@ body {
     margin-left: 5px;
     margin-top: 3px;
 }
+
 #btmenu {
     color: white;
 }
+
 .img-fluid {
     opacity: 0.9;
 }
+
 #btlogar {
     border-radius: 50%;
     padding: 0;
 
     background-color: #1c41b2 !important;
     border: #1c41b2;
+}
+
+#btuser {
+
+    border-radius: 50%;
+    padding: 0;
+    background-color: #1c41b2 !important;
+    border: #1c41b2;
+
+}
+
+h5 {
+
+    color: white;
+}
+
+#footeruser {
+ 
+    justify-content: center !important;
+    
+
 }
