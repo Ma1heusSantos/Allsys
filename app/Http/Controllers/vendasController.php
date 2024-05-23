@@ -28,6 +28,7 @@ class vendasController extends Controller
             ])->put($url, $dados);
             $dados = json_decode($response,false);
             return view('vendasPorPeriodo',['dados'=>$dados]);
+            
         }catch(Exception $e){
             return redirect()->route('vendas.dia')->with('Error', $e->getMessage());
         }

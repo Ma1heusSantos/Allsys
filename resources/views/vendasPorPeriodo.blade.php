@@ -26,9 +26,9 @@
                                         <input required name="datafim" class="form-control" type="date">
                                     </div>
                                 </div>
-                                <div class="col-md-2">
-                                    <div class="form-group">
-                                        <button class="btn btn-primary w-100" style="margin-top: 30px;">Enviar</button>
+                                <div class="col-md-12">
+                                    <div class="form-group p-2 mt-2">
+                                        <button class="btn btn-primary w-50 mb-3">Enviar</button>
                                     </div>
                                 </div>
                             </div>
@@ -37,7 +37,7 @@
                     <hr>
                     <div>
                         @isset($dados)
-                            <table class="table table-hover mt-5">
+                            <table id="table" class="table table-hover mt-2">
                                 <thead>
                                     <tr>
                                         <th>Cód.de venda</th>
@@ -65,4 +65,11 @@
             </div>
         </div>
     </div>
+@endsection
+@section('script')
+    <script src="//cdn.datatables.net/2.0.7/js/dataTables.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        let table = new DataTable('#table');
+    </script>
 @endsection
