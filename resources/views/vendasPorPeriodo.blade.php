@@ -14,21 +14,21 @@
                         <form action="{{ route('getVendasDia') }}" method="post">
                             @csrf
                             <div class="row d-flex flex-row">
-                                <div class="col-md-12">
+                                <div class="col-md-5">
                                     <div class="form-group p-2">
                                         <label for="dataini">Data de Início</label>
                                         <input required name="dataini" class="form-control" type="date">
                                     </div>
                                 </div>
-                                <div class="col-md-12">
+                                <div class="col-md-5">
                                     <div class="form-group p-2">
                                         <label for="datafim">Data de Fim</label>
                                         <input required name="datafim" class="form-control" type="date">
                                     </div>
                                 </div>
-                                <div class="col-md-12">
-                                    <div class="form-group p-2 mt-2">
-                                        <button class="btn btn-primary w-50">Enviar</button>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <button class="btn btn-primary w-100" style="margin-top: 30px;">Enviar</button>
                                     </div>
                                 </div>
                             </div>
