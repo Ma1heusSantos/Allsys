@@ -26,10 +26,10 @@ class vendasController extends Controller
             $response = Http::withHeaders([
                 'Authorization' => 'Bearer' . $user->token,
             ])->put($url, $dados);
-            $data = json_decode($response,false);
-            return view('vendasPorPeriodo',['data'=>$data]);
+            $dados = json_decode($response,false);
+            return view('vendasPorPeriodo',['dados'=>$dados]);
         }catch(Exception $e){
-            return redirect()->route('vendasPorPeriodo')->with('Error', $e->getMessage());
+            return redirect()->route('vendas.dia')->with('Error', $e->getMessage());
         }
 
     }

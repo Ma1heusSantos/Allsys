@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Http;
 use App\Models\User;
 
@@ -26,7 +25,7 @@ class authController extends Controller
         $response = Http::put($url, $dados);
         $data = json_decode($response,false);
         if ($data->msg == 'usuario cadastrado.') {
-            $user = User::firstOrCreate(
+            $user = User::updateOrCreate(
                 ['email' => $request->email],
                 [
                     'nivel' => $data->nivel,
