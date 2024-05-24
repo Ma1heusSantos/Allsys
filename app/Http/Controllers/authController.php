@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use App\Models\User;
+use Illuminate\Support\Facades\Validator;
 
 class authController extends Controller
 {
@@ -14,7 +15,22 @@ class authController extends Controller
         return view ('auth.login');
     }
     public function autenticaUsuario(Request $request){
-        // endpoint teste: http://19979567000180.ddns.net:8098/api/svrpista/login  
+        // endpoint teste: http://19979567000180.ddns.net:8098/api/svrpista/login 
+        
+        $validate = Validator::make($request->all(),[
+            'CNPJ'=> 'required',
+            'email' =>'required',
+            'password'=> 'required',
+        ],[
+            'email.required' => 'O campo E-mail é obrigatório.',
+            'password.required' => 'O campo Senha é obrigatório.',
+            'CNPJ.required' => 'O campo CNPJ é obrigatorio.',
+        ]);
+
+       if($validate->fails()){
+        return redirect()->back()->withErrors($validate);
+        
+       }
         $cnpj = $this->limparCNPJ($request->cnpj);
         $dados =[
             "usuario"=>$request->email,
@@ -36,6 +52,9 @@ class authController extends Controller
             Auth::login($user);
             $request->session()->regenerate();
             return redirect()->intended('home')->with('success', 'Autenticação bem-sucedida!');
+        }else{
+            $erros = 'usuario ou senha incorretos';
+            return redirect()->back()->withErrors(['msg' => $erros]);
         }
 
        }catch(Exception $e){

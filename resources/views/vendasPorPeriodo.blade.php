@@ -41,13 +41,13 @@
             <hr>
             <div class="table-responsive">
                 @isset($dados)
-                    <table id="table" class="">
+                    <table id="table">
                         <thead>
                             <tr>
-                                <th>Cód.de venda</th>
-                                <th>Produto</th>
-                                <th>Preço de Venda</th>
-                                <th>Total da venda</th>
+                                <th class="col-1">Cód.de venda</th>
+                                <th style="width: 40%">Produto</th>
+                                <th class="text-center">Preço de Venda</th>
+                                <th class="text-center">Total da venda</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -55,8 +55,8 @@
                                 <tr>
                                     <td>{{ $dado->codvenda }}</td>
                                     <td>{{ $dado->dscprod }}</td>
-                                    <td>{{ $dado->precoitemvenda }}</td>
-                                    <td>{{ $dado->totalitemvenda }}</td>
+                                    <td class="text-center">{{ $dado->precoitemvenda }}</td>
+                                    <td class="text-center">{{ $dado->totalitemvenda }}</td>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -69,13 +69,6 @@
     </div>
     </div>
     </div>
-@endsection
-@section('script')
-    <script>
-        $(document).ready(function() {
-            $('#table').DataTable();
-        });
-    </script>
 @endsection
 @section('script')
     <script src="//cdn.datatables.net/2.0.7/js/dataTables.min.js"></script>

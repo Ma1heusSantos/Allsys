@@ -1,4 +1,5 @@
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
     </script>
@@ -9,13 +10,13 @@
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link href="{{ asset('css/sidebars.css') }}" rel="stylesheet">
     <style>
-        body{
+        body {
             background-image: url('{{ asset('img/bomba.svg') }}');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            height: 100vh;  
-            opacity: 0.9;            
+            height: 100vh;
+            opacity: 0.9;
         }
     </style>
 </head>
@@ -79,7 +80,7 @@
                                 class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed text-white"
                                 data-bs-toggle="collapse" data-bs-target="#menu1-collapse" aria-expanded="false"
                                 aria-controls=" menu1-collapse">
-                                Graficos
+                                Relatorios
                             </button>
                             <div class="collapse" id="menu1-collapse">
                                 <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
@@ -87,8 +88,8 @@
                                             class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Tanques</a>
                                     </li>
                                     <li><a href="{{ route('vendas.dia') }}"
-                                            class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Vendas
-                                            dia</a></li>
+                                            class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Cupons</a>
+                                    </li>
                                     <li><a href="#"
                                             class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Vendas
                                             Mes</a></li>
@@ -124,15 +125,18 @@
                     </ul>
                     <!--- fim lista do menu-->
                 </div>
-                <div class="modal-footer " id="footeruser"> 
-                
-                    <a type="button" class="btn btn-secondary" href="{{ route('deslogar') }}" id="btuser"> <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-person-check-fill" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd" d="M15.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L12.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0"/>
-                        <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
-                      </svg> </a>
-                      <h5> {{Auth::user()->email}}</h5> 
-               
-            </div>
+                <div class="modal-footer " id="footeruser">
+
+                    <a type="button" class="btn btn-secondary" href="{{ route('deslogar') }}" id="btuser"> <svg
+                            xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor"
+                            class="bi bi-person-check-fill" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M15.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L12.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0" />
+                            <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6" />
+                        </svg> </a>
+                    <h5> {{ Auth::user()->email }}</h5>
+
+                </div>
             </div>
         </div>
     </div>

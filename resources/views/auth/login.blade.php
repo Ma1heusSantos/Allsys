@@ -31,7 +31,7 @@
 
                                         <div class="form-group">
                                             <input type="text" class="form-control form-control-user cnpj" name="cnpj"
-                                                placeholder="CNPJ">
+                                                placeholder="CNPJ" required>
                                         </div>
                                         <div class="form-group">
                                             <input type="text" class="form-control form-control-user" name="email"
