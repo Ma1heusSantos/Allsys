@@ -17,6 +17,7 @@ class authController extends Controller
     public function autenticaUsuario(Request $request){
         // endpoint teste: http://19979567000180.ddns.net:8098/api/svrpista/login 
         
+    
         $cnpj = $this->limparCNPJ($request->cnpj);
         $dados =[
             "usuario"=>$request->email,
