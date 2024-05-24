@@ -13,7 +13,7 @@ body {
     overflow-y: auto;
 }
 
-.modal {
+#modal-lateral {
     width: 300px;
 }
 
