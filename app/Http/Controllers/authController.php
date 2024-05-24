@@ -17,20 +17,6 @@ class authController extends Controller
     public function autenticaUsuario(Request $request){
         // endpoint teste: http://19979567000180.ddns.net:8098/api/svrpista/login 
         
-        $validate = Validator::make($request->all(),[
-            'CNPJ'=> 'required',
-            'email' =>'required',
-            'password'=> 'required',
-        ],[
-            'email.required' => 'O campo E-mail é obrigatório.',
-            'password.required' => 'O campo Senha é obrigatório.',
-            'CNPJ.required' => 'O campo CNPJ é obrigatorio.',
-        ]);
-
-       if($validate->fails()){
-        return redirect()->back()->withErrors($validate);
-        
-       }
         $cnpj = $this->limparCNPJ($request->cnpj);
         $dados =[
             "usuario"=>$request->email,
