@@ -31,9 +31,10 @@ class authController extends Controller
             $user = User::updateOrCreate(
                 ['email' => $request->email],
                 [
-                    'nivel' => $data->nivel,
+                    'nivel' => ($data->nivel == "5") ? "Admin":"User",
                     'password' => $request->password,
-                    'token' => $data->token
+                    'token' => $data->token,
+                    'cnpj'=>$cnpj
                 ]
             );
             Auth::login($user);

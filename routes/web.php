@@ -1,5 +1,5 @@
 <?php
-use App\Http\Controllers\userController;
+use App\Http\Controllers\adminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\homeController;
 use App\Http\Controllers\authController;
@@ -26,10 +26,11 @@ Route::get('/login',[authController::class,"login"])->name("login");
 
 //rotas admin
 Route::middleware(adminAcess::class)->group(function () {
-    Route::get('/createUser', [userController::class, 'createUser'])->name('create.user');
-    Route::post('/storeUser',[userController::class,'storeUser'])->name('store.user');
-    Route::get('/showUser',[userController::class,'show'])->name('show.user');
-    Route::get('/destroyUser/{id}',[userController::class,'destroy'])->name('destroy.user');
-    Route::get('/editUser/{id}',[userController::class,'edit'])->name('edit.user');
-    Route::get('/updateUser/{id}',[userController::class,'editUser'])->name('update.user');
+    Route::get('/showCompany',[adminController::class,'showCompany'])->name("show.company");
+    Route::get('/createUser', [adminController::class, 'createUser'])->name('create.user');
+    Route::post('/storeUser',[adminController::class,'storeUser'])->name('store.user');
+    Route::get('/showUser',[adminController::class,'show'])->name('show.user');
+    Route::get('/destroyUser/{id}',[adminController::class,'destroy'])->name('destroy.user');
+    Route::get('/editUser/{id}',[adminController::class,'edit'])->name('edit.user');
+    Route::get('/updateUser/{id}',[adminController::class,'editUser'])->name('update.user');
 });

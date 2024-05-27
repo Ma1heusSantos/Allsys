@@ -109,10 +109,10 @@
                             </button>
                             <div class="collapse" id="menu2-collapse">
                                 <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                                    <li><a href="#"
+                                    <li><a href="{{ route('show.company') }}"
                                             class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Empresa</a>
                                     </li>
-                                    <li><a href="#"
+                                    <li><a href="{{ route('show.user') }}"
                                             class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Usuarios</a>
                                     </li>
 

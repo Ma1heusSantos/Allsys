@@ -6,11 +6,12 @@ use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 
-class userController extends Controller
+class adminController extends Controller
 {
     public function createUser(){
         return view("user.create");
@@ -116,6 +117,22 @@ class userController extends Controller
                 ->withErrors($e->getMessage())
             ->withInput();
 
+        }
+    }
+
+    public function showCompany(){
+            // endpoint teste: http://19979567000180.ddns.net:8098/api/svrpista/login 
+        $user = auth::user();
+        try{
+            $url = "http://{$user->cnpj}.ddns.net:8098/api/svrpista/empresa";
+            $response = Http::withHeaders([
+                'Authorization' => 'Bearer'.$user->token,
+            ])->get($url);
+            $empresa = json_decode($response,false);
+            return view("Empresa.show",["empresa"=> $empresa]);
+
+        }catch(Exception $e){
+            return redirect()->route('home')->with('Error', $e->getMessage());
         }
     }
     public function verificaCampos($request){
