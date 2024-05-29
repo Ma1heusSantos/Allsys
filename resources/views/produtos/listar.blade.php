@@ -17,8 +17,10 @@ LIstagem de Produtos
                     <tr>
                         <th class="col-1">Cód.do prod</th>
                         <th style="width: 40%">Produto</th>
-                        <th class="text-center">Tipo de produto</th>
                         <th class="text-center">Valor de compra</th>
+                        <th class="text-center">Valor de venda</th>
+                        <th class="text-center">ultima data de venda</th>
+                        <th class="text-center">ultima data de venda</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -26,8 +28,10 @@ LIstagem de Produtos
                     <tr>
                         <td class="text-center">{{ $produto->codprod }}</td>
                         <td>{{ $produto->dscprod }}</td>
-                        <td class="text-center">{{ $produto->tipoprod ?? "Não informado" }}</td>
-                        <td class="text-center">{{ $produto->valorcompraprod }}</td>
+                        <td class="text-center">R$ {{ money($produto->valorcompraprod)}}</td>
+                        <td class="text-center">R$ {{ money($produto->valorvendaprod)}}</td>
+                        <td class="text-center">{{ formatDate($produto->dataultcompraprod)}}</td>
+                        <td class="text-center">{{ formatDate($produto->dataultvendaprod) }}</td>
                     </tr>
                     @endforeach
                 </tbody>
