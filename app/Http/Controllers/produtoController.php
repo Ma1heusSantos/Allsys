@@ -23,4 +23,8 @@ class produtoController extends Controller
             return redirect()->route('home')->with('Error', $e->getMessage());
         }
     }
+    public function dashboard()
+    {
+        return view("dashboard");
+    }
 }

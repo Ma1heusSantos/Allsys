@@ -87,7 +87,7 @@
                             </button>
                             <div class="collapse" id="menu2-collapse">
                                 <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                                    <li><a href="{{ route('tanques') }}" class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Produto único</a>
+                                    <li><a href="{{ route('dashboard') }}" class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Dashboard</a>
                                     </li>
                                     <li><a href="{{ route('produto.listar') }}" class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Listar</a>
                                     </li>

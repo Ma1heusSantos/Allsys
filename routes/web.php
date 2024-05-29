@@ -35,4 +35,5 @@ Route::middleware(adminAcess::class)->group(function () {
     Route::get('/editUser/{id}', [adminController::class, 'edit'])->name('edit.user');
     Route::get('/updateUser/{id}', [adminController::class, 'editUser'])->name('update.user');
     Route::get('/listProduct', [produtoController::class, 'listar'])->name("produto.listar");
+    Route::get('/dashboard', [produtoController::class, "dashboard"])->name("dashboard");
 });
