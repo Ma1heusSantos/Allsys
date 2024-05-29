@@ -24,9 +24,9 @@
                         <tbody>
                             @foreach ($users as $user)
                                 <tr>
-                                    <td>{{ $user->name }}</td>
+                                    <td>{{ $user->name ?? 'sem nome' }}</td>
                                     <td>{{ $user->email }}</td>
-                                    <td>{{ $user->role }}</td>
+                                    <td>{{ $user->nivel }}</td>
                                     <td>
                                         <a href="{{ route('edit.user', [$user->id]) }}">
                                             <i class="fa-regular fa-pen-to-square fa-xl p-3" style="color: #FFD43B;"></i>

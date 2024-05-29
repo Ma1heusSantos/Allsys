@@ -67,8 +67,6 @@
             </div>
         </div>
     </div>
-    </div>
-    </div>
 @endsection
 @section('script')
     <script src="//cdn.datatables.net/2.0.7/js/dataTables.min.js"></script>

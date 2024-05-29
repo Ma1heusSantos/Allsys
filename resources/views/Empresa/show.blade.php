@@ -8,15 +8,17 @@
             <section>
                 <div class="row px-4 pt-4">
                     <h1 class="text-lg text-indigo" style="font-weight: 500">
-                        <span class="fw-bold text-primary">{{ $empresa->fantasiaposto }}</span>
+                        <span class="fw-bold text-primary">{{ $empresa->fantasiaposto ?? 'não informado' }}</span>
                     </h1>
                 </div>
                 <div class="row d-flex justify-content-between">
                     <div class="col-md-8 d-flex justify-content-between">
-                        <p class="text-indigo font-weight-normal px-4 fs-6">Nome da empresa: {{ $empresa->nomeposto }}
+                        <p class="text-indigo font-weight-normal px-4 fs-6">Nome da empresa:
+                            {{ $empresa->nomeposto ?? 'não informado' }}
                         </p>
                         <p class="text-indigo font-weight-normal ml-2">
-                            CNPJ: <span class="text-dark font-weight-normal">{{ $empresa->contabilidadeCnpj }}</span>
+                            CNPJ: <span
+                                class="text-dark font-weight-normal">{{ $empresa->contabilidadeCnpj ?? 'não informado' }}</span>
                         </p>
                     </div>
                 </div>
@@ -26,29 +28,29 @@
             <ul class="list-group list-group-flush">
                 <li class="list-group-item">
                     <h2 class="text-dark font-weight-bold d-inline mr-2" style="font-size: 20px">Endereço: </h2>
-                    <p class="d-inline text-dark font-weight-normal">{{ $empresa->endposto }}</p>
+                    <p class="d-inline text-dark font-weight-normal">{{ $empresa->endposto ?? 'não informado' }}</p>
                 </li>
                 <li class="list-group-item d-flex flex-row justify-content-around">
                     <div class="m-0">
                         <h2 class="text-dark font-weight-bold d-inline mr-2" style="font-size: 20px">CEP: </h2>
-                        <p class="d-inline text-dark font-weight-normal">{{ $empresa->cepposto }}</p>
+                        <p class="d-inline text-dark font-weight-normal">{{ $empresa->cepposto ?? 'não informado' }}</p>
                     </div>
                     <div class="m-auto">
                         <h2 class="text-dark font-weight-bold d-inline mr-2" style="font-size: 20px">E-mail: </h2>
-                        <p class="d-inline text-dark font-weight-normal">{{ $empresa->emailposto }}</p>
+                        <p class="d-inline text-dark font-weight-normal">{{ $empresa->emailposto ?? 'não informado' }}</p>
                     </div>
                 </li>
                 <li class="list-group-item">
                     <h2 class="text-dark font-weight-bold d-inline mr-2" style="font-size: 20px">Inscrição Estadual </h2>
-                    <p class="d-inline text-dark font-weight-normal">{{ $empresa->ieposto }}</p>
+                    <p class="d-inline text-dark font-weight-normal">{{ $empresa->ieposto ?? 'não informado' }}</p>
                 </li>
                 <li class="list-group-item">
                     <h2 class="text-dark font-weight-bold d-inline mr-2" style="font-size: 20px">Responsavel: </h2>
-                    <p class="d-inline text-dark font-weight-normal">{{ $empresa->responsavel }}</p>
+                    <p class="d-inline text-dark font-weight-normal">{{ $empresa->responsavel ?? 'não informado' }}</p>
                 </li>
                 <li class="list-group-item">
                     <h2 class="text-dark font-weight-bold d-inline mr-2" style="font-size: 20px">Telefone: </h2>
-                    <p class="d-inline text-dark font-weight-normal">{{ $empresa->telposto }}</p>
+                    <p class="d-inline text-dark font-weight-normal">{{ $empresa->telposto ?? 'não informado' }}</p>
                 </li>
             </ul>
         </div>
