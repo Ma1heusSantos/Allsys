@@ -8,7 +8,7 @@
     <link href="{{ asset('css/sidebars.css') }}" rel="stylesheet">
     <style>
         body {
-            background-image: url('{{ asset(' img/bomba.svg') }}');
+            background-image: url('{{ asset('img/bombas.svg') }}');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -143,7 +143,7 @@
                     </h1>
                 </div>
                 <div class="modal-body">
-                    Deseja trocar de Usuario?
+                    Deseja Sair do Sistema?
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Nao</button>
