@@ -27,7 +27,7 @@
                     <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5" />
                 </svg>
             </button>
-            <span class="navbar-brand mb-0 h1 text-white">Gerencial AllSYS X</span>
+            <span> <a class="navbar-brand mb-0 h1 text-white" href="{{route('home')}}">{{ Auth::user()->empresa ?? 'Gerencial AllSYS X' }}</a></span>
             <!-- button loggar -->
             <!-- Button -->
             <div class="btn-group dropstart">

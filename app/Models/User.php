@@ -22,6 +22,7 @@ class User extends Authenticatable
         'password',
         'nivel',
         'token',
+        'empresa',
         'cnpj'
     ];
 

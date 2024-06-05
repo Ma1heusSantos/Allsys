@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name')->nullable();
             $table->string('email')->unique();
             $table->text('token');
+            $table->string('empresa');
             $table->string('nivel');
             $table->string('cnpj', 18);
             $table->string('password');

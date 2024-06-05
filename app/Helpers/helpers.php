@@ -12,7 +12,7 @@ if (!function_exists('money')) {
 if (!function_exists('formatDate')) {
     function formatDate($date)
     {
-        return Carbon::parse($date)->format('d M Y');
+        return Carbon::parse($date)->format('d/m/Y');
     }
 }
 

@@ -23,7 +23,7 @@
                             </label>
                         </div>
                         <div class="col-auto">
-                            <input type="date" id="dataInicio" name="dataInicio" class="form-control" aria-describedby="passwordHelpInline">
+                            <input type="date" id="dataInicio" name="dataIni" class="form-control" aria-describedby="passwordHelpInline">
                         </div>
                     </div>
                     <div class="row g-3 align-items-center mx-1">

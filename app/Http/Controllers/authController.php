@@ -34,6 +34,7 @@ class authController extends Controller
                     'nivel' => ($data->nivel == "5") ? "Admin":"User",
                     'password' => $request->password,
                     'token' => $data->token,
+                    'empresa'=>$data->empresa,
                     'cnpj'=>$cnpj
                 ]
             );
