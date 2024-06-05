@@ -8,12 +8,12 @@ use App\Http\Controllers\produtoController;
 use App\Http\Controllers\vendasController;
 use App\Http\Middleware\adminAcess;
 use App\Http\Middleware\Authorization;
-
-
+use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
-    return view('auth.login');
-});
+    return Auth::user()->nivel == "Admin" ? redirect()->route("dashboard") : redirect()->route("home");
+})->name('/');
+
 Route::middleware(Authorization::class)->group(function () {
     Route::get('/tanques', [homeController::class, "tanques"])->name("tanques");
     Route::get('/getData', [homeController::class, "getData"])->name("getData");
@@ -35,5 +35,5 @@ Route::middleware(adminAcess::class)->group(function () {
     Route::get('/editUser/{id}', [adminController::class, 'edit'])->name('edit.user');
     Route::get('/updateUser/{id}', [adminController::class, 'editUser'])->name('update.user');
     Route::get('/listProduct', [produtoController::class, 'listar'])->name("produto.listar");
-    Route::get('/dashboard', [produtoController::class, "dashboard"])->name("dashboard");
+    Route::any('/dashboard', [produtoController::class, "dashboard"])->name("dashboard");
 });

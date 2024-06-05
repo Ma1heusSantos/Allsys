@@ -6,7 +6,7 @@
 
 @section('conteudo')
 
-<div class="card">
+<div class="card shadow">
     <div class="card-header mt-3 d-flex justify-content-between flex-column flex-sm-row">
         <div class="col-md-3">
             <h4>
@@ -14,7 +14,7 @@
             </h4>
         </div>
         <div class="form">
-            <form action="#" method="post">
+            <form action="{{route('dashboard')}}" method="post">
                 @csrf
                 <div class="d-flex flex-column flex-sm-row">
                     <div class="row g-3 align-items-center mx-1 ">
@@ -47,17 +47,17 @@
                 <div class="d-flex justify-content-around flex-wrap">
                     <div class="card text-bg-primary bg-primary text-light mb-3" style="min-width: 12rem; width: 32rem;">
                         <div class="d-flex align-items-center justify-content-between p-4">
-                            <div class="h3">Total de vendas</div>
+                            <div class="h3">Total de Lucro Bruto</div>
                             <i class="fa-regular fa-handshake fa-2xl" style="color: #fff;"></i>
                         </div>
                         <div class="card-body text-light">
-                            <p class="card-text text-light h3"><strong>total de vendas</strong></p>
+                            <p class="card-text text-light h3"><strong>R$ {{money($totalbruto)}}</strong></p>
                         </div>
                     </div>
 
                     <div class="card text-bg-primary bg-success text-light mb-3" style="min-width: 12rem; width: 32rem;">
                         <div class="d-flex align-items-center justify-content-between p-4">
-                            <div class="h3">Total de Entradas</div>
+                            <div class="h3">Valor total</div>
                             <i class="fa-solid fa-dollar-sign fa-2xl" style="color: #fff;"></i>
                         </div>
                         <div class="card-body text-light">
@@ -68,7 +68,7 @@
 
                     <div class="card text-bg-primary bg-danger text-light mb-3" style="min-width: 12rem; width: 32rem;">
                         <div class="d-flex align-items-center justify-content-between p-4">
-                            <div class="h3">Total de Saídas</div>
+                            <div class="h3">Percentual de lucro</div>
                             <i class="fa-solid fa-hand-holding-dollar fa-2xl" style="color: #fff;"></i>
                         </div>
                         <div class="card-body text-light">

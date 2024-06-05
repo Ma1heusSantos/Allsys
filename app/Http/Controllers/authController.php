@@ -40,7 +40,7 @@ class authController extends Controller
             );
             Auth::login($user);
             $request->session()->regenerate();
-            return redirect()->intended('home')->with('success', 'Autenticação bem-sucedida!');
+            return redirect()->intended('/')->with('success', 'Autenticação bem-sucedida!');
         }else{
             $erros = 'usuario ou senha incorretos';
             return redirect()->back()->withErrors(['msg' => $erros]);

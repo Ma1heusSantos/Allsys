@@ -1,7 +1,7 @@
 @extends('layouts.template')
 
 @section('title')
-    titulo
+    Tanques
 @endsection
 
 @section('conteudo')

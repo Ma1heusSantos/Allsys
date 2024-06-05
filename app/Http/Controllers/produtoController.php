@@ -28,24 +28,30 @@ class produtoController extends Controller
     public function dashboard(Request $request)
     {
         $user = Auth::user();
-        $dataIni = formatDate($request->dataini);
-        $dataFim = formatDate($request->datafim);
-        if(!isset($dataIni)| !isset($dataFim)){
-            $dataIni = Carbon::now();
-            $dataFim = Carbon::now();
+        $dataIni = formatDate($request->dataIni);
+        $dataFim = formatDate($request->dataFim);
+        
+        if (!isset($request->dataIni) || !isset($request->dataFim)) {
+            $dataIni = "01/05/2023";
+            $dataFim = "01/05/2023";
         }
-        $dados =[
-            "dataini"=>$dataIni,
-            "datafim"=>$dataFim
+        
+        $dados = [
+            "dataini" => $dataIni,
+            "datafim" => $dataFim
         ];
+
         try {
             $url = "http://{$user->cnpj}.ddns.net:8098/api/svrpista/vendas/combsintetico";
             $response = Http::withHeaders([
                 'Authorization' => 'Bearer' . $user->token,
             ])->put($url,$dados);
-            $data = json_decode($response, false);
-            dd($data);
-            return view("dashboard", ["data" => $data]);
+            $dados = json_decode($response, false);
+
+            foreach($dados as $dado){
+                $totalbruto = $dado->lucrobruto;
+            }
+            return view("dashboard", ["totalbruto"=>$totalbruto]);
         } catch (Exception $e) {
             return redirect()->route('dashboard')->with('Error', $e->getMessage());
         }
