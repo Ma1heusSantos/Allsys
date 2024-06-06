@@ -14,10 +14,7 @@ class authController extends Controller
     public function login(){
         return view ('auth.login');
     }
-    public function autenticaUsuario(Request $request){
-        // endpoint teste: http://19979567000180.ddns.net:8098/api/svrpista/login 
-        
-    
+    public function autenticaUsuario(Request $request){    
         $cnpj = $this->limparCNPJ($request->cnpj);
         $dados =[
             "usuario"=>$request->email,
@@ -40,7 +37,7 @@ class authController extends Controller
             );
             Auth::login($user);
             $request->session()->regenerate();
-            return redirect()->intended('/')->with('success', 'Autenticação bem-sucedida!');
+            return Auth::user()->nivel == "Admin" ? redirect()->route("dashboard") : redirect()->route("home");
         }else{
             $erros = 'usuario ou senha incorretos';
             return redirect()->back()->withErrors(['msg' => $erros]);

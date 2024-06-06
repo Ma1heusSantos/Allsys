@@ -11,8 +11,8 @@ use App\Http\Middleware\Authorization;
 use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
-    return Auth::user()->nivel == "Admin" ? redirect()->route("dashboard") : redirect()->route("home");
-})->name('/');
+    return view('auth.login');
+});
 
 Route::middleware(Authorization::class)->group(function () {
     Route::get('/tanques', [homeController::class, "tanques"])->name("tanques");

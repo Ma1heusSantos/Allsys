@@ -47,9 +47,10 @@ class produtoController extends Controller
                 'Authorization' => 'Bearer' . $user->token,
             ])->put($url,$dados);
             $dados = json_decode($response, false);
-
+            
+            $totalbruto = 0;
             foreach($dados as $dado){
-                $totalbruto = $dado->lucrobruto;
+                $totalbruto += $dado->lucrobruto;
             }
             return view("dashboard", ["totalbruto"=>$totalbruto]);
         } catch (Exception $e) {
