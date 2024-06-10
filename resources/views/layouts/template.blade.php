@@ -27,7 +27,6 @@
 <body>
     <x-Sidebar></x-Sidebar>
     <div class="container">
-
         @yield('conteudo')
     </div>
 </body>
