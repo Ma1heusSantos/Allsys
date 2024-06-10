@@ -13,8 +13,34 @@
                 <span class="span-title text-primary">Dashboard</span>
             </h4>
         </div>
-       
-        
+        <div class="form">
+            <form action="{{route('dashboard')}}" method="post">
+                @csrf
+                <div class="container">
+                    <div class="d-flex flex-column flex-sm-row">
+                        <div class="row g-3 align-items-center mx-1 ">
+                            <div class="col-12 col-sm-auto">
+                                <label for="dataInicio" class="col-form-label">Data de início:</label>
+                            </div>
+                            <div class="col-12 col-sm-auto">
+                                <input type="date" id="dataInicio" name="dataIni" class="form-control" aria-describedby="passwordHelpInline">
+                            </div>
+                        </div>
+                        <div class="row g-3 align-items-center mx-1 ">
+                            <div class="col-12 col-sm-auto">
+                                <label for="dataFim" class="col-form-label">Data de fim:</label>
+                            </div>
+                            <div class="col-12 col-sm-auto d-flex">
+                                <input type="date" id="dataFim" name="dataFim" class="form-control">
+                                <button type="submit" id="btn-form" class="input-group-addon btn btn-primary" style="background-color: rgb(13, 110, 253); color: #fff; width: 3rem; height: 2.3rem; border-radius: 0px 5px 5px 0px !important; margin-right: 2%">
+                                    <i class="fas fa-search" style="color: #fff"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
     <div class="card-body">
         <div class="container mt-4">
