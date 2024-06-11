@@ -29,6 +29,7 @@
     <div class="container">
         @yield('conteudo')
     </div>
+    <x-Rodape/>
 </body>
 
 </html>
