@@ -18,7 +18,7 @@
                 @csrf
                 <div class="container">
                     <div class="d-flex flex-column flex-sm-row">
-                        <div class="row g-3 align-items-center mx-1 ">
+                        <div class="row g-3 align-items-center mx-1">
                             <div class="col-12 col-sm-auto">
                                 <label for="dataInicio" class="col-form-label">Data de início:</label>
                             </div>
@@ -26,7 +26,7 @@
                                 <input type="date" id="dataInicio" name="dataIni" class="form-control" aria-describedby="passwordHelpInline">
                             </div>
                         </div>
-                        <div class="row g-3 align-items-center mx-1 ">
+                        <div class="row g-3 align-items-center mx-1">
                             <div class="col-12 col-sm-auto">
                                 <label for="dataFim" class="col-form-label">Data de fim:</label>
                             </div>

@@ -76,7 +76,7 @@
                                             Mes</a></li>
                                     <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Vendas
                                             Frentista</a></li>
-                                    <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Troca
+                                    <li><a href="{{route( 'trocar.preco' )}}" class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Troca
                                             Preco</a></li>
                                 </ul>
                             </div>

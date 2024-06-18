@@ -13,6 +13,11 @@ use Illuminate\Validation\Rule;
 
 class adminController extends Controller
 {
+    protected $url;
+    public function __construct() {
+        $user = Auth::user();
+        $this->url = "http://{$user->cnpj}.ddns.net:8098/api/svrpista/";
+    }
     public function createUser()
     {
         return view("user.create");
@@ -125,10 +130,9 @@ class adminController extends Controller
 
     public function showCompany()
     {
-        // endpoint teste: http://19979567000180.ddns.net:8098/api/svrpista/login 
         $user = auth::user();
         try {
-            $url = "http://{$user->cnpj}.ddns.net:8098/api/svrpista/empresa";
+            $url = $this->url."empresa";
             $response = Http::withHeaders([
                 'Authorization' => 'Bearer' . $user->token,
             ])->get($url);

@@ -12,11 +12,15 @@ use Carbon\Carbon;
 
 class produtoController extends Controller
 {
-    public function listar()
-    {
+    protected $url; 
+    public function __construct() {
+        $user = Auth::user();
+        $this->url = "http://{$user->cnpj}.ddns.net:8098/api/svrpista/";
+    }
+    public function listar(){
         $user = Auth::user();
         try {
-            $url = "http://{$user->cnpj}.ddns.net:8098/api/svrpista/produto/list";
+            $url = $this->url. "produto/list";
             $response = Http::withHeaders([
                 'Authorization' => 'Bearer' . $user->token,
             ])->get($url);
@@ -45,7 +49,7 @@ class produtoController extends Controller
         ];
 
         try {
-            $url = "http://{$user->cnpj}.ddns.net:8098/api/svrpista/vendas/combsintetico";
+            $url = $this->url."vendas/combsintetico";
 
             $response = Http::withHeaders([
                 'Authorization' => 'Bearer' . $user->token,
@@ -78,7 +82,7 @@ class produtoController extends Controller
     public function getFuncionarios($user,$datas){
 
         try {
-            $url = "http://vltsvr.ddns.net:8098/api/svrpista/itensvendaprodfunc";
+            $url = $this->url."itensvendaprodfunc";
             $response = Http::withHeaders([
                 'Authorization' => 'Bearer ' . $user->token, 
             ])->put($url, $datas);
@@ -92,4 +96,21 @@ class produtoController extends Controller
         }
         
     }
-}
+
+    public function trocaPreco(){
+        $usuario = Auth::user();
+        try {
+            $url = $this->url."bicos/trocapreco";
+            $response = Http::withHeaders([
+                'Authorization' => 'Bearer ' . $usuario->token, 
+            ])->get($url);
+            $dadosResponse = json_decode($response, false); 
+            $dadosJson = json_encode($dadosResponse);
+
+            return view("produtos.trocaPreco",['dadosResponse'=>$dadosResponse,'dadosJson'=>$dadosJson,'usuario'=>$usuario]);
+        
+        } catch (Exception $e) {
+            Log::info($e->getMessage());
+        }
+    }
+}   

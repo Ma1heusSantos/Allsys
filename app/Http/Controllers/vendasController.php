@@ -10,6 +10,11 @@ use Exception;
 
 class vendasController extends Controller
 {
+    protected $url;
+    public function __construct() {
+        $user = Auth::user();
+        $this->url = "http://{$user->cnpj}.ddns.net:8098/api/svrpista/";
+    }
     public function vendasDia(){
         return view('vendasPorPeriodo');
     }
@@ -22,7 +27,7 @@ class vendasController extends Controller
                 "dataini"=>$dataIni,
                 "datafim"=>$dataFim
             ];
-            $url = "http://19979567000180.ddns.net:8098/api/svrpista/itensvenda";
+            $url = $this->url."itensvenda";
             $response = Http::withHeaders([
                 'Authorization' => 'Bearer' . $user->token,
             ])->put($url, $dados);
