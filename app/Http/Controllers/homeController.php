@@ -9,9 +9,10 @@ use Illuminate\Support\Facades\Auth;
 class homeController extends Controller
 {
     protected $url;
+    protected $user;
     public function __construct() {
-        $user = Auth::user();
-        $this->url = "http://{$user->cnpj}.ddns.net:8098/api/svrpista/";
+        $this->user = Auth::user();
+        $this->url = "http://{$this->user->cnpj}.ddns.net:8098/api/svrpista/";
     }
     public function tanques(){
         return view("tanques");
@@ -22,17 +23,8 @@ class homeController extends Controller
     }
     
     public function getData(){
-        $dados = [
-            'usuario' => 'CAIXA',
-            'senha' => '123'
-        ];
-    
-        $token = Http::put($this->url.'login', $dados);   
-        $token = json_decode($token,false);
-        $response = Http::withToken($token->token)->get($this->url.'tanques');
+        $response = Http::withToken($this->user->token)->get($this->url.'tanques');
         $responseArray = json_decode($response, true);
-
-
         return $responseArray;
     }
 }
