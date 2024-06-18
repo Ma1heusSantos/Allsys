@@ -49,7 +49,7 @@
         ::-webkit-scrollbar-thumb {
             -webkit-border-radius: 10px;
             border-radius: 10px;
-            background: #3057c8;
+            background: #b7c6f4;
             -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
         }
         .td-campo-data {
