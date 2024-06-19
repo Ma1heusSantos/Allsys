@@ -15,7 +15,7 @@
     }
     #textoRodape{
       margin-bottom: 6px !important;
-      font-size: 10%;   
+        
 
     }
   </style>
