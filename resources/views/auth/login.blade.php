@@ -1,5 +1,16 @@
 @extends('layouts.auth')
+<!---cor tela de inicio-->
+@section("css")
+<style>
 
+    .bg-gradient-primary {
+        background-color: #b9c8f4 !important;
+        background-image: linear-gradient(180deg, #d3defa 10%, #224abe 100%) !important;
+        background-size: cover;
+    }
+    </style>
+@endsection
+<!---cor tela de inicio fim-->
 @section('content')
     <div class="container">
         <div class="row justify-content-center">

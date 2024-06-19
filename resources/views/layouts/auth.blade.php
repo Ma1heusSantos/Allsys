@@ -44,6 +44,7 @@
     <link rel="apple-touch-icon" sizes="144x144" href="{{ asset('img/apple-touch-icon-144x144.png') }}" />
     <link rel="apple-touch-icon" sizes="152x152" href="{{ asset('img/apple-touch-icon-152x152.png') }}" />
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('img/apple-touch-icon-180x180.png') }}" />
+    @yield("css")
 </head>
 
 <body class="bg-gradient-primary min-vh-100 d-flex justify-content-center align-items-center">

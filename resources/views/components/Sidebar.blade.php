@@ -63,40 +63,6 @@
                     <!--- lista do menu-->
                     <ul class="list-unstyled ps-0">
                         <li class="mb-1">
-                            <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed text-white" data-bs-toggle="collapse" data-bs-target="#menu1-collapse" aria-expanded="false" aria-controls=" menu1-collapse">
-                                Relatorios
-                            </button>
-                            <div class="collapse" id="menu1-collapse">
-                                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                                    <li><a href="{{ route('tanques') }}" class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Tanques</a>
-                                    </li>
-                                    <li><a href="{{ route('vendas.dia') }}" class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Cupons</a>
-                                    </li>
-                                    <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Vendas
-                                            Mes</a></li>
-                                    <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Vendas
-                                            Frentista</a></li>
-                                    <li><a href="{{route( 'trocar.preco' )}}" class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Troca
-                                            Preco</a></li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="mb-1">
-                            <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed text-white" data-bs-toggle="collapse" data-bs-target="#menu2-collapse" aria-expanded="false" aria-controls=" menu2-collapse">
-                                Produtos
-                            </button>
-                            <div class="collapse" id="menu2-collapse">
-                                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                                    <li><a href="{{ route('dashboard') }}" class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Dashboard</a>
-                                    </li>
-                                    <li><a href="{{ route('produto.listar') }}" class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Listar</a>
-                                    </li>
-                                    <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Estoque
-                                        </a></li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="mb-1">
                             <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed text-white" data-bs-toggle="collapse" data-bs-target="#menu3-collapse" aria-expanded="false" aria-controls=" menu3-collapse">
                                 Admin
                             </button>
@@ -106,11 +72,49 @@
                                     </li>
                                     <li><a href="{{ route('show.user') }}" class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Usuarios</a>
                                     </li>
+                                    <li><a href="{{route( 'trocar.preco' )}}" class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Troca
+                                        Preco</a></li>
 
                                 </ul>
                             </div>
 
                         </li>
+                        <li class="mb-1">
+                            <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed text-white" data-bs-toggle="collapse" data-bs-target="#menu1-collapse" aria-expanded="false" aria-controls=" menu1-collapse">
+                                Graficos
+                            </button>
+                            <div class="collapse" id="menu1-collapse">
+                                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                                    <li><a href="{{ route('dashboard') }}" class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Dashboard</a>
+                                    </li>
+                                    <li><a href="{{ route('tanques') }}" class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Tanques</a>
+                                    </li>
+                                    
+                                    
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="mb-1">
+                            <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed text-white" data-bs-toggle="collapse" data-bs-target="#menu2-collapse" aria-expanded="false" aria-controls=" menu2-collapse">
+                                Relatroios
+                            </button>
+                            <div class="collapse" id="menu2-collapse">
+                                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                                    
+                                    <li><a href="{{ route('produto.listar') }}" class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Listar</a>
+                                    </li>
+                                    <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Estoque
+                                        </a></li>
+                                        <li><a href="{{ route('vendas.dia') }}" class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Cupons</a>
+                                        </li>
+                                        <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Vendas
+                                                Mes</a></li>
+                                        <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Vendas
+                                                Frentista</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                       
                     </ul>
                     <!--- fim lista do menu-->
                 </div>

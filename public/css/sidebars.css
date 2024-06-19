@@ -22,11 +22,15 @@ body {
 }
 
 #listmenu {
-    background-color: #1c41b2 !important;
+    background-color: #b9c8f4 !important;
+        background-image: linear-gradient(180deg, #507ef3 10%, #224abe 100%) !important;
+        background-size: cover;
 }
 
 .backgroud_sidemenu {
-    background-color: #1c41b2 !important;
+    background-color: #b9c8f4 !important;
+    background-image: linear-gradient(180deg, #507ef3 10%, #224abe 100%) !important;
+    background-size: cover;
     border-radius: 20px;
     opacity: 0.9;
     margin-left: 5px;
@@ -45,7 +49,9 @@ body {
     border-radius: 50%;
     padding: 0;
 
-    background-color: #1c41b2 !important;
+    background-color: #b9c8f4 !important;
+    background-image: linear-gradient(180deg, #507ef3 10%, #224abe 100%) !important;
+    background-size: cover;
     border: #1c41b2;
 }
 
