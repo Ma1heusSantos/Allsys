@@ -32,7 +32,7 @@
                         <div class="row" id="inputs-container">
                             @foreach ($dadosResponse as $dado)
                                 <div class="col-md-4 mb-3 d-flex">
-                                    <div class="card shadow text-center h-100" style="width: 20rem;">
+                                    <div class="card shadow text-center h-100" style="width: 20rem; background-color: #b9c8f4;background-image: linear-gradient(180deg, #4787e1 10%, #197beaee 100%);background-size: cover;color: #ddf0e7;" >
                                         <div class="card-body">
                                             <h5 class="card-title">{{ $dado->dscprod }}</h5>
                                             <input hidden type="text" id="codigo-{{ $loop->index }}"
