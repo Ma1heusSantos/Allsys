@@ -105,7 +105,7 @@
                         if (isNaN(avista) || isNaN(aprazo)) {
                             alert(
                                 'Por favor, insira valores numéricos válidos para Avista e Aprazo.'
-                                );
+                            );
                             return;
                         }
 
