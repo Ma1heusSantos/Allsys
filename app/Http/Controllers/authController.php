@@ -55,6 +55,6 @@ class authController extends Controller
 
     public function deslogar(){
         Auth::logout();
-        return view('auth.login');
+        return redirect()->route('login');
     }
 }
