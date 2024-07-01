@@ -32,7 +32,7 @@
                             @foreach ($dadosResponse as $dado)
                                 <div class="col-md-4 mb-3 d-flex">
                                     <div class="card shadow text-center h-100 d-flex flex-column text-primary"
-                                        style="width: 20rem; background-color: #ccc; background-size: cover;">
+                                        style="width: 20rem; background-color: #AED0FF; background-size: cover;">
                                         <div class="card-body d-flex flex-column">
                                             <h3>{{ $dado->dscprod }}</h3>
                                             <p>A Vista - R$ {{ $dado->avista }}</p>
