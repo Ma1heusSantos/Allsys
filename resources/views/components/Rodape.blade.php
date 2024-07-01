@@ -20,6 +20,7 @@
           #textoRodape {
               margin-bottom: 6px !important;
           }
+      }
   </style>
   </head>
   <!-- Footer -->

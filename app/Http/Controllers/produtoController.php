@@ -12,10 +12,11 @@ use Carbon\Carbon;
 
 class produtoController extends Controller
 {
-    protected $url; 
+    protected $url;
+    protected $user; 
     public function __construct() {
-        $user = Auth::user();
-        $this->url = "http://{$user->cnpj}.ddns.net:8098/api/svrpista/";
+        $this->user = Auth::user();
+        $this->url = "http://{$this->user->cnpj}.ddns.net:8098/api/svrpista/";
     }
     public function listar(){
         $user = Auth::user();
@@ -108,6 +109,39 @@ class produtoController extends Controller
             $dadosJson = json_encode($dadosResponse);
 
             return view("produtos.trocaPreco",['dadosResponse'=>$dadosResponse,'dadosJson'=>$dadosJson,'usuario'=>$usuario]);
+        
+        } catch (Exception $e) {
+            Log::info($e->getMessage());
+        }
+    }
+    public function atualizaPreco(Request $request){
+        try {
+            $data = formatDate($request->data);
+
+            $dados = [
+                "codprod"=> $request->codigo,
+                "avista" => (float)$request->avista,
+                "aprazo" => (float)$request->aprazo,
+                "datatroca"=> $data,
+                "codemp"=> $request->codemp,
+                "usuario"=> $this->user->email,
+                "terminal"=> $request->terminal
+            ];
+
+            $url = $this->url."bicos/trocapreco";
+
+            $response = Http::withHeaders([
+                'Authorization' => 'Bearer ' . $this->user->toke,
+            ])->put($url,[$dados]);
+            
+            if ($response->successful()) {
+                return redirect()->back()->with('success', 'A troca do preço será efetuada na data '.formatDate($request->data));
+            } else {
+                $errors = 'Não foi possível trocar o preço. Código de status: ' . $response->status();
+                return redirect()->back()->withErrors(['msg' => $errors]);
+            }
+            
+
         
         } catch (Exception $e) {
             Log::info($e->getMessage());
