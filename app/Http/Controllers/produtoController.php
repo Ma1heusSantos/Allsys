@@ -131,10 +131,8 @@ class produtoController extends Controller
             $url = $this->url."bicos/trocapreco";
 
             $response = Http::withHeaders([
-                'Authorization' => 'Bearer ' . $this->user->toke,
+                'Authorization' => 'Bearer ' . $this->user->token,
             ])->put($url,[$dados]);
-
-            dd($response->body());
             
             if ($response->successful()) {
                 return redirect()->back()->with('success', 'A troca do preço será efetuada na data '.formatDate($request->data));
