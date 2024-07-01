@@ -18,10 +18,10 @@
                     <input hidden type="text" name="codemp" value="{{ $dado->codemp }}">
 
                     <label for="" class="mb-2 h4">A vista - R$ {{ $dado->avista }} </label>
-                    <input class="form-control mb-4" type="number" placeholder="Digite o novo preço a vista aqui"
+                    <input class="form-control mb-4" type="text" placeholder="Digite o novo preço a vista aqui"
                         id="avista-{{ $index }}" name="avista">
                     <label for="" class="mb-2 h4"> A Prazo - R$ {{ $dado->aprazo }}</label>
-                    <input class="form-control mb-4" type="number" name="aprazo"
+                    <input class="form-control mb-4" type="text" name="aprazo"
                         placeholder="Digite o novo preço a prazo aqui">
                     <label for="" class="mb-2 h4"> Data de Troca</label>
                     <input class="form-control" type="date" name="data">
