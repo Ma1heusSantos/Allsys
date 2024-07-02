@@ -1,9 +1,29 @@
 @props(['dado', 'index'])
 
+<style>
+    @media (max-width: 575.98px) {
+        .modal-dialog-centered-sm {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 65px;
+        }
+    }
+
+    @media (min-width: 576px) {
+        .modal-dialog-top-lg {
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            margin-top: 40px;
+        }
+    }
+</style>
+
 <!-- Modal -->
 <div class="modal fade" id="editPreco-{{ $index }}" tabindex="-1"
     aria-labelledby="editPrecoLabel-{{ $index }}" aria-hidden="true">
-    <div class="modal-dialog ">
+    <div class="modal-dialog modal-dialog-centered-sm modal-dialog-top-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h1 class="modal-title fs-5" id="editPrecoLabel-{{ $index }}">Troca Preço</h1>
