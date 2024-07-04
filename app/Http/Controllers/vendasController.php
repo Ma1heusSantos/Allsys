@@ -11,6 +11,7 @@ use Exception;
 class vendasController extends Controller
 {
     protected $url;
+    protected $user;
     public function __construct() {
         $user = Auth::user();
         $this->url = "http://{$user->cnpj}.ddns.net:8098/api/svrpista/";
@@ -20,7 +21,6 @@ class vendasController extends Controller
     }
     public function getVendasDia(Request $request){
         try{
-            $user = Auth::user();
             $dataIni = Carbon::parse($request->dataini)->format('d/m/Y');
             $dataFim = Carbon::parse($request->datafim)->format('d/m/Y');
             $dados =[
@@ -29,7 +29,7 @@ class vendasController extends Controller
             ];
             $url = $this->url."itensvenda";
             $response = Http::withHeaders([
-                'Authorization' => 'Bearer' . $user->token,
+                'Authorization' => 'Bearer' . $this->user->token,
             ])->put($url, $dados);
             $dados = json_decode($response,false);
             return view('vendasPorPeriodo',['dados'=>$dados]);

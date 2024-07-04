@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 use Carbon\Carbon;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Collection;
 
 
 class produtoController extends Controller
@@ -33,7 +35,7 @@ class produtoController extends Controller
     }
     public function dashboard(Request $request)
     {
-        $user = Auth::user();
+
         $dataIni = formatDate($request->dataIni);
         $dataFim = formatDate($request->dataFim);
         $totalbruto = 0;
@@ -50,10 +52,10 @@ class produtoController extends Controller
         ];
 
         try {
-            $url = $this->url."vendas/combsintetico";
+            $url = $this->url."venda/combsintetico";
 
             $response = Http::withHeaders([
-                'Authorization' => 'Bearer' . $user->token,
+                'Authorization' => 'Bearer' . $this->user->token,
             ])->put($url,$datas);
 
             $dados = json_decode($response, false);
@@ -65,7 +67,7 @@ class produtoController extends Controller
 
             $jsonDados = json_encode($dados);
 
-            $dadosFuncionario = $this->getFuncionarios($user,$datas);
+            $dadosFuncionario = $this->getFuncionarios($this->user,$datas);
 
             $jsonFuncionario = json_encode($dadosFuncionario);
 
@@ -83,9 +85,9 @@ class produtoController extends Controller
     public function getFuncionarios($user,$datas){
 
         try {
-            $url = $this->url."itensvendaprodfunc";
+            $url = $this->url."itensvenda/prodfunc";
             $response = Http::withHeaders([
-                'Authorization' => 'Bearer ' . $user->token, 
+                'Authorization' => 'Bearer '.$user->token, 
             ])->put($url, $datas);
 
             $dadosResponse = json_decode($response, false); 
@@ -101,7 +103,7 @@ class produtoController extends Controller
     public function trocaPreco(){
         $usuario = Auth::user();
         try {
-            $url = $this->url."bicos/trocapreco";
+            $url = $this->url."bico/trocapreco";
             $response = Http::withHeaders([
                 'Authorization' => 'Bearer ' . $usuario->token, 
             ])->get($url);
@@ -130,7 +132,7 @@ class produtoController extends Controller
                 "terminal"=> $request->terminal
             ];
 
-            $url = $this->url."bicos/trocapreco";
+            $url = $this->url."bico/trocapreco";
 
             $response = Http::withHeaders([
                 'Authorization' => 'Bearer ' . $this->user->token,
@@ -149,4 +151,67 @@ class produtoController extends Controller
             Log::info($e->getMessage());
         }
     }
+    function paginateArray($items, $perPage = 10, $page = null, $options = []){
+        $page = $page ?: (LengthAwarePaginator::resolveCurrentPage() ?: 1);
+        $items = $items instanceof Collection ? $items : Collection::make($items);
+        $currentPageItems = $items->slice(($page - 1) * $perPage, $perPage)->values();
+        return new LengthAwarePaginator($currentPageItems, $items->count(), $perPage, $page, $options);
+    }
+    public function monitor(){
+        try {
+            $url = $this->url."bico/monitor";
+            $response = Http::withHeaders([
+                'Authorization' => 'Bearer ' . $this->user->token, 
+            ])->get($url);
+
+            $bicos = json_decode($response->body(), true);
+
+            foreach ($bicos as &$bico) {
+                switch ($bico['status']) {
+                    case 'ABASTECENDO':
+                        $bico['color'] = 'success';  
+                        break;
+                    case 'DESLIGADO':
+                        $bico['color'] = 'secondary';  
+                        break;
+                    case 'DESATIVADO':
+                        $bico['color'] = 'secondary';  
+                        break;
+                    case 'AFERINDO':
+                        $bico['color'] = 'warning';  
+                        break;
+                    case 'DESCONECTADO':
+                        $bico['color'] = 'danger';  
+                        break;
+                    case 'AFERINDO MANUAL':
+                        $bico['color'] = 'warning';  
+                        break;
+                    case 'BLOQUEADA ':
+                        $bico['color'] = 'danger';  
+                        break;
+                    case 'AGUARDANDO':
+                        $bico['color'] = 'warning';  
+                    case 'FIM ABASTECIMENTO':
+                        $bico['color'] = 'success';  
+                        break;
+                    default:
+                        $bico['color'] = 'secondary';  
+                        break;
+                }
+            }
+
+            $qtdPag = 8; 
+            $currentPage = LengthAwarePaginator::resolveCurrentPage();
+            $paginatedBicos = $this->paginateArray($bicos, $qtdPag, $currentPage, [
+                'path' => LengthAwarePaginator::resolveCurrentPath()
+            ]);
+
+            return view('monitor', ['paginatedBicos' => $paginatedBicos]);
+        
+        } catch (Exception $e) {
+            Log::info($e->getMessage());
+        }
+    }
+
+    
 }   

@@ -127,6 +127,9 @@
                             <div class="collapse" id="menu2-collapse">
                                 <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
 
+                                    <li><a href="{{ route('monitor') }}"
+                                            class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Monitor</a>
+                                    </li>
                                     <li><a href="{{ route('produto.listar') }}"
                                             class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Listar</a>
                                     </li>

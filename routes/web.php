@@ -39,4 +39,5 @@ Route::middleware(adminAcess::class)->group(function () {
     Route::any('/dashboard', [produtoController::class, "dashboard"])->name("dashboard");
     Route::get('/trocaPreco',[produtoController::class,'trocaPreco'])->name("trocar.preco");
     Route::post('/atualizaPreco',[produtoController::class,'atualizaPreco'])->name("atualiza.preco");
+    Route::get('/monitor',[produtoController::class,'monitor'])->name("monitor");
 });
