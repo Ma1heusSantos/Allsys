@@ -15,7 +15,7 @@ class vendasController extends Controller
     protected $user;
     public function __construct() {
         $user = Auth::user();
-        $this->url = "http://{$user->cnpj}.ddns.net:8097/api/svrpista/";
+        $this->url = "http://{$user->cnpj}.ddns.net:8098/api/svrpista/";
     }
     public function vendasDia(){
         return view('vendasPorPeriodo');
