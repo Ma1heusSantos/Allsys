@@ -4,7 +4,13 @@
 @endsection
 
 @section('conteudo')
-
+    @if ($errors->any())
+        <div class="alert alert-danger text-danger text-center">
+            @foreach ($errors->all() as $error)
+                {{ $error }}
+            @endforeach
+        </div>
+    @endif
     <div class="card mx-auto shadow w-100 p-0">
         <h2 class="card-title p-3 text-primary">
             Relatório por período
