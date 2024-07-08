@@ -14,9 +14,6 @@
                             <div class="card-header p-0 w-100"
                                 style="border-radius: inherit; position: relative; z-index: 0; height: 15rem">
                                 <div style="border-radius: 1.2rem 1.2rem 0 0 !important; height: 12rem">
-                                    {{-- <img class="img-fluid img-{{ $bico['color'] }}"
-                                        src="{{ asset('img/gas-pump-solid.svg') }}" alt="Imagem do Card do Produto"
-                                        style="width: inherit; height: inherit; object-fit: cover; border-radius: inherit; margin-left:4.0rem; margin-top:1.2rem;" /> --}}
                                     <x-Img-bomba />
                                 </div>
                             </div>
