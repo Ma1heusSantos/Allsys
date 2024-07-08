@@ -15,14 +15,14 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <h5 class="card-title text-primary text-center font-weight-bold">
+                            <h5 class="card-title text-{{ $bico['color'] }} text-center fw-bold">
                                 {{ $bico['dscprod'] }} - CODIGO: {{ $bico['codbico'] }}
                             </h5>
                             <ul class="list-unstyled">
                                 <li><strong>Encerrante do bico:</strong> <span
                                         class="text-secondary">{{ $bico['encerrantebico'] }}</span></li>
                                 <li><strong>Volume atual do bico:</strong> <span
-                                        class="text-secondary">{{ $bico['volumeatualbico'] }}</span></li>
+                                        class="text-secondary">{{ $bico['volumeatualbico'] }} L</span></li>
                                 <li><strong>Valor atual do bico:</strong> <span class="text-secondary">R$
                                         {{ money($bico['valoratualbico']) }}</span></li>
                                 <li><strong>À vista:</strong> <span class="text-secondary">R$
@@ -30,15 +30,14 @@
                                 <li><strong>A prazo:</strong> <span class="text-secondary">R$
                                         {{ money($bico['aprazo']) }}</span></li>
                                 <li><strong>Status:</strong> <span
-                                        class="font-weight-bold text-{{ $bico['color'] }}">{{ $bico['status'] }}</span></li>
+                                        class="fw-bold text-{{ $bico['color'] }}">{{ $bico['status'] }}</span>
+                                </li>
                             </ul>
                         </div>
                     </div>
                 </div>
             @endforeach
         </div>
-        <div>
-            {{ $paginatedBicos->links() }}
-        </div>
+        {{ $paginatedBicos->links() }}
     </div>
 @endsection
