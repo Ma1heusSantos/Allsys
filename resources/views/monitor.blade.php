@@ -16,19 +16,21 @@
                         </div>
                         <div class="card-body">
                             <h5 class="card-title text-{{ $bico['color'] }} text-center fw-bold">
-                                {{ $bico['dscprod'] }} - CODIGO: {{ $bico['codbico'] }}
+                                {{ $bico['dscprod'] }} - BICO: {{ $bico['codbico'] }}
                             </h5>
                             <ul class="list-unstyled">
-                                <li><strong>Encerrante do bico:</strong> <span
+                                <li><strong>Encerrante:</strong> <span
                                         class="text-secondary">{{ $bico['encerrantebico'] }}</span></li>
-                                <li><strong>Volume atual do bico:</strong> <span
-                                        class="text-secondary">{{ $bico['volumeatualbico'] }} L</span></li>
-                                <li><strong>Valor atual do bico:</strong> <span class="text-secondary">R$
+                                <li><strong>Volume:</strong> <span class="text-secondary">{{ $bico['volumeatualbico'] }}
+                                        L</span></li>
+                                <li><strong>Valor atual:</strong> <span class="text-secondary">R$
                                         {{ money($bico['valoratualbico']) }}</span></li>
-                                <li><strong>À vista:</strong> <span class="text-secondary">R$
-                                        {{ money($bico['avista']) }}</span></li>
-                                <li><strong>A prazo:</strong> <span class="text-secondary">R$
-                                        {{ money($bico['aprazo']) }}</span></li>
+                                <li>
+                                    <strong>À vista:</strong> <span class="text-secondary">R$
+                                        {{ money($bico['avista']) }}</span>
+                                    <strong>A prazo:</strong> <span class="text-secondary">R$
+                                        {{ money($bico['aprazo']) }}</span>
+                                </li>
                                 <li><strong>Status:</strong> <span
                                         class="fw-bold text-{{ $bico['color'] }}">{{ $bico['status'] }}</span>
                                 </li>
