@@ -1,13 +1,12 @@
 @extends('layouts.auth')
 <!---cor tela de inicio-->
-@section("css")
-<style>
-
-    .bg-gradient-primary {
-    background-color: #28361d !important;
-    background-image: linear-gradient(180deg, #535361 10%, #222524 100%) !important;
-    background-size: cover;
-    }
+@section('css')
+    <style>
+        .bg-gradient-primary {
+            background-color: #28361d !important;
+            background-image: linear-gradient(180deg, #535361 10%, #222524 100%) !important;
+            background-size: cover;
+        }
     </style>
 @endsection
 <!---cor tela de inicio fim-->
@@ -33,26 +32,58 @@
                                             </ul>
                                         </div>
                                     @endif
-                                    <div class="" role="alert"> 
+                                    <div class="" role="alert">
                                         {{-- @include('flash::message') --}}
                                     </div>
-                                    <form method="POST" action="{{ route('autenticaUsuario') }}" id='cnpj'
-                                        class="user">
+                                    <form method="POST" action="{{ route('autenticaUsuario') }}">
                                         @csrf
 
-                                        <div class="form-group" >
-                                            <input type="text" class="form-control bg-dark text-white form-control-user cnpj" name="cnpj"
-                                                placeholder="CNPJ" required > 
+                                        <div class="container">
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text bg-dark border-secondary"
+                                                            id="basic-addon1">
+                                                            <i class="fa-solid fa-building" style="color: #fff;"></i>
+                                                        </span>
+                                                    </div>
+                                                    <input type="text" class="form-control bg-dark p-4 border-secondary"
+                                                        name="cnpj" placeholder="CNPJ" required>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="form-group">
-                                            <input type="text" class="form-control bg-dark form-control-user" name="email"
-                                                placeholder="E-Mail" required>
+
+                                        <div class="container">
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text bg-dark  border-secondary"
+                                                            id="basic-addon1">
+                                                            <i class="fa-solid fa-user" style="color: #fff;"></i>
+                                                        </span>
+                                                    </div>
+                                                    <input type="text" class="form-control bg-dark p-4  border-secondary"
+                                                        name="email" placeholder="E-Mail" required>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="form-group">
-                                            <input type="password" class="form-control bg-dark form-control-user" name="password"
-                                                placeholder="Digite sua Senha" required>
+
+                                        <div class="container">
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text bg-dark  border-secondary"
+                                                            id="basic-addon1">
+                                                            <i class="fa-solid fa-key" style="color: #fff;"></i>
+                                                        </span>
+                                                    </div>
+                                                    <input type="password" class="form-control bg-dark p-4 border-secondary"
+                                                        name="password" placeholder="Digite sua Senha" required>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="form-group">
+
+                                        <div class="form-group ml-4">
                                             <div class="custom-control custom-checkbox small">
                                                 <input type="checkbox" class="custom-control-input" name="remember"
                                                     id="remember" {{ old('remember') ? 'checked' : '' }}>
@@ -60,8 +91,8 @@
                                                     for="remember">{{ __('Manter conectado') }}</label>
                                             </div>
                                         </div>
-                                        <div class="form-group">
-                                            <button type="submit" class="btn btn-primary btn-user btn-block">
+                                        <div class="form-group ml-4">
+                                            <button type="submit" class="btn btn-primary" style="min-width:19rem; ">
                                                 Entrar
                                             </button>
                                         </div>
