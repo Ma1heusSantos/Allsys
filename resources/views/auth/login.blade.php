@@ -4,9 +4,9 @@
 <style>
 
     .bg-gradient-primary {
-        background-color: #b9c8f4 !important;
-        background-image: linear-gradient(180deg, #d3defa 10%, #224abe 100%) !important;
-        background-size: cover;
+        background-color: #28361d !important;
+    background-image: linear-gradient(180deg, #535361 10%, #222524 100%) !important;
+    background-size: cover;
     }
     </style>
 @endsection
@@ -21,7 +21,7 @@
                             <div class="col-lg-6 d-none d-lg-block">
                                 <img src="{{ asset('img/login.png') }}" style="width: 100%" />
                             </div>
-                            <div class="col-md-6" style="color: #fff">
+                            <div class="col-md-6" style="color: #bab0b0">
                                 <h1 class="text-center">Entrar</h1>
                                 <div class="p-5">
                                     @if ($errors->any())
@@ -33,23 +33,23 @@
                                             </ul>
                                         </div>
                                     @endif
-                                    <div class="" role="alert">
+                                    <div class="" role="alert"> 
                                         {{-- @include('flash::message') --}}
                                     </div>
                                     <form method="POST" action="{{ route('autenticaUsuario') }}" id='cnpj'
                                         class="user">
                                         @csrf
 
-                                        <div class="form-group">
-                                            <input type="text" class="form-control form-control-user cnpj" name="cnpj"
-                                                placeholder="CNPJ" required>
+                                        <div class="form-group" >
+                                            <input type="text" class="form-control bg-dark text-white form-control-user cnpj" name="cnpj"
+                                                placeholder="CNPJ" required > 
                                         </div>
                                         <div class="form-group">
-                                            <input type="text" class="form-control form-control-user" name="email"
+                                            <input type="text" class="form-control bg-dark form-control-user" name="email"
                                                 placeholder="E-Mail" required>
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" class="form-control form-control-user" name="password"
+                                            <input type="password" class="form-control bg-dark form-control-user" name="password"
                                                 placeholder="Digite sua Senha" required>
                                         </div>
                                         <div class="form-group">

@@ -1,5 +1,5 @@
 body {
-    background-color: #f4efef !important;
+    background-color: #767171 !important;
     
 }
 
@@ -22,14 +22,14 @@ body {
 }
 
 #listmenu {
-    background-color: #b9c8f4 !important;
-        background-image: linear-gradient(180deg, #507ef3 10%, #224abe 100%) !important;
-        background-size: cover;
+    background-color: #28361d !important;
+    background-image: linear-gradient(180deg, #535361 10%, #222524 100%) !important;
+    background-size: cover;
 }
 
 .backgroud_sidemenu {
-    background-color: #b9c8f4 !important;
-    background-image: linear-gradient(180deg, #507ef3 10%, #224abe 100%) !important;
+    background-color: #28361d !important;
+    background-image: linear-gradient(180deg, #535361 10%, #222524 100%) !important;
     background-size: cover;
     border-radius: 20px;
     opacity: 0.9;
@@ -49,18 +49,22 @@ body {
     border-radius: 50%;
     padding: 0;
 
-    background-color: #b9c8f4 !important;
-    background-image: linear-gradient(180deg, #507ef3 10%, #224abe 100%) !important;
+    background-color: #28361d !important;
+    background-image: linear-gradient(180deg, #535361 10%, #222524 100%) !important;
     background-size: cover;
-    border: #1c41b2;
+    border: none;
+    
 }
 
 #btuser {
 
     border-radius: 50%;
     padding: 0;
-    background-color: #1c41b2 !important;
-    border: #1c41b2;
+    background-color: #28361d !important;
+    background-image: linear-gradient(180deg, #2d2d32 10%, #222524 100%) !important;
+    background-size: cover;
+    border:#28361d;
+
 
 }
 

@@ -17,6 +17,7 @@
             background-repeat: no-repeat;
             height: 100vh;
             opacity: 0.9;
+            
         }
     </style>
 </head>

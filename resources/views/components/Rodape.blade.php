@@ -1,9 +1,9 @@
   <style>
       /* Estilos personalizados para o footer */
       footer {
-          background-color: #b9c8f4 !important;
-          background-image: linear-gradient(180deg, #507ef3 10%, #224abe 100%) !important;
-          background-size: cover;
+        background-color: #28361d !important;
+    background-image: linear-gradient(180deg, #535361 10%, #222524 100%) !important;
+    background-size: cover;
           color: #fff;
           padding: 24px 0;
           position: fixed;
@@ -27,5 +27,5 @@
   <footer class="d-flex text-center align-items-center justify-content-center">
       <img class="fluid" src="{{ asset('img/logoVL.svg') }}" alt="Bootstrap" width="80" height="50">
       <p class="text-decoration-none  text-white" id="textoRodape"> &copy; 2024 Vltech. Todos os direitos reservados.</p>
-      <img class="fluid" src="{{ asset('img/logoG.svg') }}" alt="Bootstrap" width="80" height="50">
+   <!--   <img class="fluid" src="{{ asset('img/logoG.svg') }}" alt="Bootstrap" width="80" height="50"> -->
   </footer>
