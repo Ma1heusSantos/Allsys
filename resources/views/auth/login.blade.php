@@ -47,7 +47,8 @@
                                                             <i class="fa-solid fa-building" style="color: #fff;"></i>
                                                         </span>
                                                     </div>
-                                                    <input type="text" class="form-control bg-dark p-4 border-secondary"
+                                                    <input type="text"
+                                                        class="form-control text-white bg-dark p-4 border-secondary"
                                                         name="cnpj" placeholder="CNPJ" required>
                                                 </div>
                                             </div>
@@ -62,7 +63,8 @@
                                                             <i class="fa-solid fa-user" style="color: #fff;"></i>
                                                         </span>
                                                     </div>
-                                                    <input type="text" class="form-control bg-dark p-4  border-secondary"
+                                                    <input type="text"
+                                                        class="form-control text-white bg-dark p-4  border-secondary"
                                                         name="email" placeholder="E-Mail" required>
                                                 </div>
                                             </div>
@@ -77,7 +79,8 @@
                                                             <i class="fa-solid fa-key" style="color: #fff;"></i>
                                                         </span>
                                                     </div>
-                                                    <input type="password" class="form-control bg-dark p-4 border-secondary"
+                                                    <input type="password"
+                                                        class="form-control text-white bg-dark p-4 border-secondary"
                                                         name="password" placeholder="Digite sua Senha" required>
                                                 </div>
                                             </div>
