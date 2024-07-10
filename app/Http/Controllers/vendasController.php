@@ -30,9 +30,7 @@ class vendasController extends Controller
                 "datafim"=>$dataFim
             ];
             $url = $this->url."itensvenda/venda";
-            $response = Http::withHeaders([
-                'Authorization' => 'Bearer ' . $user->token, 
-            ])->put($url,$datas);
+            $response = putResponse($url,$user->token, $datas);
             $dados = json_decode($response, false); 
             return view("vendasPorPeriodo",['dados'=>$dados]);
             

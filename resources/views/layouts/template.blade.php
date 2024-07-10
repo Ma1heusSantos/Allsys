@@ -28,7 +28,7 @@
     <div class="container">
         @yield('conteudo')
     </div>
-    {{-- <x-Rodape /> --}}
+    <x-Rodape />
     @yield('script')
 </body>
 

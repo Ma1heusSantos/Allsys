@@ -49,12 +49,10 @@ class adminController extends Controller
 
     public function showCompany()
     {
-        $user = auth::user();
+        $user = auth()->user();
         try {
             $url = $this->url."empresa";
-            $response = Http::withHeaders([
-                'Authorization' => 'Bearer' . $user->token,
-            ])->get($url);
+            $response = getResponse($url,$user->token); 
             $empresa = json_decode($response, false);
             return view("Empresa.show", ["empresa" => $empresa]);
         } catch (Exception $e) {

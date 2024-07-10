@@ -1,6 +1,7 @@
 <?php
 
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Http;
 
 if (!function_exists('money')) {
     function money($number)
@@ -20,6 +21,27 @@ if (!function_exists('getData')) {
     function getData()
     {
         return now('America/Sao_Paulo');
+    }
+}
+if (!function_exists('getResponse')) {
+    function getResponse($url,$token)
+    {
+        $response = Http::withHeaders([
+            'Authorization' => 'Bearer' . $token,
+        ])->get($url);
+
+        return $response;
+    }
+}
+
+if (!function_exists('putResponse')) {
+    function putResponse($url,$token,$dados)
+    {
+        $response = Http::withHeaders([
+            'Authorization' => 'Bearer' . $token,
+        ])->put($url,$dados);
+
+        return $response;
     }
 }
 

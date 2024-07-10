@@ -21,12 +21,10 @@ class produtoController extends Controller
         $this->url = "http://{$this->user->cnpj}.ddns.net:8098/api/svrpista/";
     }
     public function listar(){
-        $user = Auth::user();
+
         try {
             $url = $this->url. "produto/list";
-            $response = Http::withHeaders([
-                'Authorization' => 'Bearer' . $user->token,
-            ])->get($url);
+            $response = getResponse($url,$this->user->token);
             $produtos = json_decode($response, false);
             return view("produtos.listar", ["produtos" => $produtos]);
         } catch (Exception $e) {
@@ -53,11 +51,8 @@ class produtoController extends Controller
 
         try {
             $url = $this->url."venda/combsintetico";
-
-            $response = Http::withHeaders([
-                'Authorization' => 'Bearer' . $this->user->token,
-            ])->put($url,$datas);
-
+            
+            $response = putResponse($url,$this->user->token,$datas);
             $dados = json_decode($response, false);
 
             foreach($dados as $dado){
@@ -66,9 +61,7 @@ class produtoController extends Controller
             }
 
             $jsonDados = json_encode($dados);
-
             $dadosFuncionario = $this->getFuncionarios($this->user,$datas);
-
             $jsonFuncionario = json_encode($dadosFuncionario);
 
             return view("dashboard", ["totalbruto"=>$totalbruto,
@@ -86,12 +79,8 @@ class produtoController extends Controller
 
         try {
             $url = $this->url."itensvenda/prodfunc";
-            $response = Http::withHeaders([
-                'Authorization' => 'Bearer '.$user->token, 
-            ])->put($url, $datas);
-
+            $response = putResponse($url,$user->token,$datas);
             $dadosResponse = json_decode($response, false); 
-
             return ($dadosResponse);
         
         } catch (Exception $e) {
@@ -104,9 +93,7 @@ class produtoController extends Controller
         $usuario = Auth::user();
         try {
             $url = $this->url."bico/trocapreco";
-            $response = Http::withHeaders([
-                'Authorization' => 'Bearer ' . $usuario->token, 
-            ])->get($url);
+            $response = getResponse($url,$usuario->token);
             $dadosResponse = json_decode($response, false); 
             $dadosJson = json_encode($dadosResponse);
 
@@ -134,9 +121,7 @@ class produtoController extends Controller
 
             $url = $this->url."bico/trocapreco";
 
-            $response = Http::withHeaders([
-                'Authorization' => 'Bearer ' . $this->user->token,
-            ])->put($url,[$dados]);
+            $response = putResponse($url,$this->user->token,[$dados]);
             
             if ($response->successful()) {
                 return redirect()->back()->with('success', 'A troca do preço será efetuada na data '.formatDate($request->data));
@@ -160,9 +145,7 @@ class produtoController extends Controller
     public function monitor(){
         try {
             $url = $this->url."bico/monitor";
-            $response = Http::withHeaders([
-                'Authorization' => 'Bearer ' . $this->user->token, 
-            ])->get($url);
+            $response = getResponse($url,$this->user->token);
 
             $bicos = json_decode($response->body(), true);
 

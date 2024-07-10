@@ -23,7 +23,8 @@ class homeController extends Controller
     }
     
     public function getData(){
-        $response = Http::withToken($this->user->token)->get($this->url.'tanque/list');
+        $url = $this->url."tanque/list";
+        $response = getResponse($url,$this->user->token);
         $responseArray = json_decode($response, true);
         return $responseArray;
     }
