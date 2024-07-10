@@ -4,7 +4,7 @@
 <style>
 
     .bg-gradient-primary {
-        background-color: #28361d !important;
+    background-color: #28361d !important;
     background-image: linear-gradient(180deg, #535361 10%, #222524 100%) !important;
     background-size: cover;
     }

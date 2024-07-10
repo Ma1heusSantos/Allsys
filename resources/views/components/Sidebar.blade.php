@@ -76,16 +76,17 @@
                     <!--- lista do menu-->
                     <ul class="list-unstyled ps-0">
                         <li class="mb-1">
+                            <i class="fa-solid fa-user-tie" style="color: #ffffff;"></i>
                             <button
                                 class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed text-white"
                                 data-bs-toggle="collapse" data-bs-target="#menu3-collapse" aria-expanded="false"
                                 aria-controls=" menu3-collapse">
                                 Administrador
-                            </button>
+                            </button> 
                             <div class="collapse" id="menu3-collapse">
                                 <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                                     <li><a href="{{ route('show.company') }}"
-                                            class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Empresa</a>
+                                            class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Empresa</a> 
                                     </li>
                                     <li><a href="{{ route('show.user') }}"
                                             class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Usuarios</a>
@@ -102,6 +103,7 @@
 
                         </li>
                         <li class="mb-1">
+                            <i class="fa-solid fa-chart-simple" style="color: #ffffff;"></i>
                             <button
                                 class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed text-white"
                                 data-bs-toggle="collapse" data-bs-target="#menu1-collapse" aria-expanded="false"
@@ -122,6 +124,7 @@
                             </div>
                         </li>
                         <li class="mb-1">
+                            <i class="fa-solid fa-print" style="color: #ffffff;"></i>
                             <button
                                 class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed text-white"
                                 data-bs-toggle="collapse" data-bs-target="#menu2-collapse" aria-expanded="false"
