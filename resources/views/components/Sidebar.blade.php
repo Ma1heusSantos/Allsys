@@ -92,6 +92,9 @@
                                     <li><a href="{{ route('trocar.preco') }}"
                                             class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Troca
                                             Preco</a></li>
+                                    <li><a href="{{ route('monitor') }}"
+                                            class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Monitor</a>
+                                    </li>
 
                                 </ul>
                             </div>
@@ -127,24 +130,12 @@
                             <div class="collapse" id="menu2-collapse">
                                 <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
 
-                                    <li><a href="{{ route('monitor') }}"
-                                            class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Monitor</a>
-                                    </li>
                                     <li><a href="{{ route('produto.listar') }}"
-                                            class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Listar</a>
+                                            class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Produtos</a>
                                     </li>
-                                    <li><a href="#"
-                                            class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Estoque
-                                        </a></li>
                                     <li><a href="{{ route('vendas.dia') }}"
                                             class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Cupons</a>
                                     </li>
-                                    <li><a href="#"
-                                            class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Vendas
-                                            Mes</a></li>
-                                    <li><a href="#"
-                                            class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Vendas
-                                            Frentista</a></li>
                                 </ul>
                             </div>
                         </li>
