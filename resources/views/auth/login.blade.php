@@ -94,10 +94,12 @@
                                                     for="remember">{{ __('Manter conectado') }}</label>
                                             </div>
                                         </div>
-                                        <div class="form-group ml-4">
-                                            <button type="submit" class="btn btn-primary" style="min-width:19rem; ">
-                                                Entrar
-                                            </button>
+                                        <div class="container">
+                                            <div class="form-group">
+                                                <button type="submit" class="btn btn-primary w-100">
+                                                    Entrar
+                                                </button>
+                                            </div>
                                         </div>
                                         <hr>
                                     </form>
@@ -106,12 +108,11 @@
                         </div>
                     </div>
                 </div>
+                <div class="row" style="margin-top: 10%;">
+                    <div class="col-md-12">
+                        <h5 class="text-center text-white">Desenvolvido por Geniusis Sistemas</h5>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="row" style="margin-top: 10%;">
-            <div class="col-md-12">
-                <h5 class="text-center text-white">Desenvolvido por Geniusis Sistemas</h5>
-            </div>
-        </div>
-    </div>
-@endsection
+    @endsection
