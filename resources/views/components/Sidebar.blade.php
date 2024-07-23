@@ -11,13 +11,18 @@
     <link href="{{ asset('css/sidebars.css') }}" rel="stylesheet">
     <style>
         body {
-            background-image: url('{{ asset('img/bombas.svg') }}');
+            /* background-image: url('{{ asset('img/bombas.svg') }}'); */
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
             height: 100vh;
             opacity: 0.9;
-            
+
+        }
+
+        .custom-dropdown-item:hover {
+            background-color: #6f42c1;
+            color: #fff;
         }
     </style>
 </head>
@@ -49,13 +54,17 @@
                             d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z" />
                     </svg>
                 </button>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Perfil</a></li>
+
+                <ul class="dropdown-menu" style="background-color:#121214">
+                    <li><a class="dropdown-item text-white custom-dropdown-item" href="#">Perfil</a></li>
                     <li>
                         <hr class="dropdown-divider">
                     </li>
-                    <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#teste">Sair</a></li>
+                    <li><a class="dropdown-item text-white custom-dropdown-item" data-bs-toggle="modal"
+                            data-bs-target="#teste">Sair</a></li>
                 </ul>
+
+
             </div>
             <!-- Button fim -->
         </div>
@@ -82,11 +91,11 @@
                                 data-bs-toggle="collapse" data-bs-target="#menu3-collapse" aria-expanded="false"
                                 aria-controls=" menu3-collapse">
                                 Administrador
-                            </button> 
+                            </button>
                             <div class="collapse" id="menu3-collapse">
                                 <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                                     <li><a href="{{ route('show.company') }}"
-                                            class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Empresa</a> 
+                                            class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Empresa</a>
                                     </li>
                                     <li><a href="{{ route('show.user') }}"
                                             class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Usuarios</a>

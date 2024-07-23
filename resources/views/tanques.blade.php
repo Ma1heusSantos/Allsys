@@ -5,12 +5,39 @@
 @endsection
 
 @section('conteudo')
+    <style>
+        .highcharts-background {
+            fill: #1e1e2f !important;
+        }
 
-    <div class="container" id="grafico" style="width: 800px; height: 800px;width: auto;
-    text-align: center;
-    padding: 40px 20px; align-items: center;"></div>
-    
+        .highcharts-title {
+            fill: #ffffff !important;
+            color: #ffffff !important;
+        }
+
+        .highcharts-axis-title {
+            fill: #ffffff !important;
+            color: #ffffff !important;
+        }
+
+        .highcharts-axis-line {
+            stroke: #ffffff !important;
+        }
+
+        .highcharts-tick {
+            stroke: #ffffff !important;
+        }
+
+        .highcharts-label {
+            color: #ffffff !important;
+        }
+    </style>
+
+    <div class="container text-light" id="grafico"
+        style="width: 800px; height: 800px; width: auto; text-align: center; padding: 40px 20px; align-items: center;">
+    </div>
 @endsection
+
 
 @section('script')
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
@@ -40,31 +67,24 @@
                 switch (dado.cod) {
                     case "TQ03-ALC":
                         dado.color = "rgba(0,255,63,1)";
-
                         break;
                     case "TQ02-GAS":
                         dado.color = "rgba(255,0,63,1)";
-
                         break;
                     case "TQ05-S10":
                         dado.color = "rgba(180,180,180,1)";
-
                         break;
                     case "TQ01-DIE":
                         dado.color = "rgba(0,120,63,1)";
-
                         break;
                     case "TQ04-GRID":
                         dado.color = "rgba(0, 205, 63, 1)";
-
                         break;
                     case "TQ07-ARLA":
                         dado.color = "rgba(0, 0, 255, 1)";
-
                         break;
                     case "TQ06-S10":
                         dado.color = "rgba(180, 180, 230, 1)";
-
                         break;
                 }
                 return {
@@ -75,12 +95,11 @@
             });
         }
 
-
-
         function renderGraphic(processedData) {
             Highcharts.chart('grafico', {
                 chart: {
                     type: 'cylinder',
+
                     options3d: {
                         enabled: true,
                         alpha: 15,
@@ -90,20 +109,46 @@
                     }
                 },
                 title: {
-                    text: 'Nível dos Tanques'
+                    text: 'Nível dos Tanques',
+                    style: {
+                        color: '#ffffff'
+                    }
                 },
                 xAxis: {
                     type: 'category',
                     title: {
-                        text: 'Tanque'
-                    }
+                        text: 'Tanque',
+                        style: {
+                            color: '#ffffff'
+                        }
+                    },
+                    labels: {
+                        style: {
+                            color: '#ffffff'
+                        }
+                    },
+                    lineColor: '#ffffff',
+                    tickColor: '#ffffff'
                 },
                 yAxis: {
                     title: {
-                        text: 'Em Litros (L)'
-                    }
+                        text: 'Em Litros (L)',
+                        style: {
+                            color: '#ffffff'
+                        }
+                    },
+                    labels: {
+                        style: {
+                            color: '#ffffff'
+                        }
+                    },
+                    gridLineColor: '#505050'
                 },
                 tooltip: {
+
+                    style: {
+                        color: '#ffffff'
+                    },
                     formatter: function() {
                         return '<b>' + this.point.name + '</b><br/>' +
                             'Nível: <b>' + this.point.y.toLocaleString('pt-BR') + '</b>L';
