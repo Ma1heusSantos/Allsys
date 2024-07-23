@@ -53,7 +53,7 @@
     <div class="card shadow-lg" style="background-color:#1e1e2f; color:#fff; border:none;">
         <div class="card-header mt-3 d-flex justify-content-between flex-column flex-sm-row">
             <div>
-                <h4 class="text-primary fw-bold">Usuarios</h4>
+                <h4 class="text-primary fw-bold">Usuários</h4>
             </div>
         </div>
         <div class="card-body">
