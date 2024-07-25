@@ -11,7 +11,6 @@
     <link href="{{ asset('css/sidebars.css') }}" rel="stylesheet">
     <style>
         body {
-            /* background-image: url('{{ asset('img/bombas.svg') }}'); */
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -181,17 +180,17 @@
     <!-- Modal -->
     <div class="modal fade" id="teste" tabindex="-1" aria-labelledby="testeLabel" aria-hidden="true">
         <div class="modal-dialog">
-            <div class="modal-content">
+            <div class="modal-content" style="background-color:#121214">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">
-                        Ola! {{ Auth::user()->email }}
+                    <h1 class="modal-title fs-5 text-white" id="exampleModalLabel">
+                        Olá! {{ Auth::user()->email }}
                     </h1>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body text-white">
                     Deseja Sair do Sistema?
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Nao</button>
+                <div class="modal-footer" style="border: 5px solid #121214">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Não</button>
                     <a type="button" class="btn btn-danger" href="{{ route('deslogar') }}">Sim</a>
                 </div>
             </div>
