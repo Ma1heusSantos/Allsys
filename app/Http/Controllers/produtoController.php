@@ -78,7 +78,7 @@ class produtoController extends Controller
     public function getFuncionarios($user,$datas){
 
         try {
-            $url = $this->url."itensvenda/prodfunc";
+            $url = $this->url."itensvenda/combfunc";
             $response = putResponse($url,$user->token,$datas);
             $dadosResponse = json_decode($response, false); 
             return ($dadosResponse);

@@ -101,12 +101,12 @@
         </div>
         <script>
             document.addEventListener('DOMContentLoaded', function() {
-                valorTotalPorProduto();
+                valorTotalPorCombustivel();
                 totalPorFuncionario();
                 lucroBrutoPorProduto();
             });
 
-            function valorTotalPorProduto() {
+            function valorTotalPorCombustivel() {
                 var dados = <?php echo $jsonDados; ?>;
                 var categories = [];
                 var data = [];
@@ -120,7 +120,7 @@
 
                 dados.forEach(function(dado) {
                     categories.push(dado.dscprod);
-                    data.push(parseFloat(dado.valorbruto.toFixed(2)));
+                    data.push(parseFloat(dado.valorabast.toFixed(2)));
                 });
                 renderGraphic(categories, data, configs[0]);
             }
