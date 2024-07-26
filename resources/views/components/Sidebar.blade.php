@@ -28,7 +28,7 @@
 
 <body>
     <!---Navbar horizontal-->
-    <nav class="navbar navbar backgroud_sidemenu shadow">
+    <nav class="navbar navbar backgroud_sidemenu shadow fixed-top">
         <div class="container-fluid">
             <button class="navbar-toggler border-0" type="button" data-bs-toggle="modal"
                 data-bs-target="#modal-lateral" id="btmenu">
