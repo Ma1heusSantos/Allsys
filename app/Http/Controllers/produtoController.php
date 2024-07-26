@@ -152,39 +152,31 @@ class produtoController extends Controller
             foreach ($bicos as &$bico) {
                 switch ($bico['status']) {
                     case 'ABASTECENDO':
-                        $bico['color'] = 'success';
-                        $bico['icon-color'] = '#198754';    
+                        $bico['color'] = 'info';
+                        $bico['icon-color'] = '#0dcaf0';    
                         break;
                     case 'DESLIGADO':
-                        $bico['color'] = 'secondary';
-                        $bico['icon-color'] = '#6c757d';   
+                        $bico['color'] = 'primary';
+                        $bico['icon-color'] = '#0d6efd';   
                         break;
                     case 'DESATIVADO':
-                        $bico['color'] = 'secondary';
-                        $bico['icon-color'] = '#6c757d';   
-                        break;
-                    case 'AFERINDO':
-                        $bico['color'] = 'warning';
-                        $bico['icon-color'] = '#ffc107';   
+                        $bico['color'] = 'danger';
+                        $bico['icon-color'] = '#dc3545';   
                         break;
                     case 'DESCONECTADO':
                         $bico['color'] = 'danger';
                         $bico['icon-color'] = '#dc3545';   
                         break;
-                    case 'AFERINDO MANUAL':
-                        $bico['color'] = 'warning';
-                        $bico['icon-color'] = '#ffc107';   
-                        break;
                     case 'BLOQUEADA ':
-                        $bico['color'] = 'danger';
-                        $bico['icon-color'] = '#dc3545';   
+                        $bico['color'] = 'dark';
+                        $bico['icon-color'] = '#212529';   
                         break;
                     case 'AGUARDANDO':
                         $bico['color'] = 'warning';
                         $bico['icon-color'] = '#ffc107';   
                     case 'FIM ABASTECIMENTO':
-                        $bico['color'] = 'success';
-                        $bico['icon-color'] = '#198754';   
+                        $bico['color'] = 'warning';
+                        $bico['icon-color'] = '#ffc107';   
                         break;
                     default:
                         $bico['color'] = 'secondary';

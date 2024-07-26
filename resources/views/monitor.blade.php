@@ -42,7 +42,7 @@
         }
     </style>
 
-    <div class="container">
+    <div class="container mt-5">
         <div class="row">
             @foreach ($paginatedBicos as $bico)
                 <div class="col-lg-3 col-md-12 mb-3">
