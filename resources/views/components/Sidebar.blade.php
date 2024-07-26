@@ -62,8 +62,6 @@
                     <li><a class="dropdown-item text-white custom-dropdown-item" data-bs-toggle="modal"
                             data-bs-target="#teste">Sair</a></li>
                 </ul>
-
-
             </div>
             <!-- Button fim -->
         </div>
@@ -75,9 +73,11 @@
         <div class="modal-dialog modal-fullscreen">
             <div class="modal-content" id="listmenu">
                 <!---cabecalho do modal botao fechar e nome Menu-->
-                <div class="modal-header">
+                <div class="modal-header" data-bs-theme="dark">
                     <h5 class="modal-title text-white" id="menu-titulo">MENU</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                    </button>
+        
                 </div>
                 <!--- fim cabecalho do modal botao fechar e nome Menu-->
                 <div class="modal-body ">
