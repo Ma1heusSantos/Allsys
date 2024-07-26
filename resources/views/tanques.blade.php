@@ -31,13 +31,16 @@
         .highcharts-label {
             color: #ffffff !important;
         }
+
+        .highcharts-yaxis .highcharts-axis-labels text {
+            fill: #ffffff !important;
+        }
     </style>
 
     <div class="container text-light" id="grafico"
         style="width: 800px; height: 800px; width: auto; text-align: center; padding: 40px 20px; align-items: center;">
     </div>
 @endsection
-
 
 @section('script')
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
@@ -59,11 +62,14 @@
         }
 
         function treatDados(dados) {
+            console.log(dados.estatualtanque)
             return dados.map(dado => {
                 let color;
                 dado.name = dado.dscprod;
-                dado.cod = dado.dsctanque
+                dado.cod = dado.dsctanque;
                 dado.y = Math.abs(dado.estatualtanque).toFixed(0);
+                dado.estado = dado.estatualtanque;
+
                 switch (dado.cod) {
                     case "TQ03-ALC":
                         dado.color = "rgba(0,255,63,1)";
@@ -90,7 +96,8 @@
                 return {
                     name: dado.name,
                     y: dado.y,
-                    color: dado.color
+                    color: dado.color,
+                    estado: dado.estado
                 };
             });
         }
@@ -145,19 +152,27 @@
                     gridLineColor: '#505050'
                 },
                 tooltip: {
-
                     style: {
                         color: '#ffffff'
                     },
                     formatter: function() {
                         return '<b>' + this.point.name + '</b><br/>' +
-                            'Nível: <b>' + this.point.y.toLocaleString('pt-BR') + '</b>L';
+                            'Nível: <b>' + this.point.y.toLocaleString('pt-BR') + '</b>L<br/>' +
+                            'Estado Atual: <b>' + this.point.estado + 'L</b>';
                     }
                 },
                 plotOptions: {
                     series: {
                         depth: 200,
-                        colorByPoint: true
+                        colorByPoint: true,
+                        dataLabels: {
+                            enabled: true,
+                            format: '{point.estado} L',
+                            style: {
+                                color: '#ffffff',
+                                fontSize: '24px'
+                            }
+                        }
                     }
                 },
                 series: [{
@@ -166,7 +181,8 @@
                         return {
                             name: item.name,
                             y: parseFloat(item.y),
-                            color: item.color
+                            color: item.color,
+                            estado: item.estado
                         };
                     })
                 }]

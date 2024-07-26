@@ -105,6 +105,9 @@
                                     <li><a href="{{ route('monitor') }}"
                                             class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Monitor</a>
                                     </li>
+                                    <li><a href="{{ route('caixa') }}"
+                                            class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Caixa</a>
+                                    </li>
 
                                 </ul>
                             </div>
@@ -151,6 +154,7 @@
                                 </ul>
                             </div>
                         </li>
+
 
                     </ul>
                     <!--- fim lista do menu-->

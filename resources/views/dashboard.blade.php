@@ -112,8 +112,8 @@
                 var data = [];
                 let configs = [{
                     id: 'valorTotalPorProduto',
-                    title: 'Valor total por Produto em (R$)',
-                    yText: 'valor total por produto em (R$)',
+                    title: 'Valor total por Combustivel em (R$)',
+                    yText: 'valor total por Combustivel em (R$)',
                     seriesName: 'valor total por produto em (R$)',
                     color: "#dc3545"
                 }];
@@ -131,9 +131,9 @@
                 var data = [];
                 let configs = [{
                     id: 'lucroBrutoPorProduto',
-                    title: 'Lucro bruto por Produto em (R$)',
-                    yText: 'Lucro bruto por Produto em (R$)',
-                    seriesName: 'Lucro bruto por Produto em (R$)',
+                    title: 'Lucro bruto por Combustivel em (R$)',
+                    yText: 'Lucro bruto por Combustivel em (R$)',
+                    seriesName: 'Lucro bruto por Combustivel em (R$)',
                     color: '#007bff'
                 }];
 
@@ -150,9 +150,9 @@
                 var data = [];
                 let configs = [{
                     id: 'vendasPorVendedores',
-                    title: 'Vendas por Frentista',
-                    yText: 'Vendas por Frentista',
-                    seriesName: 'total vendido',
+                    title: 'Vendas por Frentista (Combustivel)',
+                    yText: 'Vendas por Frentista (Combustivel)',
+                    seriesName: 'total vendido (Combustivel)',
                     color: '#28a745'
                 }];
 
