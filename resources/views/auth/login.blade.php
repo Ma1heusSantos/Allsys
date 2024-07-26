@@ -18,7 +18,7 @@
                     <div class="card-body p-0">
                         <div class="row">
                             <div class="col-lg-6 d-none d-lg-block">
-                                <img src="{{ asset('img/login.png') }}" style="width: 100%" />
+                                <img src="{{ asset('img/logovlt.svg') }}" style="width: 100%" />
                             </div>
                             <div class="col-md-6" style="color: #bab0b0">
                                 <h1 class="text-center">Entrar</h1>
