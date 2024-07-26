@@ -81,7 +81,7 @@
         }
     </style>
 
-    <div class="card card-dark mx-auto shadow w-100 p-0">
+    <div class="card card-dark mx-auto mt-5 w-100 p-0">
         <h2 class="card-title p-3 text-primary">
             Produtos
         </h2>

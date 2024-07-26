@@ -50,7 +50,7 @@
             color: #f72626;
         }
     </style>
-    <div class="card shadow-lg" style="background-color:#1e1e2f; color:#fff; border:none;">
+    <div class="card mt-5" style="background-color:#1e1e2f; color:#fff; border:none;">
         <div class="card-header mt-3 d-flex justify-content-between flex-column flex-sm-row">
             <div>
                 <h4 class="text-primary fw-bold">Usuários</h4>

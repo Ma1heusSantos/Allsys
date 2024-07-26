@@ -3,7 +3,7 @@
     Empresa
 @endsection
 @section('conteudo')
-    <div class="card shadow">
+    <div class="card mt-5">
         <div class="card-header" style="background-color: #29292e">
             <section>
                 <div class="row px-4 pt-4">

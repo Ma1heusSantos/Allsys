@@ -5,7 +5,7 @@
 @endsection
 
 @section('conteudo')
-    <div class="card shadow" style="background-color:#1e1e2f; color:#fff;">
+    <div class="card mt-5" style="background-color:#1e1e2f; color:#fff;">
         <div class="card-header mt-3 d-flex justify-content-between flex-column flex-sm-row">
             <div class="col-md-3">
                 <h4>
