@@ -112,14 +112,13 @@
                 var data = [];
                 let configs = [{
                     id: 'valorTotalPorProduto',
-                    title: 'Valor total por Produto em (R$)',
-                    yText: 'valor total por Produto em (R$)',
-                    seriesName: 'valor total por produto em (R$)',
+                    title: 'Venda total por Produto em (R$)',
+                    yText: 'Venda total por Produto em (R$)',
+                    seriesName: 'Venda total por produto em (R$)',
                     color: "#dc3545"
                 }];
 
                 dados.forEach(function(dado) {
-                    console.log(dado)
                     categories.push(dado.dscprod);
                     data.push(parseFloat(dado.valorvenda.toFixed(2)));
                 });
