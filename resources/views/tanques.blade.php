@@ -102,11 +102,17 @@
             });
         }
 
+        function formatNumber(number) {
+            let numStr = number.toString();
+            let [integerPart, decimalPart] = numStr.split('.');
+            let formattedIntegerPart = parseInt(integerPart, 10).toLocaleString('pt-BR');
+            return decimalPart ? `${formattedIntegerPart}.${decimalPart}` : formattedIntegerPart;
+        }
+
         function renderGraphic(processedData) {
             Highcharts.chart('grafico', {
                 chart: {
                     type: 'cylinder',
-
                     options3d: {
                         enabled: true,
                         alpha: 15,
@@ -157,8 +163,8 @@
                     },
                     formatter: function() {
                         return '<b>' + this.point.name + '</b><br/>' +
-                            'Nível: <b>' + this.point.y.toLocaleString('pt-BR') + '</b>L<br/>' +
-                            'Estado Atual: <b>' + this.point.estado + 'L</b>';
+                            'Nível: <b>' + this.point.y + '</b>L<br/>' +
+                            'Estado Atual: <b>' + formatNumber(this.point.estado) + 'L</b>';
                     }
                 },
                 plotOptions: {
@@ -167,7 +173,9 @@
                         colorByPoint: true,
                         dataLabels: {
                             enabled: true,
-                            format: '{point.estado} L',
+                            formatter: function() {
+                                return formatNumber(this.point.estado) + ' L';
+                            },
                             style: {
                                 color: '#ffffff',
                                 fontSize: '24px'
