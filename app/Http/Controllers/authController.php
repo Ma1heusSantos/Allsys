@@ -37,7 +37,7 @@ class authController extends Controller
             );
             Auth::login($user);
             $request->session()->regenerate();
-            return Auth::user()->nivel == "Admin" ? redirect()->route("dashboard") : redirect()->route("home");
+            return Auth::user()->nivel == "Admin" ? redirect()->route("dashboard.combustivel") : redirect()->route("home");
         }else{
             $erros = 'usuario ou senha incorretos';
             return redirect()->back()->withErrors(['msg' => $erros]);

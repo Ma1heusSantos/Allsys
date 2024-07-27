@@ -1,7 +1,7 @@
 @extends('layouts.template')
 
 @section('title')
-    Dashboard
+    Dashboard Combustiveis
 @endsection
 
 @section('conteudo')
@@ -9,11 +9,11 @@
         <div class="card-header mt-3 d-flex justify-content-between flex-column flex-sm-row">
             <div class="col-md-3">
                 <h4>
-                    <span class="span-title text-primary fw-bold">Dashboard</span>
+                    <span class="span-title text-primary fw-bold">Dashboard de Combustiveis</span>
                 </h4>
             </div>
             <div class="form">
-                <form action="{{ route('dashboard') }}" method="post">
+                <form action="{{ route('dashboard.combustivel') }}" method="post">
                     @csrf
                     <div class="container">
                         <div class="d-flex flex-column flex-sm-row">

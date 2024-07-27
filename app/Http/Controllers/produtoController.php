@@ -31,7 +31,7 @@ class produtoController extends Controller
             return redirect()->route('home')->with('Error', $e->getMessage());
         }
     }
-    public function dashboard(Request $request)
+    public function dashboardCombustivel(Request $request)
     {
 
         $dataIni = formatDate($request->dataIni);

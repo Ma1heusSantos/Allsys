@@ -36,7 +36,8 @@ Route::middleware(adminAcess::class)->group(function () {
     Route::get('/updateUser/{id}', [adminController::class, 'editUser'])->name('update.user');
     
     Route::get('/listProduct', [produtoController::class, 'listar'])->name("produto.listar");
-    Route::any('/dashboard', [produtoController::class, "dashboard"])->name("dashboard");
+    Route::any('/dashboardCombustivel', [produtoController::class, "dashboardCombustivel"])->name("dashboard.combustivel");
+    Route::any('/dashboardProduto', [produtoController::class, "dashboardProduto"])->name("dashboard.produto");
     Route::get('/trocaPreco',[produtoController::class,'trocaPreco'])->name("trocar.preco");
     Route::post('/atualizaPreco',[produtoController::class,'atualizaPreco'])->name("atualiza.preco");
     Route::get('/monitor',[produtoController::class,'monitor'])->name("monitor");

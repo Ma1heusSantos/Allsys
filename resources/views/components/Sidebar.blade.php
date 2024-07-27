@@ -77,7 +77,7 @@
                     <h5 class="modal-title text-white" id="menu-titulo">MENU</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                     </button>
-        
+
                 </div>
                 <!--- fim cabecalho do modal botao fechar e nome Menu-->
                 <div class="modal-body ">
@@ -123,14 +123,30 @@
                             </button>
                             <div class="collapse" id="menu1-collapse">
                                 <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                                    <li><a href="{{ route('dashboard') }}"
-                                            class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Dashboard</a>
-                                    </li>
                                     <li><a href="{{ route('tanques') }}"
                                             class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Tanques</a>
                                     </li>
 
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="mb-1">
+                            <i class="fa-solid fa-print" style="color: #ffffff;"></i>
+                            <button
+                                class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed text-white"
+                                data-bs-toggle="collapse" data-bs-target="#menu2-collapse" aria-expanded="false"
+                                aria-controls=" menu2-collapse">
+                                Dashboard
+                            </button>
+                            <div class="collapse" id="menu2-collapse">
+                                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
 
+                                    <li><a href="{{ route('dashboard.combustivel') }}"
+                                            class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Combustiveis</a>
+                                    </li>
+                                    <li><a href="{{ route('dashboard.produto') }}"
+                                            class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Produtos</a>
+                                    </li>
                                 </ul>
                             </div>
                         </li>
