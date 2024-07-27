@@ -35,7 +35,7 @@
                                     <div class="" role="alert">
                                         {{-- @include('flash::message') --}}
                                     </div>
-                                    <form method="POST" action="{{ route('autenticaUsuario') }}">
+                                    <form method="POST" id="form" action="{{ route('autenticaUsuario') }}">
                                         @csrf
 
                                         <div class="container">
@@ -96,9 +96,8 @@
                                         </div>
                                         <div class="container">
                                             <div class="form-group">
-                                                <button type="submit" class="btn btn-primary w-100">
-                                                    Entrar
-                                                </button>
+                                                <button id="btn" type="submit" class="btn btn-primary w-100"
+                                                    onclick="disableButton()">Enviar</button>
                                             </div>
                                         </div>
                                         <hr>
@@ -115,4 +114,11 @@
                 </div>
             </div>
         </div>
+        <script>
+            function disableButton() {
+                let button = document.querySelector('#btn');
+                button.disabled = true;
+                document.getElementById('form').submit();
+            }
+        </script>
     @endsection
