@@ -61,10 +61,10 @@ class produtoController extends Controller
             }
 
             $jsonDados = json_encode($dados);
-            $dadosFuncionario = $this->getFuncionarios($this->user,$datas);
+            $dadosFuncionario = $this->getFuncionariosComb($this->user,$datas);
             $jsonFuncionario = json_encode($dadosFuncionario);
 
-            return view("dashboard", ["totalbruto"=>$totalbruto,
+            return view("dashboardComb", ["totalbruto"=>$totalbruto,
                                       "dados"=>$dados,
                                       "valorAbastecido"=>$valorAbastecido,
                                       "jsonDados"=>$jsonDados,
@@ -75,10 +75,67 @@ class produtoController extends Controller
             Log::info($e->getMessage());
         }
     }
-    public function getFuncionarios($user,$datas){
+    public function getFuncionariosComb($user,$datas){
 
         try {
             $url = $this->url."itensvenda/combfunc";
+            $response = putResponse($url,$user->token,$datas);
+            $dadosResponse = json_decode($response, false); 
+            return ($dadosResponse);
+        
+        } catch (Exception $e) {
+            Log::info($e->getMessage());
+        }
+        
+    }
+    public function dashboardProduto(Request $request)
+    {
+
+        $dataIni = formatDate($request->dataIni);
+        $dataFim = formatDate($request->dataFim);
+        $totalbruto = 0;
+        $valorVenda = 0;
+        
+        if (!isset($request->dataIni) || !isset($request->dataFim)) {
+            $dataIni = "01/05/2023";
+            $dataFim = "01/05/2023";
+        }
+        
+        $datas = [
+            "dataini" => $dataIni,
+            "datafim" => $dataFim
+        ];
+
+        try {
+            $url = $this->url."venda/prodsintetico";
+            
+            $response = putResponse($url,$this->user->token,$datas);
+            $dados = json_decode($response, false);
+
+            foreach($dados as $dado){
+                $totalbruto += $dado->lucrobruto;
+                $valorVenda += $dado->valorvenda;
+            }
+
+            $jsonDados = json_encode($dados);
+            $dadosFuncionario = $this->getFuncionariosProd($this->user,$datas);
+            $jsonFuncionario = json_encode($dadosFuncionario);
+
+            return view("dashboardProd", ["totalbruto"=>$totalbruto,
+                                      "dados"=>$dados,
+                                      "valorVenda"=>$valorVenda,
+                                      "jsonDados"=>$jsonDados,
+                                      "jsonFuncionario"=>$jsonFuncionario
+                                    ]);
+
+        } catch (Exception $e) {
+            Log::info($e->getMessage());
+        }
+    }
+    public function getFuncionariosProd($user,$datas){
+
+        try {
+            $url = $this->url."itensvenda/prodfunc";
             $response = putResponse($url,$user->token,$datas);
             $dadosResponse = json_decode($response, false); 
             return ($dadosResponse);
