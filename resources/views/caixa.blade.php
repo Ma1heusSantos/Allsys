@@ -22,7 +22,7 @@
     </style>
     <div class="card mt-5" style="background-color: #1e1e2f; color: #fff; border: none;">
         <div class="card-header mt-3 d-flex justify-content-between align-items-center flex-column flex-sm-row">
-            <h4 class="text-primary fw-bold h1"><i class="fas fa-cash-register"></i> Caixa</h4>
+            <h4 class="text-primary fw-bold h1"><i class="fa-solid fa-wallet"></i> Caixa</h4>
         </div>
         <div class="card-body">
             <div class="container mt-4">
@@ -51,8 +51,8 @@
                                             <td>{{ $encerrante->abertura }}</td>
                                             <td>{{ $encerrante->fechamento }}</td>
                                             <td>{{ $encerrante->afericao }}</td>
-                                            <td>{{ $encerrante->volume }}</td>
-                                            <td>{{ $encerrante->valor }}</td>
+                                            <td>{{ $encerrante->volume . 'L' }}</td>
+                                            <td>{{ "R$ " . money($encerrante->valor) }}</td>
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -75,8 +75,8 @@
                                     @foreach ($encerrantes->resumocomb as $comb)
                                         <tr>
                                             <td>{{ $comb->dscprod }}</td>
-                                            <td>{{ $comb->volume }}</td>
-                                            <td>{{ $comb->desconto }}</td>
+                                            <td>{{ $comb->volume . 'L' }}</td>
+                                            <td>{{ "R$ " . money($comb->desconto) }}</td>
                                             <td>{{ $comb->preco }}</td>
                                             <td>{{ "R$ " . money($comb->valor) }}</td>
                                         </tr>
