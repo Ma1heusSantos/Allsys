@@ -40,10 +40,15 @@ class vendasController extends Controller
 
     public function caixa(){
         $url = $this->url."caixa/resumo/1";
+        $totalComb = 0;
         try{
             $response = getResponse($url,$this->user->token);
-            $dados = json_decode($response, false); 
-            return view("caixa",['dados'=>$dados]);
+            $encerrantes = json_decode($response, false); 
+
+            foreach($encerrantes->resumocomb as $encerrante){
+                $totalComb += $encerrante->valor;
+            }
+            return view("caixa",['encerrantes'=>$encerrantes, 'totalComb'=>$totalComb]);
         }catch(Exception $e){
             Log::info('mensagem de erro:', [$e->getMessage()]);
             return redirect()->route('vendas.dia')->with('Error', $e->getMessage());
