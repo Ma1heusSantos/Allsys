@@ -38,21 +38,39 @@ class vendasController extends Controller
 
     }
 
-    public function caixa(){
-        $url = $this->url."caixa/resumo/1";
-        $totalComb = 0;
-        try{
-            $response = getResponse($url,$this->user->token);
-            $encerrantes = json_decode($response, false); 
-
-            foreach($encerrantes->resumocomb as $encerrante){
-                $totalComb += $encerrante->valor;
-            }
-            return view("caixa",['encerrantes'=>$encerrantes, 'totalComb'=>$totalComb]);
-        }catch(Exception $e){
-            Log::info('mensagem de erro:', [$e->getMessage()]);
-            return redirect()->route('vendas.dia')->with('Error', $e->getMessage());
+    public function caixa()
+{
+    $url = $this->url . "caixa/resumo/1";
+    $totalComb = 0;
+    try {
+        $response = getResponse($url, $this->user->token);
+        $encerrantes = json_decode($response->body()); 
+        foreach ($encerrantes->resumocomb as $encerrante) {
+            $totalComb += $encerrante->valor;
         }
+        foreach ($encerrantes->caixa as $caixa) {
+            if (is_object($caixa) && property_exists($caixa, 'ltipovendacartao')) {
+                $recebimentos = array(
+                    "dinheiro" => $caixa->ltipovendacartao,
+                    "chequeVista" => $caixa->ltipovendachequeavista,
+                    "chequePrazo" =>$caixa->ltipovendachequeaprazo,
+                    "pix" => $caixa->ltipovendapix,
+                    "valeFrete"=> $caixa->ltipovendavalefrete,
+                    "ticketVale"=>$caixa->ltipovendaticketvalecliente,
+                    "suprimento"=>$caixa->suprimento,
+                    "trocoCH"=> $caixa->ltipovendanotas,
+                    "total"=>$caixa->total,
+                );
+            } else {
+                Log::info('Propriedade ltipovendacartao não existe ou $caixa não é um objeto', ['caixa' => $caixa]);
+            }
+        }
+        return view("caixa", ['encerrantes' => $encerrantes, 'totalComb' => $totalComb, 'recebimentos'=>$recebimentos]);
+    } catch (Exception $e) {
+        Log::info('mensagem de erro:', [$e->getMessage()]);
+        return redirect()->route('caixa')->with('Error', $e->getMessage());
     }
+}
+
     
 }

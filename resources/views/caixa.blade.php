@@ -91,8 +91,46 @@
                             </table>
                         </div>
                     </div>
+                    <h4 class="mb-3"><i class="fa-solid fa-sack-dollar"></i> Recebimentos do caixa</h4>
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped table-dark">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>Dinheiro</th>
+                                    <th>Cheque a vista</th>
+                                    <th>Cheque a prazo</th>
+                                    <th>Pix</th>
+                                    <th>Vale frete</th>
+                                    <th>Ticket vale</th>
+                                    <th>suprimento</th>
+                                    <th>Troco CH Rec.</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>{{ "R$ " . money($recebimentos['dinheiro']) }}</td>
+                                    <td>{{ "R$ " . money($recebimentos['chequeVista']) }}</td>
+                                    <td>{{ "R$ " . money($recebimentos['chequePrazo']) }}</td>
+                                    <td>{{ "R$ " . money($recebimentos['pix']) }}</td>
+                                    <td>{{ "R$ " . money($recebimentos['valeFrete']) }}</td>
+                                    <td>{{ "R$ " . money($recebimentos['ticketVale']) }}</td>
+                                    <td>{{ "R$ " . money($recebimentos['suprimento']) }}</td>
+                                    <td>{{ "R$ " . money($recebimentos['trocoCH']) }}</td>
+                                </tr>
+
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th colspan="7">Total Combustíveis</th>
+                                    <th>{{ "R$ " . money($recebimentos['total']) }}</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+
+                    </div>
                 </div>
             </div>
         </div>
+    </div>
     </div>
 @endsection
