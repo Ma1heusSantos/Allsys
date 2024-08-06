@@ -160,7 +160,7 @@
 
                     </div>
 
-                    <h4 class="mb-3 mt-3"><i class="fa-solid fa-money-bill-transfer"></i> Retiradas do caixa</h4>
+                    <h4 class="mb-3 mt-3"><i class="fa-solid fa-box"></i> Resumo do caixa</h4>
                     <div class="table-responsive">
                         <table class="table table-bordered table-striped table-dark">
                             <thead class="thead-dark">
