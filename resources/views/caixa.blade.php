@@ -30,6 +30,7 @@
                     <div class="col-12">
                         <h2 class="mb-4">Relatório</h2>
 
+
                         <h4 class="mb-3"><i class="fas fa-list-alt"></i> Resumo de Encerrantes</h4>
                         <div class="table-responsive mb-5">
                             <table class="table table-bordered table-striped table-dark">
@@ -91,7 +92,7 @@
                             </table>
                         </div>
                     </div>
-                    <h4 class="mb-3"><i class="fa-solid fa-sack-dollar"></i> Recebimentos do caixa</h4>
+                    <h4 class="mb-3 mt-3"><i class="fa-solid fa-sack-dollar"></i> Recebimentos do caixa</h4>
                     <div class="table-responsive">
                         <table class="table table-bordered table-striped table-dark">
                             <thead class="thead-dark">
@@ -102,7 +103,7 @@
                                     <th>Pix</th>
                                     <th>Vale frete</th>
                                     <th>Ticket vale</th>
-                                    <th>suprimento</th>
+                                    <th>Suprimento</th>
                                     <th>Troco CH Rec.</th>
                                 </tr>
                             </thead>
@@ -127,6 +128,52 @@
                             </tfoot>
                         </table>
 
+                    </div>
+
+                    <h4 class="mb-3 mt-3"><i class="fa-solid fa-money-bill-transfer"></i> Retiradas do caixa</h4>
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped table-dark">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>Sangria</th>
+                                    <th>Valefunc</th>
+                                    <th>Valecliente</th>
+                                    <th>Trococh</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>{{ "R$ " . money($retiradas['sangria']) }}</td>
+                                    <td>{{ "R$ " . money($retiradas['valefunc']) }}</td>
+                                    <td>{{ "R$ " . money($retiradas['valecliente']) }}</td>
+                                    <td>{{ "R$ " . money($retiradas['trococh']) }}</td>
+                                </tr>
+
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th colspan="3">Total Combustíveis</th>
+                                    <th>{{ "R$ " . money($retiradas['total']) }}</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+
+                    </div>
+
+                    <h4 class="mb-3 mt-3"><i class="fa-solid fa-money-bill-transfer"></i> Retiradas do caixa</h4>
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped table-dark">
+                            <thead class="thead-dark">
+                                <tr>
+
+                                    <th colspan="3">Total vendido</th>
+                                    <th>{{ "R$ " . money($totalVenda) }}</th>
+
+                                    <th colspan="3">Fechamento</th>
+                                    <th>{{ "R$ " . money($fechamento) }}</th>
+                                </tr>
+                            </thead>
+                        </table>
                     </div>
                 </div>
             </div>
