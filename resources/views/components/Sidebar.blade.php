@@ -68,12 +68,13 @@
     </nav>
     <!--- fim Navbar vertical-->
     <!---modal-->
-    <div class="modal fade backgroud_sidemenu" id="modal-lateral" tabindex="-1" aria-labelledby="modal-lateralLabel" aria-hidden="true" data-bs-backdrop="true">
+    <div class="modal fade backgroud_sidemenu" id="modal-lateral" tabindex="-1" aria-labelledby="modal-lateralLabel"
+        aria-hidden="true" data-bs-backdrop="true">
         <div class="modal-dialog modal-fullscreen">
             <div class="modal-content" id="listmenu">
                 <!---cabecalho do modal botao fechar e nome Menu-->
                 <div class="modal-header" data-bs-theme="dark">
-                    <img src="{{ asset('img/logovlt.svg') }}" style="width: 10%"/>
+                    <img src="{{ asset('img/logovlt.svg') }}" style="width: 10%" />
                     <h5 class="modal-title text-white" id="menu-titulo">MENU</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                     </button>
@@ -107,6 +108,9 @@
                                     </li>
                                     <li><a href="{{ route('caixa') }}"
                                             class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Caixa</a>
+                                    </li>
+                                    <li><a href="{{ route('faturamento') }}"
+                                            class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Faturamento</a>
                                     </li>
 
                                 </ul>

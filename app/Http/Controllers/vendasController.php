@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Exception;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Collection;
 
 class vendasController extends Controller
 {
@@ -16,7 +18,7 @@ class vendasController extends Controller
         $this->url = "http://{$this->user->cnpj}.ddns.net:8098/api/svrpista/";
     }
     public function vendasDia(){
-        return view('vendasPorPeriodo');
+        return view('relatorios/vendasPorPeriodo');
     }
     public function getVendasDia(Request $request){
         try{
@@ -29,7 +31,7 @@ class vendasController extends Controller
             $url = $this->url."itensvenda/venda";
             $response = putResponse($url,$this->user->token, $datas);
             $dados = json_decode($response, false); 
-            return view("vendasPorPeriodo",['dados'=>$dados]);
+            return view("relatorios/vendasPorPeriodo",['dados'=>$dados]);
             
         }catch(Exception $e){
             Log::info('mensagem de erro:', [$e->getMessage()]);
@@ -75,7 +77,7 @@ class vendasController extends Controller
                 Log::info($e->getMessage());
             }
             
-            return view("caixa", [
+            return view("admin/caixa/caixa", [
                 'encerrantes' => $encerrantes,
                 'totalComb' => $totalComb,
                 'recebimentos' => $recebimentos,
@@ -87,6 +89,30 @@ class vendasController extends Controller
             Log::info('mensagem de erro:', [$e->getMessage()]);
             return redirect()->route('caixa')->with('Error', $e->getMessage());
         }
+    }
+    public function faturamento(){
+        $url = $this->url.'faturamento/cliente';
+        try{
+            $response = getResponse($url, $this->user->token);
+            $faturamento = json_decode($response->body());
+            // dd($faturamento);
+
+            $qtdPag = 30; 
+            $currentPage = LengthAwarePaginator::resolveCurrentPage();
+            $paginatedFaturamento = $this->paginateArray($faturamento, $qtdPag, $currentPage, [
+                'path' => LengthAwarePaginator::resolveCurrentPath()
+            ]);
+            return view('admin/caixa/faturamento',['paginatedFaturamento'=>$paginatedFaturamento]);
+        }catch(Exception $e){
+            Log::info($e->getMessage());
+        }
+
+    }
+    function paginateArray($items, $perPage = 10, $page = null, $options = []){
+        $page = $page ?: (LengthAwarePaginator::resolveCurrentPage() ?: 1);
+        $items = $items instanceof Collection ? $items : Collection::make($items);
+        $currentPageItems = $items->slice(($page - 1) * $perPage, $perPage)->values();
+        return new LengthAwarePaginator($currentPageItems, $items->count(), $perPage, $page, $options);
     }
 
     

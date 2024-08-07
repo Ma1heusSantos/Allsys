@@ -39,7 +39,7 @@ class adminController extends Controller
             ->where('cnpj', '=', $atualUser->cnpj)
             ->get();
 
-        return view('user.show', ['users' => $users]);
+        return view('admin/user.show', ['users' => $users]);
     }
     public function edit($id)
     {
@@ -54,7 +54,7 @@ class adminController extends Controller
             $url = $this->url."empresa";
             $response = getResponse($url,$user->token); 
             $empresa = json_decode($response, false);
-            return view("Empresa.show", ["empresa" => $empresa]);
+            return view("admin/Empresa.show", ["empresa" => $empresa]);
         } catch (Exception $e) {
             return redirect()->route('home')->with('Error', $e->getMessage());
         }

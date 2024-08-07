@@ -26,7 +26,7 @@ class produtoController extends Controller
             $url = $this->url. "produto/list";
             $response = getResponse($url,$this->user->token);
             $produtos = json_decode($response, false);
-            return view("produtos.listar", ["produtos" => $produtos]);
+            return view("relatorios/produtos.listar", ["produtos" => $produtos]);
         } catch (Exception $e) {
             return redirect()->route('home')->with('Error', $e->getMessage());
         }
@@ -64,7 +64,7 @@ class produtoController extends Controller
             $dadosFuncionario = $this->getFuncionariosComb($this->user,$datas);
             $jsonFuncionario = json_encode($dadosFuncionario);
 
-            return view("dashboardComb", ["totalbruto"=>$totalbruto,
+            return view("graficos/dashboardComb", ["totalbruto"=>$totalbruto,
                                       "dados"=>$dados,
                                       "valorAbastecido"=>$valorAbastecido,
                                       "jsonDados"=>$jsonDados,
@@ -121,7 +121,7 @@ class produtoController extends Controller
             $dadosFuncionario = $this->getFuncionariosProd($this->user,$datas);
             $jsonFuncionario = json_encode($dadosFuncionario);
 
-            return view("dashboardProd", ["totalbruto"=>$totalbruto,
+            return view("graficos/dashboardProd", ["totalbruto"=>$totalbruto,
                                       "dados"=>$dados,
                                       "valorVenda"=>$valorVenda,
                                       "jsonDados"=>$jsonDados,
@@ -154,7 +154,7 @@ class produtoController extends Controller
             $dadosResponse = json_decode($response, false); 
             $dadosJson = json_encode($dadosResponse);
 
-            return view("produtos.trocaPreco",['dadosResponse'=>$dadosResponse,'dadosJson'=>$dadosJson,'usuario'=>$usuario]);
+            return view("admin/produtos.trocaPreco",['dadosResponse'=>$dadosResponse,'dadosJson'=>$dadosJson,'usuario'=>$usuario]);
         
         } catch (Exception $e) {
             Log::info($e->getMessage());
@@ -248,7 +248,7 @@ class produtoController extends Controller
                 'path' => LengthAwarePaginator::resolveCurrentPath()
             ]);
 
-            return view('monitor', ['paginatedBicos' => $paginatedBicos]);
+            return view('admin/monitor', ['paginatedBicos' => $paginatedBicos]);
         
         } catch (Exception $e) {
             Log::info($e->getMessage());

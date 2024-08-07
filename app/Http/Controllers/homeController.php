@@ -15,7 +15,7 @@ class homeController extends Controller
         $this->url = "http://{$this->user->cnpj}.ddns.net:8098/api/svrpista/";
     }
     public function tanques(){
-        return view("tanques");
+        return view("graficos/tanques");
     }
 
     public function home(){
