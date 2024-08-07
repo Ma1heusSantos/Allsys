@@ -65,10 +65,10 @@
                                 <tr>
                                     {{-- <td>{{ $faturamento->codcliente }}</td> --}}
                                     <td>{{ $faturamento->nomecliente }}</td>
-                                    <td>{{ $faturamento->notas }}</td>
-                                    <td>{{ "R$ " . money($faturamento->faturas) }}</td>
-                                    <td>{{ "R$ " . money($faturamento->total) }}</td>
-                                    <td><button class="btn btn-primary">Detalhes</button></td>
+                                    <td class="text-center">{{ $faturamento->notas }}</td>
+                                    <td class="text-center">{{ "R$ " . money($faturamento->faturas) }}</td>
+                                    <td class="text-center">{{ "R$ " . money($faturamento->total) }}</td>
+                                    <td class="text-center"><button class="btn btn-primary">Detalhes</button></td>
                                 </tr>
                             @endforeach
                         </tbody>
