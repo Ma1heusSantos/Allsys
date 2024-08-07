@@ -54,10 +54,10 @@
                         <thead class="thead-dark">
                             <tr>
                                 <th>Nome do cliente</th>
-                                <th>Notas</th>
-                                <th>Faturas</th>
-                                <th>Total</th>
-                                <th>Detalhes</th>
+                                <th class="text-center">Notas</th>
+                                <th class="text-center">Faturas</th>
+                                <th class="text-center">Total</th>
+                                <th class="text-center">Detalhes</th>
                             </tr>
                         </thead>
                         <tbody>
