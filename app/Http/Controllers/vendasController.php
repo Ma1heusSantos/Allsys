@@ -40,62 +40,64 @@ class vendasController extends Controller
 
     }
 
-    public function caixa(){
-
-        $url = $this->url . "caixa/resumo/1";
+    public function caixa(Request $request) {
+        $terminal = isset($request->terminal) ? $request->terminal : 1;
+        $url = $this->url . "caixa/resumo/" . $terminal;
         $totalComb = 0;
+        $errors = null;
+    
         try {
             $response = getResponse($url, $this->user->token);
             $encerrantes = json_decode($response); 
             foreach ($encerrantes->resumocomb as $encerrante) {
                 $totalComb += $encerrante->valor;
             }
-            try{
-                $recebimentos = array(
-                    "dinheiro" => $encerrantes->caixa->recebimentos->ltipovendadinheiro ?? 0,
-                    "chequeVista" => $encerrantes->caixa->recebimentos->ltipovendachequeavista ?? 0,
-                    "chequePrazo" =>$encerrantes->caixa->recebimentos->ltipovendachequeaprazo ?? 0,
-                    "pix" => $encerrantes->caixa->recebimentos->ltipovendapix ?? 0,
-                    "valeFrete"=> $encerrantes->caixa->recebimentos->ltipovendavalefrete ?? 0,
-                    "ticketVale"=>$encerrantes->caixa->recebimentos->ltipovendaticketvalecliente ?? 0,
-                    "suprimento"=>$encerrantes->caixa->recebimentos->suprimento ?? 0,
-                    "trocoCH"=> $encerrantes->caixa->recebimentos->ltipovendanotas ?? 0,
-                    "total"=>$encerrantes->caixa->recebimentos->total ?? 0,
-                );
 
-                $retiradas = array(
-                    "sangria"=> $encerrantes->caixa->retiradas->sangria ?? 0,
-                    "valefunc"=> $encerrantes->caixa->retiradas->valefunc ?? 0,
-                    "valecliente"=> $encerrantes->caixa->retiradas->valecliente ?? 0,
-                    "trococh"=> $encerrantes->caixa->retiradas->trococh ?? 0,
-                    "total"=> $encerrantes->caixa->retiradas->total ?? 0,
-                );
-                $totalVenda = $encerrantes->caixa->totalvenda;
-                $fechamento = $encerrantes->caixa->fechamento;
-            }
-            catch(Exception $e){
-                Log::info($e->getMessage());
-            }
-            
+            $recebimentos = [
+                "dinheiro" => $encerrantes->caixa->recebimentos->ltipovendadinheiro ?? 0,
+                "chequeVista" => $encerrantes->caixa->recebimentos->ltipovendachequeavista ?? 0,
+                "chequePrazo" => $encerrantes->caixa->recebimentos->ltipovendachequeaprazo ?? 0,
+                "pix" => $encerrantes->caixa->recebimentos->ltipovendapix ?? 0,
+                "valeFrete" => $encerrantes->caixa->recebimentos->ltipovendavalefrete ?? 0,
+                "ticketVale" => $encerrantes->caixa->recebimentos->ltipovendaticketvalecliente ?? 0,
+                "suprimento" => $encerrantes->caixa->recebimentos->suprimento ?? 0,
+                "trocoCH" => $encerrantes->caixa->recebimentos->ltipovendanotas ?? 0,
+                "total" => $encerrantes->caixa->recebimentos->total ?? 0,
+            ];
+
+            $retiradas = [
+                "sangria" => $encerrantes->caixa->retiradas->sangria ?? 0,
+                "valefunc" => $encerrantes->caixa->retiradas->valefunc ?? 0,
+                "valecliente" => $encerrantes->caixa->retiradas->valecliente ?? 0,
+                "trococh" => $encerrantes->caixa->retiradas->trococh ?? 0,
+                "total" => $encerrantes->caixa->retiradas->total ?? 0,
+            ];
+
+            $totalVenda = $encerrantes->caixa->totalvenda;
+            $fechamento = $encerrantes->caixa->fechamento;
+    
             return view("admin/caixa/caixa", [
                 'encerrantes' => $encerrantes,
                 'totalComb' => $totalComb,
                 'recebimentos' => $recebimentos,
                 'retiradas' => $retiradas,
                 'totalVenda' => $totalVenda,
-                'fechamento' => $fechamento
+                'fechamento' => $fechamento,
             ]);
+    
         } catch (Exception $e) {
             Log::info('mensagem de erro:', [$e->getMessage()]);
-            return redirect()->route('caixa')->with('Error', $e->getMessage());
+            $errors = 'informe um terminal válido, código do erro: ' . $response->status();
+            return redirect()->back()->withErrors(['msg' => $errors]);
         }
     }
+    
     public function faturamento(){
         $url = $this->url.'faturamento/cliente';
         try{
             $response = getResponse($url, $this->user->token);
             $faturamento = json_decode($response->body());
-            // dd($faturamento);
+
 
             $qtdPag = 30; 
             $currentPage = LengthAwarePaginator::resolveCurrentPage();

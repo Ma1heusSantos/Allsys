@@ -41,5 +41,5 @@ Route::middleware(adminAcess::class)->group(function () {
     Route::get('/trocaPreco',[produtoController::class,'trocaPreco'])->name("trocar.preco");
     Route::post('/atualizaPreco',[produtoController::class,'atualizaPreco'])->name("atualiza.preco");
     Route::get('/monitor',[produtoController::class,'monitor'])->name("monitor");
-    Route::get('/caixa',[vendasController::class,'caixa'])->name("caixa");
+    Route::any('/caixa',[vendasController::class,'caixa'])->name("caixa");
 });

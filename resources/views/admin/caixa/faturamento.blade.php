@@ -41,7 +41,6 @@
             /* Cor da borda cinza para itens desabilitados */
         }
 
-        /* Ajuste adicional para paginação responsiva */
         .table-responsive .pagination {
             flex-wrap: wrap;
         }
