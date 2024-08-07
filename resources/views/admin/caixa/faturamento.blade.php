@@ -53,7 +53,6 @@
                     <table class="table table-bordered table-striped table-dark">
                         <thead class="thead-dark">
                             <tr>
-                                <th>Código</th>
                                 <th>Nome do cliente</th>
                                 <th>Notas</th>
                                 <th>Faturas</th>
@@ -64,7 +63,7 @@
                         <tbody>
                             @foreach ($paginatedFaturamento as $faturamento)
                                 <tr>
-                                    <td>{{ $faturamento->codcliente }}</td>
+                                    {{-- <td>{{ $faturamento->codcliente }}</td> --}}
                                     <td>{{ $faturamento->nomecliente }}</td>
                                     <td>{{ $faturamento->notas }}</td>
                                     <td>{{ "R$ " . money($faturamento->faturas) }}</td>
