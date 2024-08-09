@@ -109,8 +109,20 @@
                                     <li><a href="{{ route('caixa') }}"
                                             class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Caixa</a>
                                     </li>
-                                    <li><a href="{{ route('faturamento') }}"
-                                            class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Faturamento</a>
+                                    <li class="mb-1">
+                                        <button
+                                            class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed text-white"
+                                            data-bs-toggle="collapse" data-bs-target="#menu4-collapse"
+                                            aria-expanded="false" aria-controls=" menu1-collapse">
+                                            Faturamento
+                                        </button>
+                                        <div class="collapse" id="menu4-collapse">
+                                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                                                <li><a href="{{ route('faturamento') }}"
+                                                        class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Clientes</a>
+                                                </li>
+                                            </ul>
+                                        </div>
                                     </li>
 
                                 </ul>

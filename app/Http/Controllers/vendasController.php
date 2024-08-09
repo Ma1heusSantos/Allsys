@@ -8,6 +8,7 @@ use Exception;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Http;
 
 class vendasController extends Controller
 {
@@ -92,10 +93,17 @@ class vendasController extends Controller
         }
     }
     
-    public function faturamento(){
+    public function faturamento(request $request){
+
         $url = $this->url.'faturamento/cliente';
         try{
-            $response = getResponse($url, $this->user->token);
+            if($request->filled('cliente')){
+                $response = Http::withHeaders([
+                    'Authorization' => 'Bearer ' . $this->user->token,
+                ])->get($url . '?find='.$request->cliente);
+            } else {
+                $response = getResponse($url, $this->user->token);
+            }
             $faturamento = json_decode($response->body());
 
 
