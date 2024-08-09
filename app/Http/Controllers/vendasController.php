@@ -87,7 +87,7 @@ class vendasController extends Controller
     
         } catch (Exception $e) {
             Log::info('mensagem de erro:', [$e->getMessage()]);
-            $errors = 'informe um terminal válido, código do erro: ' . $response->status();
+            $errors = 'informe um terminal válido, código do erro:';
             return redirect()->back()->withErrors(['msg' => $errors]);
         }
     }
@@ -115,6 +115,24 @@ class vendasController extends Controller
         $items = $items instanceof Collection ? $items : Collection::make($items);
         $currentPageItems = $items->slice(($page - 1) * $perPage, $perPage)->values();
         return new LengthAwarePaginator($currentPageItems, $items->count(), $perPage, $page, $options);
+    }
+
+
+    public function faturamentoPorCliente($id){
+        $url = $this->url.'faturamento/cliente/'.$id;
+        $total = 0;
+        try{
+            $response = getResponse($url, $this->user->token);
+            $contas = json_decode($response->body());
+            foreach ($contas as $conta) {
+                $total += $conta->valor;
+            }
+
+            return view('admin/caixa/faturamentoPorCliente',['contas'=>$contas,'total'=>$total]);
+        }catch(Exception $e){
+            Log::info($e->getMessage());
+        }
+
     }
 
     

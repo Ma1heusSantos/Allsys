@@ -67,7 +67,9 @@
                                     <td class="text-center">{{ $faturamento->notas }}</td>
                                     <td class="text-center">{{ "R$ " . money($faturamento->faturas) }}</td>
                                     <td class="text-center">{{ "R$ " . money($faturamento->total) }}</td>
-                                    <td class="text-center"><button class="btn btn-primary">Detalhes</button></td>
+                                    <td class="text-center"> <a class="btn btn-primary"
+                                            href="{{ route('faturamento.cliente', [$faturamento->codcliente]) }}">Detalhes</a>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>
