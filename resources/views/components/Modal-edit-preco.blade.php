@@ -86,7 +86,9 @@
                         placeholder="Digite o novo preço a prazo aqui">
 
                     <label for="data-{{ $index }}" class="mb-2 h4"> Data de Troca</label>
-                    <input class="form-control" type="date" id="data-{{ $index }}" name="data">
+                    <input class="form-control" type="date" id="data-{{ $index }}" name="data"
+                        value="{{ \Carbon\Carbon::now()->format('Y-m-d') }}">
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>

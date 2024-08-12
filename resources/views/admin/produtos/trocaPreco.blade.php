@@ -40,7 +40,7 @@
     @endif
 
 
-    <div class="card mt-5 mt-4" style="background-color: #1e1e2f; color: #fff; border-radius: 10px;">
+    <div class="card mt-5" style="background-color: #1e1e2f; color: #fff; border-radius: 10px;">
         <div class="card-header d-flex justify-content-between align-items-center"
             style="background-color: #27293d; border-bottom: 1px solid #444;">
             <h4 class="text-primary m-0">Troca Preço</h4>
