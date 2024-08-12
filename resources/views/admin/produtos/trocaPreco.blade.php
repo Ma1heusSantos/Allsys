@@ -25,11 +25,11 @@
         }
     </style>
 
-    @if (session('success'))
+    {{-- @if (session('success'))
         <div class="alert alert-success text-success text-center mt-4 custom-alert">
             {{ session('success') }}
         </div>
-    @endif
+    @endif --}}
 
     @if ($errors->any())
         <div class="alert alert-danger text-danger text-center mt-4 custom-alert">
