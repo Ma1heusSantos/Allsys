@@ -56,6 +56,7 @@
                                     <h3 class="mb-3">{{ $dado->dscprod }}</h3>
                                     <p>A Vista - R$ {{ $dado->avista }}</p>
                                     <p>A Prazo - R$ {{ $dado->aprazo }}</p>
+                                    <p>Terminal - {{ $dado->terminal }}</p>
                                     <button type="button" class="btn btn-outline-light w-100 mt-auto"
                                         data-bs-toggle="modal" data-bs-target="#editPreco-{{ $loop->index }}">
                                         Trocar Preço
