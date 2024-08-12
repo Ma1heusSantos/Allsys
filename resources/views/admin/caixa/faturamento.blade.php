@@ -200,6 +200,7 @@
                                 <input name="cliente" class="form-control" type="text"
                                     placeholder="Pesquise por um cliente">
                                 <button class="btn btn-primary" type="submit">Enviar</button>
+                                <button onclick="window.location.href='{{ route('faturamento') }}'">Limpar Filtro</button>
                             </form>
                         </div>
                         <div class="table-responsive">

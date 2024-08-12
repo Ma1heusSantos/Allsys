@@ -97,10 +97,10 @@ class vendasController extends Controller
 
         $url = $this->url.'faturamento/cliente';
         try{
-            if($request->filled('cliente')){
+            if ($request->filled('cliente')) {
                 $response = Http::withHeaders([
                     'Authorization' => 'Bearer ' . $this->user->token,
-                ])->get($url . '?find='.$request->cliente);
+                ])->get($url . '?find=' . $request->cliente);
             } else {
                 $response = getResponse($url, $this->user->token);
             }
