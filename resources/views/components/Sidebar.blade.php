@@ -103,20 +103,24 @@
                                     <li><a href="{{ route('trocar.preco') }}"
                                             class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Troca
                                             Preco</a></li>
-                                    <li><a href="{{ route('monitor') }}"
-                                            class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Monitor</a>
-                                    </li>
                                     <li class="mb-1">
                                         <button
                                             class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed text-white"
                                             data-bs-toggle="collapse" data-bs-target="#menu5-collapse"
                                             aria-expanded="false" aria-controls=" menu1-collapse">
-                                            Pista
+                                            Monitor
                                         </button>
                                         <div class="collapse" id="menu5-collapse">
                                             <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                                                 <li><a href="{{ route('caixa') }}"
                                                         class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Caixa</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="collapse" id="menu5-collapse">
+                                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                                                <li><a href="{{ route('monitor') }}"
+                                                        class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Pista</a>
                                                 </li>
                                             </ul>
                                         </div>
