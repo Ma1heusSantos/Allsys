@@ -7,14 +7,14 @@ use App\Http\Controllers\authController;
 use App\Http\Controllers\produtoController;
 use App\Http\Controllers\vendasController;
 use App\Http\Middleware\adminAcess;
-use App\Http\Middleware\Authorization;
+use App\Http\Middleware\authorization;
 use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
     return view('auth.login');
 });
 
-Route::middleware(Authorization::class)->group(function () {
+Route::middleware(authorization::class)->group(function () {
     Route::get('/tanques', [homeController::class, "tanques"])->name("tanques");
     Route::get('/getData', [homeController::class, "getData"])->name("getData");
     Route::get('/home', [homeController::class, "home"])->name("home");

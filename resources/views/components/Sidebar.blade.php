@@ -106,8 +106,20 @@
                                     <li><a href="{{ route('monitor') }}"
                                             class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Monitor</a>
                                     </li>
-                                    <li><a href="{{ route('caixa') }}"
-                                            class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Caixa</a>
+                                    <li class="mb-1">
+                                        <button
+                                            class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed text-white"
+                                            data-bs-toggle="collapse" data-bs-target="#menu5-collapse"
+                                            aria-expanded="false" aria-controls=" menu1-collapse">
+                                            Pista
+                                        </button>
+                                        <div class="collapse" id="menu5-collapse">
+                                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                                                <li><a href="{{ route('caixa') }}"
+                                                        class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Caixa</a>
+                                                </li>
+                                            </ul>
+                                        </div>
                                     </li>
                                     <li class="mb-1">
                                         <button

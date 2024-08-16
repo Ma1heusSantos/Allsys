@@ -49,11 +49,13 @@
                     <div class="card text-light mb-3" style="min-width: 12rem; height: 18rem; background-color:#29292e;">
                         <div class="d-flex align-items-center justify-content-between p-4">
                             <i class="fa-solid fa-gas-pump  fa-2xl" style="color: {{ $bico['icon-color'] }};"></i>
-                            <button type="button" class="btn btn-outline-{{ $bico['color'] }}">{{ $bico['status'] }}</button>
+                            <h6 class="mt-3 font-weight-bold text-{{ $bico['color'] }}">BICO: {{ $bico['codbico'] }}</h6>
+                            <button type="button"
+                                class="btn btn-outline-{{ $bico['color'] }}">{{ $bico['status'] }}</button>
                         </div>
                         <div class="card-body text-light">
                             <h6 class="card-title text-{{ $bico['color'] }} fw-bold">
-                                {{ $bico['dscprod'] }} - BICO: {{ $bico['codbico'] }}
+                                {{ $bico['dscprod'] }}
                             </h6>
                             <ul class="list-unstyled">
                                 <li><strong>Encerrante:</strong> <span
