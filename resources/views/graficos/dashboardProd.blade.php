@@ -9,7 +9,7 @@
         <div class="card-header mt-3 d-flex justify-content-between flex-column flex-sm-row">
             <div class="col-md-3">
                 <h4>
-                    <span class="span-title text-primary fw-bold">Dashboard de Produtos</span>
+                    <span class="span-title text-primary fw-bold">Resumo de Produtos</span>
                 </h4>
             </div>
             <div class="form">

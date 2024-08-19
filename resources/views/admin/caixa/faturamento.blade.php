@@ -218,7 +218,7 @@
                                     @foreach ($paginatedFaturamento as $faturamento)
                                         <tr>
                                             <td>{{ $faturamento->nomecliente }}</td>
-                                            <td class="text-center">{{ $faturamento->notas }}</td>
+                                            <td class="text-center">{{ "R$ " . money($faturamento->notas) }}</td>
                                             <td class="text-center">{{ "R$ " . money($faturamento->faturas) }}</td>
                                             <td class="text-center">{{ "R$ " . money($faturamento->total) }}</td>
                                             <td class="text-center">
