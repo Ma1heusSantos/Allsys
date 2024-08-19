@@ -121,4 +121,4 @@
                 document.getElementById('form').submit();
             }
         </script>
-    @endsection
+@endsection

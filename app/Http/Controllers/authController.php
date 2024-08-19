@@ -14,6 +14,7 @@ class authController extends Controller
     public function login(){
         return view ('auth.login');
     }
+    
     public function autenticaUsuario(Request $request){    
         $cnpj = $this->limparCNPJ($request->cnpj);
         $dados =[
