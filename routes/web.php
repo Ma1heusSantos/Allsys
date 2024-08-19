@@ -8,7 +8,6 @@ use App\Http\Controllers\produtoController;
 use App\Http\Controllers\vendasController;
 use App\Http\Middleware\adminAcess;
 use App\Http\Middleware\authorization;
-use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
     return view('auth.login');
@@ -26,7 +25,7 @@ Route::get('/deslogar', [authController::class, 'deslogar'])->name('deslogar');
 Route::get('/login', [authController::class, "login"])->name("login");
 
 //rotas admin
-Route::middleware([authorization::class])->group(function () {
+Route::middleware([adminAcess::class])->group(function () {
     Route::get('/showCompany', [adminController::class, 'showCompany'])->name("show.company");
     Route::get('/createUser', [adminController::class, 'createUser'])->name('create.user');
     Route::post('/storeUser', [adminController::class, 'storeUser'])->name('store.user');
