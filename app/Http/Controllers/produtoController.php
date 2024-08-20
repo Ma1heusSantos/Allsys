@@ -40,8 +40,8 @@ class produtoController extends Controller
         $valorAbastecido = 0;
         
         if (!isset($request->dataIni) || !isset($request->dataFim)) {
-            $dataIni = Carbon::now();
-            $dataFim = Carbon::now();
+            $dataIni = Carbon::now()->format("d/m/Y");
+            $dataFim = Carbon::now()->format("d/m/Y");
         }
         
         $datas = [
