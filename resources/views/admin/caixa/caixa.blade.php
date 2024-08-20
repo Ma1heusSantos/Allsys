@@ -119,8 +119,8 @@
                                 <thead class="thead-dark">
                                     <tr>
                                         <th>Dinheiro</th>
-                                        <th>Cheque a vista</th>
-                                        <th>Cheque a prazo</th>
+                                        <th>Cheque à vista</th>
+                                        <th>Cheque à prazo</th>
                                         <th>Pix</th>
                                         <th>Vale frete</th>
                                         <th>Ticket vale</th>

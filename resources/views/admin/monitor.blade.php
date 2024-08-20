@@ -68,7 +68,7 @@
                                 <li>
                                     <strong>À vista:</strong> <span class="text-{{ $bico['color'] }} fw-bold">R$
                                         {{ money($bico['avista']) }}</span>
-                                    <strong>A prazo:</strong> <span class="text-{{ $bico['color'] }} fw-bold">R$
+                                    <strong>À prazo:</strong> <span class="text-{{ $bico['color'] }} fw-bold">R$
                                         {{ money($bico['aprazo']) }}</span>
                                 </li>
                                 <li><strong>Status:</strong> <span
