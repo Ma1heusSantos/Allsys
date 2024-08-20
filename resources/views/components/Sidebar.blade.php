@@ -98,11 +98,12 @@
                                             class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Empresa</a>
                                     </li>
                                     <li><a href="{{ route('show.user') }}"
-                                            class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Usuarios</a>
+                                            class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Usuários</a>
                                     </li>
                                     <li><a href="{{ route('trocar.preco') }}"
                                             class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Troca
-                                            Preco</a></li>
+                                            de
+                                            Preço</a></li>
                                     <li class="mb-1">
                                         <button
                                             class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed text-white"
@@ -160,7 +161,7 @@
                                     </li>
                                     <li><a href="{{ route('dashboard.combustivel') }}"
                                             class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Resumo
-                                            Combustiveis</a>
+                                            Combustíveis</a>
                                     </li>
                                     <li><a href="{{ route('dashboard.produto') }}"
                                             class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Resumo
