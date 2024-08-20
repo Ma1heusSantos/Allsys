@@ -159,11 +159,11 @@
                                             class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Tanques</a>
                                     </li>
                                     <li><a href="{{ route('dashboard.combustivel') }}"
-                                            class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Dashboard
+                                            class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Resumo
                                             Combustiveis</a>
                                     </li>
                                     <li><a href="{{ route('dashboard.produto') }}"
-                                            class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Dashboard
+                                            class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Resumo
                                             Produtos</a>
                                     </li>
 
