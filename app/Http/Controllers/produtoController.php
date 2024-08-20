@@ -40,8 +40,8 @@ class produtoController extends Controller
         $valorAbastecido = 0;
         
         if (!isset($request->dataIni) || !isset($request->dataFim)) {
-            $dataIni = "01/05/2023";
-            $dataFim = "01/05/2023";
+            $dataIni = Carbon::now();
+            $dataFim = Carbon::now();
         }
         
         $datas = [
@@ -97,8 +97,8 @@ class produtoController extends Controller
         $valorVenda = 0;
         
         if (!isset($request->dataIni) || !isset($request->dataFim)) {
-            $dataIni = "01/05/2023";
-            $dataFim = "01/05/2023";
+            $dataIni = Carbon::now();
+            $dataFim = Carbon::now();
         }
         
         $datas = [
