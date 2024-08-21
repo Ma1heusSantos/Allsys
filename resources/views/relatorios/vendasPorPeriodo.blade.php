@@ -95,13 +95,16 @@
                         <div class="col-md-6">
                             <div class="form-group p-2">
                                 <label for="dataini">Data de Início: </label>
-                                <input required name="dataini" class="form-control" type="date">
+                                <input required name="dataini" value="{{ Carbon\Carbon::now()->format('Y-m-d') }}"
+                                    class="form-control" type="date">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group p-2">
-                                <label for="datafim">Data de Fim: </label>
-                                <input required name="datafim" class="form-control" type="date">
+                                <label for="datafim">Data de Fim:
+                                </label>
+                                <input required name="datafim" value="{{ Carbon\Carbon::now()->format('Y-m-d') }}"
+                                    class="form-control" type="date">
                             </div>
                         </div>
                     </div>
