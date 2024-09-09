@@ -169,8 +169,6 @@ class produtoController extends Controller
 
             $aprazo = (double)str_replace(',', '.', $request->aprazo);
             $aprazo = number_format($aprazo, 3, '.', '');
-            @dd($aprazo);
-
 
 
             $dados = [
