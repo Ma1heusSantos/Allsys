@@ -163,8 +163,13 @@ class produtoController extends Controller
     public function atualizaPreco(Request $request){
         try {
             $data = formatDate($request->data);
+            
             $avista = (double)str_replace(',', '.', $request->avista);
+            $avista = number_format($avista, 3, '.', '');
+
             $aprazo = (double)str_replace(',', '.', $request->aprazo);
+            $aprazo = number_format($aprazo, 3, '.', '');
+
 
 
             $dados = [
