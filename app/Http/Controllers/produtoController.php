@@ -163,8 +163,9 @@ class produtoController extends Controller
     public function atualizaPreco(Request $request){
         try {
             $data = formatDate($request->data);
-            $avista = (float)str_replace(',', '.', $request->avista);
-            $aprazo = (float)str_replace(',', '.', $request->aprazo);
+            $avista = (double)str_replace(',', '.', $request->avista);
+            $aprazo = (double)str_replace(',', '.', $request->aprazo);
+
 
             $dados = [
                 "codprod"=> $request->codigo,

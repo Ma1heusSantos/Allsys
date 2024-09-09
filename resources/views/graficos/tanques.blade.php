@@ -51,7 +51,6 @@
         function getDados() {
             axios
                 .get("/getData").then(function(response) {
-                    console.log(response.data)
                     let dados = response.data;
                     let processedData = treatDados(dados);
                     renderGraphic(processedData);
