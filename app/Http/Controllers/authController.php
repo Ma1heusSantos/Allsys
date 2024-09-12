@@ -6,8 +6,9 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Contracts\Auth\Authenticatable;
 use App\Models\User;
-use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Log;
 
 class authController extends Controller
 {
@@ -36,7 +37,9 @@ class authController extends Controller
                     'cnpj'=>$cnpj
                 ]
             );
-            Auth::login($user);
+            $remember = $request->has("remember");
+            Auth::login($user, $remember);
+            
             $request->session()->regenerate();
             return Auth::user()->nivel == "Admin" ? redirect()->route("dashboard.combustivel") : redirect()->route("home");
         }else{
@@ -45,6 +48,7 @@ class authController extends Controller
         }
 
        }catch(Exception $e){
+            Log::info("mensagem de erro: ".$e->getMessage());
             return redirect()->route('login')->with('Error', $e->getMessage());
        }
         
