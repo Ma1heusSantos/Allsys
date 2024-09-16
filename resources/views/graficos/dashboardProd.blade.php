@@ -13,7 +13,7 @@
                 </h4>
             </div>
             <div class="form">
-                <form action="{{ route('dashboard.combustivel') }}" method="post">
+                <form action="{{ route('dashboard.produto') }}" method="post">
                     @csrf
                     <div class="container">
                         <div class="d-flex flex-column flex-sm-row">

@@ -31,6 +31,19 @@ class produtoController extends Controller
             return redirect()->route('home')->with('Error', $e->getMessage());
         }
     }
+    public function getFuncionariosComb($user,$datas){
+
+        try {
+            $url = $this->url."itensvenda/combfunc";
+            $response = putResponse($url,$user->token,$datas);
+            $dadosResponse = json_decode($response, false); 
+            return ($dadosResponse);
+        
+        } catch (Exception $e) {
+            Log::info($e->getMessage());
+        }
+        
+    }
     public function dashboardCombustivel(Request $request)
     {
 
@@ -75,22 +88,9 @@ class produtoController extends Controller
             Log::info($e->getMessage());
         }
     }
-    public function getFuncionariosComb($user,$datas){
-
-        try {
-            $url = $this->url."itensvenda/combfunc";
-            $response = putResponse($url,$user->token,$datas);
-            $dadosResponse = json_decode($response, false); 
-            return ($dadosResponse);
-        
-        } catch (Exception $e) {
-            Log::info($e->getMessage());
-        }
-        
-    }
+ 
     public function dashboardProduto(Request $request)
     {
-
         $dataIni = formatDate($request->dataIni);
         $dataFim = formatDate($request->dataFim);
         $totalbruto = 0;
