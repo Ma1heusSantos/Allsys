@@ -91,15 +91,11 @@ class produtoController extends Controller
  
     public function dashboardProduto(Request $request)
     {
-        $dataIni = formatDate($request->dataIni);
-        $dataFim = formatDate($request->dataFim);
+        $dataIni = $request->has('dataIni') ? formatDate($request->dataIni) : Carbon::now()->format("d/m/Y");
+        $dataFim = $request->has('dataFim') ? formatDate($request->dataFim) : Carbon::now()->format("d/m/Y");
         $totalbruto = 0;
         $valorVenda = 0;
         
-        if (!isset($request->dataIni) || !isset($request->dataFim)) {
-            $dataIni = Carbon::now()->format("d/m/Y");
-            $dataFim = Carbon::now()->format("d/m/Y");
-        }
         
         $datas = [
             "dataini" => $dataIni,
@@ -121,9 +117,14 @@ class produtoController extends Controller
             $dadosFuncionario = $this->getFuncionariosProd($this->user,$datas);
             $jsonFuncionario = json_encode($dadosFuncionario);
 
+            $dataIniFormatted = Carbon::createFromFormat('d/m/Y', $dataIni)->format('Y-m-d');
+            $dataFimFormatted = Carbon::createFromFormat('d/m/Y', $dataFim)->format('Y-m-d');
+
             return view("graficos/dashboardProd", ["totalbruto"=>$totalbruto,
                                       "dados"=>$dados,
                                       "valorVenda"=>$valorVenda,
+                                      "dataIni"=>$dataIniFormatted,
+                                      "dataFim"=>$dataFimFormatted,
                                       "jsonDados"=>$jsonDados,
                                       "jsonFuncionario"=>$jsonFuncionario
                                     ]);
