@@ -22,8 +22,7 @@
                                     <label for="dataInicio" class="col-form-label text-light">Data de início:</label>
                                 </div>
                                 <div class="col-12 col-sm-auto">
-                                    <input type="date" id="dataInicio"
-                                        value="{{ Carbon\Carbon::now()->format('Y-m-d') }}" name="dataIni"
+                                    <input type="date" id="dataInicio" value="{{ $dataIni }}" name="dataIni"
                                         class="form-control bg-dark text-light">
                                 </div>
                             </div>
@@ -32,8 +31,8 @@
                                     <label for="dataFim" class="col-form-label text-light">Data de fim:</label>
                                 </div>
                                 <div class="col-12 col-sm-auto d-flex">
-                                    <input type="date" id="dataFim" value="{{ Carbon\Carbon::now()->format('Y-m-d') }}"
-                                        name="dataFim" class="form-control bg-dark text-light">
+                                    <input type="date" id="dataFim" value="{{ $dataFim }}" name="dataFim"
+                                        class="form-control bg-dark text-light">
 
                                     <button type="submit" id="btn-form" class="input-group-addon btn btn-primary"
                                         style="background-color: rgb(13, 110, 253); color: #fff; width: 3rem; height: 2.3rem; border-radius: 0px 5px 5px 0px !important; margin-right: 2%">

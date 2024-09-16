@@ -47,8 +47,8 @@ class produtoController extends Controller
     public function dashboardCombustivel(Request $request)
     {
 
-        $dataIni = formatDate($request->dataIni);
-        $dataFim = formatDate($request->dataFim);
+        $dataIni = $request->has('dataIni') ? formatDate($request->dataIni) : Carbon::now()->format("d/m/Y");
+        $dataFim = $request->has('dataFim') ? formatDate($request->dataFim) : Carbon::now()->format("d/m/Y");
         $totalbruto = 0;
         $valorAbastecido = 0;
         
@@ -77,10 +77,15 @@ class produtoController extends Controller
             $dadosFuncionario = $this->getFuncionariosComb($this->user,$datas);
             $jsonFuncionario = json_encode($dadosFuncionario);
 
+            $dataIniFormatted = Carbon::createFromFormat('d/m/Y', $dataIni)->format('Y-m-d');
+            $dataFimFormatted = Carbon::createFromFormat('d/m/Y', $dataFim)->format('Y-m-d');
+
             return view("graficos/dashboardComb", ["totalbruto"=>$totalbruto,
                                       "dados"=>$dados,
                                       "valorAbastecido"=>$valorAbastecido,
                                       "jsonDados"=>$jsonDados,
+                                      "dataIni"=>$dataIniFormatted,
+                                      "dataFim"=>$dataFimFormatted,
                                       "jsonFuncionario"=>$jsonFuncionario
                                     ]);
 
