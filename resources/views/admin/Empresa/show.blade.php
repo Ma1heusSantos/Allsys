@@ -26,7 +26,7 @@
                     <div class="m-auto">
                         <p class="text-white fw-bold d-inline mr-2" style="font-size: 14px;">CNPJ:</p>
                         <p class="d-inline text-white font-weight-normal" style="font-size: 11px;">
-                            {{ $empresa->contabilidadeCnpj ?? 'Não informado' }}</p>
+                            {{ $empresa->cgcposto ?? 'Não informado' }}</p>
                     </div>
                 </li>
                 <li class="list-group-item" style="background-color: #47444e;">
