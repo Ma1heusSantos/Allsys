@@ -103,11 +103,15 @@
     </div>
     <script>
         $(document).ready(function() {
-            $('#avista-{{ $index }}').mask('000.000.000.000.000,00', {
-                reverse: true
+
+            $('#avista-{{ $index }}').mask('##0,000', {
+                reverse: true,
+                placeholder: "0,00"
             });
-            $('#aprazo-{{ $index }}').mask('000.000.000.000.000,00', {
-                reverse: true
+
+            $('#aprazo-{{ $index }}').mask('##0,000', {
+                reverse: true,
+                placeholder: "0,00"
             });
 
             $('#editPreco-{{ $index }}').on('shown.bs.modal', function() {
