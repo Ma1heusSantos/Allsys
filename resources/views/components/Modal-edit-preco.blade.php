@@ -82,12 +82,12 @@
 
                     <label for="avista-{{ $index }}" class="mb-2 h4 ">A Vista - R$
                         {{ $dado->avista }} </label>
-                    <input class="form-control mb-4" type="text" placeholder="Digite o novo preço a vista aqui"
-                        id="avista-{{ $index }}" name="avista">
+                    <input class="form-control mb-4 money" type="text" placeholder="Digite o novo preço a vista aqui"
+                        id="avista-{{ $index }}" name="avista" onKeyPress="setMask(this)">
 
                     <label for="aprazo-{{ $index }}" class="mb-2 h4"> A Prazo - R$ {{ $dado->aprazo }}</label>
-                    <input class="form-control mb-4" type="text" id="aprazo-{{ $index }}" name="aprazo"
-                        placeholder="Digite o novo preço a prazo aqui">
+                    <input class="form-control mb-4 money" type="text" id="aprazo-{{ $index }}"
+                        name="aprazo" placeholder="Digite o novo preço a prazo aqui" onKeyPress="setMask(this)">
 
                     <label for="data-{{ $index }}" class="mb-2 h4"> Data de Troca</label>
                     <input class="form-control" type="date" id="data-{{ $index }}" name="data"
@@ -103,21 +103,19 @@
     </div>
     <script>
         $(document).ready(function() {
+            function setMask() {
+                var qtdCasasDecimais = <?php echo $dado->qtdcasadecimalpreco; ?>;
+                let mask = qtdCasasDecimais === 2 ? '00,00' : '0,000';
 
-            $('#avista-{{ $index }}').mask('##0,000', {
-                reverse: true,
-                placeholder: "0,00"
-            });
+                $(".money").mask(mask, {
+                    reverse: true
+                });
+            }
 
-            $('#aprazo-{{ $index }}').mask('##0,000', {
-                reverse: true,
-                placeholder: "0,00"
-            });
-
-            $('#editPreco-{{ $index }}').on('shown.bs.modal', function() {
-                $('#avista-{{ $index }}').focus();
+            setMask();
+            $(".money").on('focus', function() {
+                setMask();
             });
         });
     </script>
-
 </div>
