@@ -1,5 +1,9 @@
 @props(['dado', 'index'])
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+
+
 <style>
     @media (max-width: 575.98px) {
         .modal-dialog-centered-sm {
@@ -97,4 +101,19 @@
             </form>
         </div>
     </div>
+    <script>
+        $(document).ready(function() {
+            $('#avista-{{ $index }}').mask('000.000.000.000.000,00', {
+                reverse: true
+            });
+            $('#aprazo-{{ $index }}').mask('000.000.000.000.000,00', {
+                reverse: true
+            });
+
+            $('#editPreco-{{ $index }}').on('shown.bs.modal', function() {
+                $('#avista-{{ $index }}').focus();
+            });
+        });
+    </script>
+
 </div>
