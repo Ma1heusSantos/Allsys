@@ -186,6 +186,7 @@ class produtoController extends Controller
                 "usuario"=> $this->user->email,
                 "terminal"=> $request->terminal
             ];
+            dd($dados);
 
             $url = $this->url."bico/trocapreco";
 
