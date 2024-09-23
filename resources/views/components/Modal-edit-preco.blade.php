@@ -106,14 +106,17 @@
             var qtdCasasDecimais = <?php echo $dado->qtdcasadecimalpreco; ?>;
 
             function setMask() {
-                let mask = qtdCasasDecimais === 2 ? '00,00' : '0,000';
+                let mask = (qtdCasasDecimais === 2) ? '##0,00' : '##0,000';
 
+                // Aplicando a máscara para o campo .money
                 $(".money").mask(mask, {
                     reverse: true
                 });
             }
 
             setMask();
+
+            // Reaplicando a máscara ao focar no campo .money
             $(".money").on('focus', function() {
                 setMask();
             });
@@ -121,12 +124,13 @@
             function checkInputs() {
                 var avistaLength = $('#avista-{{ $index }}').val().replace(/\D/g, '').length;
                 var aprazoLength = $('#aprazo-{{ $index }}').val().replace(/\D/g, '').length;
+
+                // Número de dígitos necessários antes da vírgula
                 let qtdNumerosDigitados = (qtdCasasDecimais === 2) ? 3 : 4;
 
                 if (avistaLength >= qtdNumerosDigitados && aprazoLength >= qtdNumerosDigitados) {
                     $('#submit').prop('disabled', false);
                 } else {
-                    // Caso contrário, desabilita o botão de submit
                     $('#submit').prop('disabled', true);
                 }
             }
@@ -135,9 +139,7 @@
             $('#avista-{{ $index }}, #aprazo-{{ $index }}').on('keyup', function() {
                 checkInputs();
             });
-
-
-
         });
     </script>
+
 </div>
