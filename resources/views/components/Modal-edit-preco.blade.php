@@ -106,15 +106,23 @@
     </div>
     <script>
         $(document).ready(function() {
-            var qtdCasasDecimais = <?php echo $dado->qtdcasadecimalpreco; ?>;
-
             function checkInputs() {
                 var avistaLength = $('#avista-{{ $index }}').val().replace(/\D/g, '').length;
                 var aprazoLength = $('#aprazo-{{ $index }}').val().replace(/\D/g, '').length;
 
                 let qtdNumerosDigitados = (qtdCasasDecimais === 2) ? 3 : 4;
 
-                if (avistaLength == qtdNumerosDigitados && aprazoLength == qtdNumerosDigitados) {
+                // if (avistaLength == qtdNumerosDigitados && aprazoLength == qtdNumerosDigitados) {
+                //     $('#submit-{{ $index }}').prop('disabled', false);
+                // } else {
+                //     $('#submit-{{ $index }}').prop('disabled', true);
+                // }
+
+                if (qtdCasasDecimais == 2 && ((avistaLength == 3 && aprazoLength == 3) || avistaLength == 4 &&
+                        aprazoLength == 4)) {
+                    $('#submit-{{ $index }}').prop('disabled', false);
+
+                } else if (qtdCasasDecimais == 3 && (avistaLength == 4 && aprazoLength == 4)) {
                     $('#submit-{{ $index }}').prop('disabled', false);
                 } else {
                     $('#submit-{{ $index }}').prop('disabled', true);
