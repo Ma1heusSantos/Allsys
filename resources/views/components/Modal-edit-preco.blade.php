@@ -98,14 +98,15 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                    <button type="submit" id="submit" disabled class="btn btn-primary">Enviar</button>
+                    <button type="submit" id="submit-{{ $index }}" disabled
+                        class="btn btn-primary">Enviar</button>
                 </div>
             </form>
         </div>
     </div>
     <script>
         $(document).ready(function() {
-            qtdCasasDecimais = <?php echo $dado->qtdcasadecimalpreco; ?>;
+            var qtdCasasDecimais = <?php echo $dado->qtdcasadecimalpreco; ?>;
 
             function checkInputs() {
                 var avistaLength = $('#avista-{{ $index }}').val().replace(/\D/g, '').length;
@@ -114,11 +115,9 @@
                 let qtdNumerosDigitados = (qtdCasasDecimais === 2) ? 3 : 4;
 
                 if (avistaLength == qtdNumerosDigitados && aprazoLength == qtdNumerosDigitados) {
-                    console.log("era pra habilitar")
-                    $('#submit').prop('disabled', false);
+                    $('#submit-{{ $index }}').prop('disabled', false);
                 } else {
-                    console.log("era pra deshabilitar")
-                    $('#submit').prop('disabled', true);
+                    $('#submit-{{ $index }}').prop('disabled', true);
                 }
             }
 
