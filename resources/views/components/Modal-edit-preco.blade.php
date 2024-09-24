@@ -118,10 +118,14 @@
                 }
             }
 
-            $('#avista-0, #aprazo-0').on('keyup', function() {
+            // Adiciona o evento keyup e blur para atualizar quando o usuário termina de digitar ou sai do campo
+            $('#avista-0, #aprazo-0').on('keyup blur', function() {
                 checkInputs();
             });
-        })
+
+            // Chama a função para desabilitar o botão inicialmente
+            checkInputs();
+        });
     </script>
 
 </div>
