@@ -111,8 +111,10 @@
             function checkInputs() {
                 var avistaLength = $('#avista-{{ $index }}').val().replace(/\D/g, '').length;
                 var aprazoLength = $('#aprazo-{{ $index }}').val().replace(/\D/g, '').length;
+                console.log(avistaLength, aprazoLength);
 
-                let qtdNumerosDigitados = (qtdCasasDecimais === 2) ? 3 : 4;
+
+                let qtdNumerosDigitados = 4;
 
                 if (avistaLength == qtdNumerosDigitados && aprazoLength == qtdNumerosDigitados) {
                     $('#submit-{{ $index }}').prop('disabled', false);
