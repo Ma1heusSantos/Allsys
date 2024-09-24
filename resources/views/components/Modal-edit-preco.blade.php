@@ -102,7 +102,28 @@
         </div>
     </div>
     <script>
-        $(document).ready(function() {
+        $(document).ready(function(){
+            function checkInputs() {
+                var avistaLength = $('#avista-{{ $index }}').val().replace(/\D/g, '').length;
+                var aprazoLength = $('#aprazo-{{ $index }}').val().replace(/\D/g, '').length;
+
+                // Número de dígitos necessários antes da vírgula
+                let qtdNumerosDigitados = (qtdCasasDecimais === 2) ? 3 : 4;
+
+                if (avistaLength >= qtdNumerosDigitados && aprazoLength >= qtdNumerosDigitados) {
+                    $('#submit').prop('disabled', false);
+                } else {
+                    $('#submit').prop('disabled', true);
+                }
+            }
+
+            // Verifica os campos ao digitar
+            $('#avista-0, #aprazo-0').on('keyup', function() {
+                checkInputs();
+            });
+        })
+        
+        /*$(document).ready(function() {
             var qtdCasasDecimais = <?php echo $dado->qtdcasadecimalpreco; ?>;
 
             function setMask() {
@@ -139,7 +160,7 @@
             $('#avista-{{ $index }}, #aprazo-{{ $index }}').on('keyup', function() {
                 checkInputs();
             });
-        });
+        });*/
     </script>
 
 </div>
