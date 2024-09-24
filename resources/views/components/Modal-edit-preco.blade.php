@@ -82,12 +82,12 @@
 
                     <label for="avista-{{ $index }}" class="mb-2 h4 ">A Vista - R$
                         {{ $dado->avista }} </label>
-                    <input class="form-control mb-4 money" maxlength="4" type="text"
+                    <input class="form-control mb-4 money" maxlength="5" type="text"
                         placeholder="Digite o novo preço a vista aqui" id="avista-{{ $index }}" name="avista"
                         onKeyPress="setMask(this)">
 
                     <label for="aprazo-{{ $index }}" class="mb-2 h4"> A Prazo - R$ {{ $dado->aprazo }}</label>
-                    <input class="form-control mb-4 money" maxlength="4" type="text"
+                    <input class="form-control mb-4 money" maxlength="5" type="text"
                         id="aprazo-{{ $index }}" name="aprazo" placeholder="Digite o novo preço a prazo aqui"
                         onKeyPress="setMask(this)">
 
@@ -112,8 +112,9 @@
                 var avistaLength = $('#avista-{{ $index }}').val().replace(/\D/g, '').length;
                 var aprazoLength = $('#aprazo-{{ $index }}').val().replace(/\D/g, '').length;
 
+                let qtdNumerosDigitados = (qtdCasasDecimais === 2) ? 3 : 4;
 
-                if (avistaLength == 4 && aprazoLength == 4) {
+                if (avistaLength == qtdNumerosDigitados && aprazoLength == qtdNumerosDigitados) {
                     $('#submit-{{ $index }}').prop('disabled', false);
                 } else {
                     $('#submit-{{ $index }}').prop('disabled', true);
