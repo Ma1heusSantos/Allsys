@@ -105,28 +105,27 @@
     </div>
     <script>
         $(document).ready(function() {
+            qtdCasasDecimais = <?php echo $dado->qtdcasadecimalpreco; ?>;
+
             function checkInputs() {
                 var avistaLength = $('#avista-{{ $index }}').val().replace(/\D/g, '').length;
                 var aprazoLength = $('#aprazo-{{ $index }}').val().replace(/\D/g, '').length;
 
                 let qtdNumerosDigitados = (qtdCasasDecimais === 2) ? 3 : 4;
 
-                // Atualiza o estado do botão de acordo com as condições
-                if (avistaLength >= qtdNumerosDigitados || aprazoLength >= qtdNumerosDigitados) {
+                if (avistaLength == qtdNumerosDigitados && aprazoLength == qtdNumerosDigitados) {
+                    console.log("era pra habilitar")
                     $('#submit').prop('disabled', false);
                 } else {
+                    console.log("era pra deshabilitar")
                     $('#submit').prop('disabled', true);
                 }
             }
 
-            // Adiciona os eventos keyup, change e blur
-            $('#avista-0, #aprazo-0').on('keyup change blur', function() {
+            $('#avista-{{ $index }}, #aprazo-{{ $index }}').on('keyup', function() {
                 checkInputs();
             });
-
-            // Chama a função para desabilitar o botão inicialmente
-            checkInputs();
-        });
+        })
     </script>
 
 </div>
