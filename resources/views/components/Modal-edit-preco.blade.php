@@ -112,9 +112,8 @@
                 var avistaLength = $('#avista-{{ $index }}').val().replace(/\D/g, '').length;
                 var aprazoLength = $('#aprazo-{{ $index }}').val().replace(/\D/g, '').length;
 
-                let qtdNumerosDigitados = (qtdCasasDecimais === 2) ? 3 : 4;
 
-                if (avistaLength == qtdNumerosDigitados && aprazoLength == qtdNumerosDigitados) {
+                if (avistaLength == 4 && aprazoLength == 4) {
                     $('#submit-{{ $index }}').prop('disabled', false);
                 } else {
                     $('#submit-{{ $index }}').prop('disabled', true);
