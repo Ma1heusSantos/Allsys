@@ -82,12 +82,14 @@
 
                     <label for="avista-{{ $index }}" class="mb-2 h4 ">A Vista - R$
                         {{ $dado->avista }} </label>
-                    <input class="form-control mb-4 money" type="text" placeholder="Digite o novo preço a vista aqui"
-                        id="avista-{{ $index }}" name="avista" onKeyPress="setMask(this)">
+                    <input class="form-control mb-4 money" maxlength="4" type="text"
+                        placeholder="Digite o novo preço a vista aqui" id="avista-{{ $index }}" name="avista"
+                        onKeyPress="setMask(this)">
 
                     <label for="aprazo-{{ $index }}" class="mb-2 h4"> A Prazo - R$ {{ $dado->aprazo }}</label>
-                    <input class="form-control mb-4 money" type="text" id="aprazo-{{ $index }}"
-                        name="aprazo" placeholder="Digite o novo preço a prazo aqui" onKeyPress="setMask(this)">
+                    <input class="form-control mb-4 money" maxlength="4" type="text"
+                        id="aprazo-{{ $index }}" name="aprazo" placeholder="Digite o novo preço a prazo aqui"
+                        onKeyPress="setMask(this)">
 
                     <label for="data-{{ $index }}" class="mb-2 h4"> Data de Troca</label>
                     <input class="form-control" type="date" id="data-{{ $index }}" name="data"
@@ -102,12 +104,11 @@
         </div>
     </div>
     <script>
-        $(document).ready(function(){
+        $(document).ready(function() {
             function checkInputs() {
                 var avistaLength = $('#avista-{{ $index }}').val().replace(/\D/g, '').length;
                 var aprazoLength = $('#aprazo-{{ $index }}').val().replace(/\D/g, '').length;
 
-                // Número de dígitos necessários antes da vírgula
                 let qtdNumerosDigitados = (qtdCasasDecimais === 2) ? 3 : 4;
 
                 if (avistaLength >= qtdNumerosDigitados && aprazoLength >= qtdNumerosDigitados) {
@@ -117,50 +118,10 @@
                 }
             }
 
-            // Verifica os campos ao digitar
             $('#avista-0, #aprazo-0').on('keyup', function() {
                 checkInputs();
             });
         })
-        
-        /*$(document).ready(function() {
-            var qtdCasasDecimais = <?php echo $dado->qtdcasadecimalpreco; ?>;
-
-            function setMask() {
-                let mask = (qtdCasasDecimais === 2) ? '##0,00' : '##0,000';
-
-                // Aplicando a máscara para o campo .money
-                $(".money").mask(mask, {
-                    reverse: true
-                });
-            }
-
-            setMask();
-
-            // Reaplicando a máscara ao focar no campo .money
-            $(".money").on('focus', function() {
-                setMask();
-            });
-
-            function checkInputs() {
-                var avistaLength = $('#avista-{{ $index }}').val().replace(/\D/g, '').length;
-                var aprazoLength = $('#aprazo-{{ $index }}').val().replace(/\D/g, '').length;
-
-                // Número de dígitos necessários antes da vírgula
-                let qtdNumerosDigitados = (qtdCasasDecimais === 2) ? 3 : 4;
-
-                if (avistaLength >= qtdNumerosDigitados && aprazoLength >= qtdNumerosDigitados) {
-                    $('#submit').prop('disabled', false);
-                } else {
-                    $('#submit').prop('disabled', true);
-                }
-            }
-
-            // Verifica os campos ao digitar
-            $('#avista-{{ $index }}, #aprazo-{{ $index }}').on('keyup', function() {
-                checkInputs();
-            });
-        });*/
     </script>
 
 </div>

@@ -78,16 +78,14 @@
             qtdCasasDecimais = <?php echo $dado->qtdcasadecimalpreco; ?>;
             setMask();
         });
-        
-        // Reaplicando a máscara ao focar no campo .money
+
+
         $(".money").on('focus', function() {
             setMask();
         });
-        
+
         function setMask() {
             let mask = (qtdCasasDecimais === 2) ? '##0,00' : '##0,000';
-
-            // Aplicando a máscara para o campo .money
             $(".money").mask(mask, {
                 reverse: true
             });
