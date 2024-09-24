@@ -111,15 +111,16 @@
 
                 let qtdNumerosDigitados = (qtdCasasDecimais === 2) ? 3 : 4;
 
-                if (avistaLength >= qtdNumerosDigitados && aprazoLength >= qtdNumerosDigitados) {
+                // Atualiza o estado do botão de acordo com as condições
+                if (avistaLength >= qtdNumerosDigitados || aprazoLength >= qtdNumerosDigitados) {
                     $('#submit').prop('disabled', false);
                 } else {
                     $('#submit').prop('disabled', true);
                 }
             }
 
-            // Adiciona o evento keyup e blur para atualizar quando o usuário termina de digitar ou sai do campo
-            $('#avista-0, #aprazo-0').on('keyup blur', function() {
+            // Adiciona os eventos keyup, change e blur
+            $('#avista-0, #aprazo-0').on('keyup change blur', function() {
                 checkInputs();
             });
 
