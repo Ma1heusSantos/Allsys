@@ -109,24 +109,45 @@
             function checkInputs() {
                 var avistaLength = $('#avista-{{ $index }}').val().replace(/\D/g, '').length;
                 var aprazoLength = $('#aprazo-{{ $index }}').val().replace(/\D/g, '').length;
+                var avista = $('#avista-{{ $index }}').val();
+                var aprazo = $('#aprazo-{{ $index }}').val();
+
+                console.log(avista, aprazo)
 
                 let qtdNumerosDigitados = (qtdCasasDecimais === 2) ? 3 : 4;
 
-                // if (avistaLength == qtdNumerosDigitados && aprazoLength == qtdNumerosDigitados) {
-                //     $('#submit-{{ $index }}').prop('disabled', false);
-                // } else {
-                //     $('#submit-{{ $index }}').prop('disabled', true);
-                // }
-
-                if (qtdCasasDecimais == 2 && ((avistaLength == 3 && aprazoLength == 3) || avistaLength == 4 &&
-                        aprazoLength == 4)) {
-                    $('#submit-{{ $index }}').prop('disabled', false);
-
-                } else if (qtdCasasDecimais == 3 && (avistaLength == 4 && aprazoLength == 4)) {
-                    $('#submit-{{ $index }}').prop('disabled', false);
-                } else {
+                if (isValid(avista, aprazo)) {
                     $('#submit-{{ $index }}').prop('disabled', true);
+                    return;
+
+                } else {
+
+                    if (qtdCasasDecimais == 2 && ((avistaLength == 3 && aprazoLength == 3) || avistaLength == 4 &&
+                            aprazoLength == 4)) {
+                        $('#submit-{{ $index }}').prop('disabled', false);
+
+                    } else if (qtdCasasDecimais == 2 && ((avistaLength == 4 && aprazoLength == 3) || avistaLength ==
+                            3 && aprazoLength == 4)) {
+                        $('#submit-{{ $index }}').prop('disabled', false);
+
+                    } else if (qtdCasasDecimais == 3 && (avistaLength == 4 && aprazoLength == 4)) {
+                        $('#submit-{{ $index }}').prop('disabled', false);
+
+                    } else {
+                        $('#submit-{{ $index }}').prop('disabled', true);
+                    }
                 }
+
+
+
+            }
+
+            function isValid(avista, aprazo) {
+                const cleanedAvista = avista.replace(/\D/g, '');
+                const cleanedAprazo = aprazo.replace(/\D/g, '');
+                const zeroPattern = /^0+$/;
+
+                return zeroPattern.test(cleanedAvista) || zeroPattern.test(cleanedAprazo);
             }
 
             $('#avista-{{ $index }}, #aprazo-{{ $index }}').on('keyup', function() {

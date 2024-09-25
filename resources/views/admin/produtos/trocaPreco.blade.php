@@ -76,6 +76,7 @@
     <script defer>
         $(document).ready(function() {
             qtdCasasDecimais = <?php echo $dado->qtdcasadecimalpreco; ?>;
+            qtdCasasDecimais = 2
             setMask();
         });
 
