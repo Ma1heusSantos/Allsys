@@ -92,6 +92,10 @@ class vendasController extends Controller
             return redirect()->back()->withErrors(['msg' => $errors]);
         }
     }
+
+    public function resumoCaixa(){
+        $url = $this->url.'';
+    }
     
     public function faturamento(request $request){
 

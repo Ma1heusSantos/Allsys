@@ -125,7 +125,7 @@
                                         <th>Vale frete</th>
                                         <th>Ticket vale</th>
                                         <th>Suprimento</th>
-                                        <th>Troco CH Rec.</th>
+                                        <th>Notas</th>
                                     </tr>
                                 </thead>
                                 <tbody>

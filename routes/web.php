@@ -42,4 +42,5 @@ Route::middleware([adminAcess::class])->group(function () {
     Route::post('/atualizaPreco',[produtoController::class,'atualizaPreco'])->name("atualiza.preco");
     Route::get('/monitor',[produtoController::class,'monitor'])->name("monitor");
     Route::any('/caixa',[vendasController::class,'caixa'])->name("caixa");
+    Route::get('resumoCaixa',[vendasController::class,'resumoCaixa'])->name('resumo.caixa');
 });
