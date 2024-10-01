@@ -64,6 +64,7 @@ class vendasController extends Controller
                 "suprimento" => $encerrantes->caixa->recebimentos->suprimento ?? 0,
                 "trocoCH" => $encerrantes->caixa->recebimentos->ltipovendanotas ?? 0,
                 "total" => $encerrantes->caixa->recebimentos->total ?? 0,
+                "cartao" => $encerrantes->caixa->recebimentos->ltipovendacartao ?? 0,
             ];
 
             $retiradas = [

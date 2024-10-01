@@ -126,6 +126,7 @@
                                         <th>Ticket vale</th>
                                         <th>Suprimento</th>
                                         <th>Notas</th>
+                                        <th>Cartão</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -138,6 +139,7 @@
                                         <td>{{ "R$ " . money($recebimentos['ticketVale']) }}</td>
                                         <td>{{ "R$ " . money($recebimentos['suprimento']) }}</td>
                                         <td>{{ "R$ " . money($recebimentos['trocoCH']) }}</td>
+                                        <td>{{ "R$ " . money($recebimentos['cartao']) }}</td>
                                     </tr>
                                 </tbody>
                                 <tfoot>
