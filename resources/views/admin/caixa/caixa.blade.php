@@ -144,7 +144,7 @@
                                 </tbody>
                                 <tfoot>
                                     <tr>
-                                        <th colspan="7">Total Recebimentos</th>
+                                        <th colspan="8">Total Recebimentos</th>
                                         <th>{{ "R$ " . money($recebimentos['total']) }}</th>
                                     </tr>
                                 </tfoot>
