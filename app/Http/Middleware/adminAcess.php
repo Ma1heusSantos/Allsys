@@ -15,10 +15,10 @@ class adminAcess
      */
     public function handle(Request $request, Closure $next): Response
     {
-       if(auth()->check()){
+       if((auth()->check() && auth()->user()->nivel === 'Admin')){
+        return $next($request);
+       }elseif((auth()->check())){
         return redirect()->route('home');
-       }elseif((auth()->check() && auth()->user()->nivel === 'Admin')){
-            return $next($request);
        }else{
         return redirect()->route('home');
        }

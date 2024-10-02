@@ -78,6 +78,7 @@ class vendasController extends Controller
             $totalVenda = $encerrantes->caixa->totalvenda;
             $fechamento = $encerrantes->caixa->fechamento;
             $resumoProdutos = $encerrantes->resumoprod;
+            dd($resumoProdutos);
     
             return view("admin/caixa/caixa", [
                 'encerrantes' => $encerrantes,
