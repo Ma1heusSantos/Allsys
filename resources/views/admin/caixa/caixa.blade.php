@@ -81,7 +81,37 @@
                             </table>
                         </div>
 
-                        <h4 class="mb-3"><i class="fas fa-gas-pump"></i> Resumo de Combustíveis</h4>
+                        <h4 class="mb-3"><i class="fas fa-gas-pump"></i> Resumo de Produtos</h4>
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-striped table-dark">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th>Grupo</th>
+                                        <th>Quantidade Total</th>
+                                        <th>Valor</th>
+                                        <th>Preço Medio</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($resumoProdutos as $prod)
+                                        @dd($prod)
+                                        <tr>
+                                            <td>{{ $prod->dscgrupo }}</td>
+                                            <td>{{ "R$ " . money($prod->qtdtotal) }}</td>
+                                            <td>{{ "R$ " . money($prod->valor) }}</td>
+                                            <td>{{ "R$ " . money($prod->precomedio) }}</td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th colspan="4">Total Combustíveis</th>
+                                        <th>{{ "R$ " . money($totalComb) }}</th>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+
                         <div class="table-responsive">
                             <table class="table table-bordered table-striped table-dark">
                                 <thead class="thead-dark">

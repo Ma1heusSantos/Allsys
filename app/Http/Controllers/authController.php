@@ -37,8 +37,9 @@ class authController extends Controller
                     'cnpj'=>$cnpj
                 ]
             );
-            $remember = $request->has("remember");
-            Auth::login($user, $remember);
+
+            // $remember = $request->has("remember");
+            Auth::login($user, $request->has("remember"));
             
             $request->session()->regenerate();
             return Auth::user()->nivel == "Admin" ? redirect()->route("dashboard.combustivel") : redirect()->route("home");
