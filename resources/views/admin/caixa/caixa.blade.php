@@ -88,7 +88,7 @@
                                     <tr>
                                         <th>Grupo</th>
                                         <th>Quantidade Total</th>
-                                        <th>Preço Medio</th>
+                                        <th>Preço Médio</th>
                                         <th>Valor</th>
                                     </tr>
                                 </thead>
@@ -123,7 +123,7 @@
                                         <th>Combustível</th>
                                         <th>Volume</th>
                                         <th>Desc.</th>
-                                        <th>Preço Medio</th>
+                                        <th>Preço Médio</th>
                                         <th>Valor</th>
                                     </tr>
                                 </thead>
