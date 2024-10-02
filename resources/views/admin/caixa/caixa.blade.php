@@ -88,8 +88,8 @@
                                     <tr>
                                         <th>Grupo</th>
                                         <th>Quantidade Total</th>
-                                        <th>Valor</th>
                                         <th>Preço Medio</th>
+                                        <th>Valor</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -99,8 +99,8 @@
                                                 <tr>
                                                     <td>{{ $item->dscgrupo }}</td>
                                                     <td>{{ "R$ " . money($item->qtdtotal) }}</td>
-                                                    <td>{{ "R$ " . money($item->valor) }}</td>
                                                     <td>{{ "R$ " . money($item->precomedio) }}</td>
+                                                    <td>{{ "R$ " . money($item->valor) }}</td>
                                                 </tr>
                                             @endforeach
                                         @endif
@@ -123,7 +123,7 @@
                                         <th>Combustível</th>
                                         <th>Volume</th>
                                         <th>Desc.</th>
-                                        <th>P. Med</th>
+                                        <th>Preço Medio</th>
                                         <th>Valor</th>
                                     </tr>
                                 </thead>
@@ -153,7 +153,7 @@
                                 <thead class="thead-dark">
                                     <tr>
                                         <th>Dinheiro</th>
-                                        <th>Cheque à vista</th>
+                                        <th>Cheque a vista</th>
                                         <th>Cheque à prazo</th>
                                         <th>Pix</th>
                                         <th>Vale frete</th>
