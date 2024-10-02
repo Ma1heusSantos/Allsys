@@ -81,7 +81,7 @@
                             </table>
                         </div>
 
-                        <h4 class="mb-3"><i class="fas fa-gas-pump"></i> Resumo de Produtos</h4>
+                        <h4 class="mb-3"><i class="fa-solid fa-bottle-water"></i> Resumo de Produtos</h4>
                         <div class="table-responsive">
                             <table class="table table-bordered table-striped table-dark">
                                 <thead class="thead-dark">
@@ -93,26 +93,30 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($resumoProdutos as $prod)
-                                        @dd($prod)
-                                        <tr>
-                                            <td>{{ $prod->dscgrupo }}</td>
-                                            <td>{{ "R$ " . money($prod->qtdtotal) }}</td>
-                                            <td>{{ "R$ " . money($prod->valor) }}</td>
-                                            <td>{{ "R$ " . money($prod->precomedio) }}</td>
-                                        </tr>
+                                    @foreach ($resumoProdutos as $key => $prod)
+                                        @if (is_array($prod))
+                                            @foreach ($prod as $item)
+                                                <tr>
+                                                    <td>{{ $item->dscgrupo }}</td>
+                                                    <td>{{ "R$ " . money($item->qtdtotal) }}</td>
+                                                    <td>{{ "R$ " . money($item->valor) }}</td>
+                                                    <td>{{ "R$ " . money($item->precomedio) }}</td>
+                                                </tr>
+                                            @endforeach
+                                        @endif
                                     @endforeach
                                 </tbody>
                                 <tfoot>
                                     <tr>
-                                        <th colspan="4">Total Combustíveis</th>
-                                        <th>{{ "R$ " . money($totalComb) }}</th>
+                                        <th colspan="3">Total Combustíveis</th>
+                                        <th>{{ "R$ " . money($resumoProdutos->totalprod) }}</th>
                                     </tr>
                                 </tfoot>
                             </table>
                         </div>
 
-                        <div class="table-responsive">
+                        <h4 class="mt-3 mb-3"><i class="fas fa-gas-pump"></i> Resumo de combustiveis</h4>
+                        <div class="table-responsive mt-3">
                             <table class="table table-bordered table-striped table-dark">
                                 <thead class="thead-dark">
                                     <tr>
