@@ -97,8 +97,27 @@ class vendasController extends Controller
         }
     }
 
-    public function resumoCaixa(){
-        $url = $this->url.'';
+    public function resumoCaixa(Request $request){
+        $terminal = (isset($request->terminal))? $request->terminal : 1;
+        $url = $this->url.'caixa/totais/'.$terminal;
+
+        $response = getResponse($url, $this->user->token);
+        $dados = json_decode($response);
+        $recebimentos = [
+            'cartao'=> $dados->caixa->recebimentos->ltipovendacartao ?? 0,
+            'notas'=> $dados->caixa->recebimentos->ltipovendanotas ?? 0,
+            'ticket'=> $dados->caixa->recebimentos->ltipovendaticket ?? 0,
+            'valeFrete'=> $dados->caixa->recebimentos->ltipovendavalefrete ?? 0,
+            'chequeAVista'=> $dados->caixa->recebimentos->ltipovendachequeavista ?? 0,
+            'chequeAPrazo'=> $dados->caixa->recebimentos->ltipovendachequeaprazo ?? 0,
+            'valeCliente'=> $dados->caixa->recebimentos->ltipovendaticketvalecliente ?? 0,
+            'pix'=> $dados->caixa->recebimentos->ltipovendapix ?? 0,
+            'suprimento'=> $dados->caixa->recebimentos->suprimento ?? 0,
+            'dinheiro'=> $dados->caixa->recebimentos->ltipovendadinheiro ?? 0,
+            'total'=> $dados->caixa->recebimentos->total ?? 0,
+        ];
+
+        return view('admin.caixa.resumoCaixa',['recebimentos'=>$recebimentos]);
     }
     
     public function faturamento(request $request){
