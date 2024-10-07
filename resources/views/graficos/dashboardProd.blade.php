@@ -414,9 +414,7 @@
                         }
                     },
                     credits: {
-                        style: {
-                            color: '#666'
-                        }
+                        enabled: false
                     },
                 });
             }

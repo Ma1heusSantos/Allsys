@@ -11,11 +11,10 @@
         <div class="card-body">
             <div class="container">
                 <div class="row">
-                    <div class="row">
+                    <div class="d-flex justify-content-center">
                         <div class="col-lg-6 col-md-12 mb-3">
                             <div class="card dark text-light" style="background-color:#1e1e2f;">
-                                <div class="card-body d-flex justify-content-center align-items-center"
-                                    style="height: 100%;">
+                                <div style="height: 100%;">
                                     <div id="recebimentos" class="chart-container"></div>
                                 </div>
                             </div>
@@ -55,14 +54,20 @@
 
             function recebimentos() {
                 var dados = <?php echo json_encode($recebimentos); ?>;
-                var total = dados.total
+                var total = new Intl.NumberFormat('pt-BR', {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                }).format(dados.total)
                 var categories = Object.keys(dados); // Pega as chaves, como 'cartao', 'notas', etc.
                 var data = categories.map(function(key) {
                     return {
                         name: key, // Nome do item (ex: 'cartao')
-                        y: parseFloat(dados[key]) // Valor correspondente (ex: 21186.88)
+                        y: dados[key] // Valor referente ao item
                     };
                 });
+
+                console.log(data)
+
                 data = data.filter(item => item.name !== 'total');
                 renderGraphic(data, total)
             }
@@ -88,7 +93,7 @@
                                             total // Valor total no centro
                                         )
                                         .css({
-                                            color: '#ffffff', // Altere a cor do texto no centro para branco
+                                            color: '#ffffff',
                                             textAnchor: 'middle'
                                         })
                                         .add();
@@ -133,7 +138,7 @@
                     },
                     plotOptions: {
                         pie: {
-                            innerSize: '75%', // Mesma proporção interna do segundo gráfico
+                            innerSize: '75%',
                             dataLabels: {
                                 enabled: false,
                                 style: {
@@ -147,10 +152,10 @@
                     series: [{
                         name: 'Valor',
                         colorByPoint: true,
-                        data: data // Use o mesmo 'data' do primeiro gráfico
+                        data: data // valor dos itens 
                     }],
                     credits: {
-                        enabled: false // Desabilitar o logo do Highcharts
+                        enabled: false
                     }
                 });
 
