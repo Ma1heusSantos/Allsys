@@ -123,6 +123,53 @@ class vendasController extends Controller
             $pagamento = new stdClass(); 
             $pagamento->nome = ucfirst($tipo); 
             $pagamento->valor = money($valor); 
+            switch($tipo){
+                
+                case 'cartao':
+                    $pagamento->cor = 'primary';
+                    $pagamento->icone = 'fa-solid fa-credit-card';
+                break;
+                case 'notas':
+                    $pagamento->cor = 'success';
+                    $pagamento->icone = 'fa-solid fa-note-sticky';
+                break;
+                case 'ticket':
+                    $pagamento->cor = 'warning';
+                    $pagamento->icone = 'fa-solid fa-ticket';
+                break;
+                case 'valeFrete':
+                    $pagamento->cor = 'danger';
+                    $pagamento->icone = 'fa-regular fa-clipboard';
+                break;
+                case 'chequeAVista':
+                    $pagamento->cor = 'secondary';
+                    $pagamento->icone = 'fa-solid fa-money-check';
+                break;
+                case 'chequeAPrazo':
+                    $pagamento->cor = 'primary';
+                    $pagamento->icone = 'fa-solid fa-money-check-dollar';
+                break;
+                case 'valeCliente':
+                    $pagamento->cor = 'success';
+                    $pagamento->icone = 'fa-solid fa-person-circle-check';
+                break;
+                case 'pix':
+                    $pagamento->cor = 'warning';
+                    $pagamento->icone = 'fa-brands fa-pix';
+                break;
+                case 'suprimento':
+                    $pagamento->cor = 'info';
+                    $pagamento->icone = 'fa-solid fa-truck-field';
+                break;
+                case 'dinheiro':
+                    $pagamento->cor = 'success';
+                    $pagamento->icone = 'fa-solid fa-money-bill';
+                break;
+                default:
+                    $pagamento->cor = 'secondary'; 
+                    $pagamento->icone = 'fa-solid fa-question'; 
+                break;
+            }
         
             // Adiciona o objeto ao array de forma de pagamento
             $formaDePagamento[] = $pagamento;
