@@ -1,5 +1,18 @@
 @extends('layouts.template')
 @section('conteudo')
+    <style>
+        @media (max-width: 768px) {
+            .carousel-inner {
+                height: 35rem;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .carousel-inner {
+                height: 14rem;
+            }
+        }
+    </style>
     <div class="card mt-5" style="background-color:#1e1e2f; color:#fff;">
         <div class="card-header mt-3 d-flex justify-content-between flex-column flex-sm-row">
             <div class="col-md-3">
@@ -22,8 +35,8 @@
                     <div class="container mt-5">
                         <div class="d-flex justify-content-between align-items-center">
                             <!-- Botão de navegação anterior -->
-                            <button class="carousel-control-prev mb-5" type="button" data-bs-target="#cardCarousel"
-                                data-bs-slide="prev">
+                            <button class="carousel-control-prev " style="margin-bottom:8rem" type="button"
+                                data-bs-target="#cardCarousel" data-bs-slide="prev">
                                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                 <span class="visually-hidden">Anterior</span>
                             </button>
@@ -60,15 +73,13 @@
                             </div>
 
                             <!-- Botão de navegação próximo -->
-                            <button class="carousel-control-next mb-5" type="button" data-bs-target="#cardCarousel"
-                                data-bs-slide="next">
+                            <button class="carousel-control-next" style="margin-bottom:8rem"type="button"
+                                data-bs-target="#cardCarousel" data-bs-slide="next">
                                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                 <span class="visually-hidden">Próximo</span>
                             </button>
                         </div>
                     </div>
-
-
                 </div>
             </div>
         </div>
