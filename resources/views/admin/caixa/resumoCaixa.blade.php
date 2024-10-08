@@ -4,7 +4,7 @@
         @media (max-width: 768px) {
             .carousel-inner {
                 height: 35rem;
-                margin-left: 0.25rem;
+                margin-left: 0.5rem;
             }
         }
 
