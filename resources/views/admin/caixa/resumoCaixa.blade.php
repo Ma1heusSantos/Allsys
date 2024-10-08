@@ -10,6 +10,7 @@
         @media (min-width: 1024px) {
             .carousel-inner {
                 height: 14rem;
+                margin-left: 3.5rem;
             }
         }
     </style>
