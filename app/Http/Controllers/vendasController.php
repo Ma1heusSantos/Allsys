@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Http;
+use stdClass;
 
 class vendasController extends Controller
 {
@@ -103,6 +104,7 @@ class vendasController extends Controller
 
         $response = getResponse($url, $this->user->token);
         $dados = json_decode($response);
+        $formaDePagamento = [];
         $recebimentos = [
             'cartao'=> $dados->caixa->recebimentos->ltipovendacartao ?? 0,
             'notas'=> $dados->caixa->recebimentos->ltipovendanotas ?? 0,
@@ -117,7 +119,16 @@ class vendasController extends Controller
             'total'=> $dados->caixa->recebimentos->total ?? 0,
         ];
 
-        return view('admin.caixa.resumoCaixa',['recebimentos'=>$recebimentos]);
+        foreach ($recebimentos as $tipo => $valor) {
+            $pagamento = new stdClass(); 
+            $pagamento->nome = ucfirst($tipo); 
+            $pagamento->valor = money($valor); 
+        
+            // Adiciona o objeto ao array de forma de pagamento
+            $formaDePagamento[] = $pagamento;
+        }
+
+        return view('admin.caixa.resumoCaixa',['recebimentos'=>$recebimentos,'formaDePagamento'=>$formaDePagamento]);
     }
     
     public function faturamento(request $request){

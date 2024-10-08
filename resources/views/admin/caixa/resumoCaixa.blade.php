@@ -14,35 +14,61 @@
                     <div class="d-flex justify-content-center">
                         <div class="col-lg-6 col-md-12 mb-3">
                             <div class="card dark text-light" style="background-color:#1e1e2f;">
-                                <div style="height: 100%;">
-                                    <div id="recebimentos" class="chart-container"></div>
-                                </div>
+                                <div id="recebimentos" class="chart-container"></div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-lg-6 col-md-12 mb-3">
-                        <div class="card bg-success text-light mb-3" style="min-width: 12rem;">
-                            <div class="d-flex align-items-center justify-content-between p-4">
-                                <div class="h3">Valor total</div>
-                                <i class="fa-solid fa-dollar-sign fa-2xl" style="color: #fff;"></i>
+                    <div class="container mt-5">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <!-- Botão de navegação anterior -->
+                            <button class="carousel-control-prev" type="button" data-bs-target="#cardCarousel"
+                                data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Anterior</span>
+                            </button>
+
+                            <!-- Carrossel -->
+                            <div id="cardCarousel" class="carousel slide w-100" data-bs-ride="carousel">
+                                <div class="carousel-inner">
+                                    @foreach (array_chunk($formaDePagamento, 3) as $chunk)
+                                        <!-- Exibe 3 cards por slide -->
+                                        <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
+                                            <div class="row justify-content-center">
+                                                @foreach ($chunk as $forma)
+                                                    <div class="col-lg-4 col-md-6 mb-3">
+                                                        <div class="card bg-success text-light mb-3"
+                                                            style="max-width: 12.5rem;">
+                                                            <div
+                                                                class="d-flex align-items-center justify-content-between p-4">
+                                                                <div class="h3">{{ $forma->nome }}</div>
+                                                                <i class="fa-solid fa-credit-card fa-2xl"
+                                                                    style="color: #fff;"></i>
+                                                            </div>
+                                                            <div class="card-body text-light">
+                                                                <p class="card-text text-light h3">
+                                                                    <strong>{{ 'R$ ' . $forma->valor }}</strong>
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                @endforeach
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                </div>
                             </div>
-                            <div class="card-body text-light">
-                                <p class="card-text text-light h3"><strong>R$ total de grana</strong></p>
-                            </div>
+
+                            <!-- Botão de navegação próximo -->
+                            <button class="carousel-control-next" type="button" data-bs-target="#cardCarousel"
+                                data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Próximo</span>
+                            </button>
                         </div>
                     </div>
-                    <div class="col-lg-6 col-md-12 mb-3">
-                        <div class="card bg-primary text-light mb-3" style="min-width: 12rem;">
-                            <div class="d-flex align-items-center justify-content-between p-4">
-                                <div class="h3">Total de Lucro Bruto</div>
-                                <i class="fa-regular fa-handshake fa-2xl" style="color: #fff;"></i>
-                            </div>
-                            <div class="card-body text-light">
-                                <p class="card-text text-light h3"><strong>R$ total bruto</strong></p>
-                            </div>
-                        </div>
-                    </div>
+
+
                 </div>
             </div>
         </div>
