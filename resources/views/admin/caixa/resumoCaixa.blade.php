@@ -12,7 +12,7 @@
             <div class="container">
                 <div class="row">
                     <div class="d-flex justify-content-center">
-                        <div class="col-lg-6 col-md-12 mb-3">
+                        <div class="col-lg-6 col-md-12 mb-3 w-100">
                             <div class="card dark text-light" style="background-color:#1e1e2f;">
                                 <div id="recebimentos" class="chart-container"></div>
                             </div>
@@ -22,7 +22,7 @@
                     <div class="container mt-5">
                         <div class="d-flex justify-content-between align-items-center">
                             <!-- Botão de navegação anterior -->
-                            <button class="carousel-control-prev" type="button" data-bs-target="#cardCarousel"
+                            <button class="carousel-control-prev mb-5" type="button" data-bs-target="#cardCarousel"
                                 data-bs-slide="prev">
                                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                 <span class="visually-hidden">Anterior</span>
@@ -60,7 +60,7 @@
                             </div>
 
                             <!-- Botão de navegação próximo -->
-                            <button class="carousel-control-next" type="button" data-bs-target="#cardCarousel"
+                            <button class="carousel-control-next mb-5" type="button" data-bs-target="#cardCarousel"
                                 data-bs-slide="next">
                                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                 <span class="visually-hidden">Próximo</span>
