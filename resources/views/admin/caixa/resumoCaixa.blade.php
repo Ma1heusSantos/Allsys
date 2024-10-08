@@ -38,7 +38,7 @@
                                                 @foreach ($chunk as $forma)
                                                     <div class="col-lg-4 col-md-6 mb-3">
                                                         <div class="card bg-success text-light mb-3"
-                                                            style="max-width: 12.5rem;">
+                                                            style="max-width: 18rem;">
                                                             <div
                                                                 class="d-flex align-items-center justify-content-between p-4">
                                                                 <div class="h3">{{ $forma->nome }}</div>
