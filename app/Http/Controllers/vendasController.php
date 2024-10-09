@@ -126,43 +126,47 @@ class vendasController extends Controller
             switch($tipo){
                 
                 case 'cartao':
-                    $pagamento->cor = 'primary';
+                    $pagamento->cor = '#40B6E8';
                     $pagamento->icone = 'fa-solid fa-credit-card';
                 break;
                 case 'notas':
-                    $pagamento->cor = 'success';
+                    $pagamento->cor = '#6460CA';
                     $pagamento->icone = 'fa-solid fa-note-sticky';
                 break;
                 case 'ticket':
-                    $pagamento->cor = 'warning';
+                    $pagamento->cor = '#19E47F';
                     $pagamento->icone = 'fa-solid fa-ticket';
                 break;
                 case 'valeFrete':
-                    $pagamento->cor = 'danger';
+                    $pagamento->cor = '#E87848';
                     $pagamento->icone = 'fa-regular fa-clipboard';
                 break;
                 case 'chequeAVista':
-                    $pagamento->cor = 'secondary';
+                    $pagamento->cor = '#7995C2';
                     $pagamento->icone = 'fa-solid fa-money-check';
                 break;
                 case 'chequeAPrazo':
-                    $pagamento->cor = 'primary';
+                    $pagamento->cor = '#D976E8';
                     $pagamento->icone = 'fa-solid fa-money-check-dollar';
                 break;
                 case 'valeCliente':
-                    $pagamento->cor = 'success';
+                    $pagamento->cor = '#42E3CF';
                     $pagamento->icone = 'fa-solid fa-person-circle-check';
                 break;
                 case 'pix':
-                    $pagamento->cor = 'warning';
+                    $pagamento->cor = '#E85C54';
                     $pagamento->icone = 'fa-brands fa-pix';
                 break;
                 case 'suprimento':
-                    $pagamento->cor = 'info';
+                    $pagamento->cor = '#E8BC78';
                     $pagamento->icone = 'fa-solid fa-truck-field';
                 break;
                 case 'dinheiro':
-                    $pagamento->cor = 'success';
+                    $pagamento->cor = '#9BE8E3';
+                    $pagamento->icone = 'fa-solid fa-money-bill';
+                break;
+                case 'total':
+                    $pagamento->cor = '#f00';
                     $pagamento->icone = 'fa-solid fa-money-bill';
                 break;
                 default:

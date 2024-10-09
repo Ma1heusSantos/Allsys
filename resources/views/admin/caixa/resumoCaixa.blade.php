@@ -52,8 +52,8 @@
                                             <div class="row justify-content-center">
                                                 @foreach ($chunk as $forma)
                                                     <div class="col-lg-4 col-md-6 mb-3">
-                                                        <div class="card bg-{{ $forma->cor }} text-light mb-3"
-                                                            style="max-width: 18rem;">
+                                                        <div class="card text-light mb-3"
+                                                            style="max-width: 18rem; background-color:{{ $forma->cor }};">
                                                             <div
                                                                 class="d-flex align-items-center justify-content-between p-4">
                                                                 <div class="h3">{{ $forma->nome }}</div>
