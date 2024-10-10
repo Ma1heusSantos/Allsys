@@ -1,18 +1,59 @@
 @extends('layouts.template')
 @section('conteudo')
     <style>
+        /* Estilos gerais */
+        body {
+            background-color: #f5f5f5;
+        }
+
+        .card {
+            border-radius: 10px;
+        }
+
+        /* Responsividade */
         @media (max-width: 768px) {
             .carousel-inner {
-                height: 35rem;
-                margin-left: 1.5rem;
+                height: 30rem;
+                margin-left: 1rem;
+            }
+
+            .btn {
+                margin-bottom: 1rem;
+                font-size: 1.2rem;
             }
         }
 
         @media (min-width: 1024px) {
             .carousel-inner {
-                height: 14rem;
-                margin-left: 3.5rem;
+                height: 18rem;
+                margin-left: 2rem;
             }
+        }
+
+        /* Estilo dos botões */
+        .btn-primary,
+        .btn-success {
+            border-radius: 20px;
+            padding: 5px 10px;
+            font-size: 1rem;
+        }
+
+        /* Estilo dos cards */
+        .card {
+            background-color: #2b2b3d;
+            color: #ffffff;
+            border: none;
+        }
+
+        /* Estilo do gráfico */
+        #recebimentos {
+            background-color: #2b2b3d;
+            border-radius: 10px;
+        }
+
+        /* Carrossel */
+        .carousel-item {
+            transition: transform 0.5s ease;
         }
     </style>
     <div class="card mt-5" style="background-color:#1e1e2f; color:#fff;">
@@ -28,9 +69,16 @@
                 <div class="row">
                     <div class="d-flex justify-content-center">
                         <div class="col-lg-6 col-md-12 mb-3 w-100">
-                            <div class="card dark text-light" style="background-color:#1e1e2f;">
+                            <div class="card dark text-light shadow" style="background-color:#1e1e2f;">
                                 <div id="recebimentos" class="chart-container"></div>
                             </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="d-flex justify-content-between">
+                            <a href="#" class="btn btn-primary mr-3"> resumo por combustiveis</a>
+                            <a href="#" class="btn btn-success"> resumo por produtos</a>
                         </div>
                     </div>
 
@@ -101,12 +149,9 @@
                 var data = categories.map(function(key) {
                     return {
                         name: key, // Nome do item (ex: 'cartao')
-                        y: dados[key] // Valor referente ao item
+                        y: dados[key] // Valor referente ao item    
                     };
                 });
-
-                console.log(data)
-
                 data = data.filter(item => item.name !== 'total');
                 renderGraphic(data, total)
             }
