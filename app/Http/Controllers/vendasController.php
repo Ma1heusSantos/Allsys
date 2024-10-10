@@ -105,6 +105,11 @@ class vendasController extends Controller
         $response = getResponse($url, $this->user->token);
         $dados = json_decode($response);
         $formaDePagamento = [];
+        $vendas = [
+            'Combustivel' => $dados->caixa->totalComb ?? 0,
+            'Produtos' => $dados->caixa->totalProd ?? 0,
+            'total'=> $dados->caixa->totalvenda ?? 0,
+        ];
         $recebimentos = [
             'cartao'=> $dados->caixa->recebimentos->ltipovendacartao ?? 0,
             'notas'=> $dados->caixa->recebimentos->ltipovendanotas ?? 0,
@@ -179,7 +184,7 @@ class vendasController extends Controller
             $formaDePagamento[] = $pagamento;
         }
 
-        return view('admin.caixa.resumoCaixa',['recebimentos'=>$recebimentos,'formaDePagamento'=>$formaDePagamento]);
+        return view('admin.caixa.resumoCaixa',['recebimentos'=>$recebimentos,'formaDePagamento'=>$formaDePagamento,'vendas'=>$vendas]);
     }
     
     public function faturamento(request $request){

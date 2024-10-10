@@ -75,13 +75,6 @@
                         </div>
                     </div>
 
-                    <div class="row">
-                        <div class="d-flex justify-content-between">
-                            <a href="#" class="btn btn-primary mr-3"> resumo por combustiveis</a>
-                            <a href="#" class="btn btn-success"> resumo por produtos</a>
-                        </div>
-                    </div>
-
                     <div class="container mt-5">
                         <div class="d-flex justify-content-between align-items-center">
                             <!-- Botão de navegação anterior -->
@@ -140,7 +133,7 @@
             });
 
             function recebimentos() {
-                var dados = <?php echo json_encode($recebimentos); ?>;
+                var dados = <?php echo json_encode($vendas); ?>;
                 var total = new Intl.NumberFormat('pt-BR', {
                     minimumFractionDigits: 2,
                     maximumFractionDigits: 2
@@ -161,7 +154,7 @@
                 Highcharts.chart('recebimentos', {
                     chart: {
                         type: 'pie',
-                        backgroundColor: '#1e1e2f', // Cor do fundo do gráfico
+                        backgroundColor: '#1e1e2f',
                         custom: {},
                         events: {
                             render() {
@@ -174,7 +167,7 @@
                                         chart.renderer.label(
                                             'Total<br/>' +
                                             'R$ ' +
-                                            total // Valor total no centro
+                                            total
                                         )
                                         .css({
                                             color: '#ffffff',
@@ -201,19 +194,19 @@
                     title: {
                         text: 'Recebimentos',
                         style: {
-                            color: '#ffffff' // Cor do texto do título
+                            color: '#ffffff'
                         }
                     },
                     subtitle: {
-                        text: 'Recebimentos',
+                        text: 'Recebimentos por categoria',
                         style: {
-                            color: '#ffffff' // Cor do texto do subtítulo
+                            color: '#ffffff'
                         }
                     },
                     tooltip: {
-                        backgroundColor: '#1e1e2f', // Cor de fundo da tooltip
+                        backgroundColor: '#1e1e2f',
                         style: {
-                            color: '#ffffff' // Cor do texto da tooltip
+                            color: '#ffffff'
                         },
                         pointFormat: '{series.name}: <b>R$ {point.y:.2f}</b>'
                     },
@@ -226,22 +219,38 @@
                             dataLabels: {
                                 enabled: false,
                                 style: {
-                                    color: '#ffffff', // Cor das labels
+                                    color: '#ffffff',
                                     fontWeight: 'bold'
                                 },
                                 format: '<b>{point.name}</b>: {point.y:.2f}'
+                            },
+                            // Evento de clique nas fatias do gráfico
+                            point: {
+                                events: {
+                                    click: function() {
+                                        var categoria = this
+                                            .name; // Nome da fatia (pode ser usado para redirecionamento)
+
+                                        if (categoria === 'Combustivel') {
+                                            window.location.href = '/caixa';
+                                        } else if (categoria === 'Produtos') {
+                                            window.location.href = '/monitor';
+                                        }
+                                    }
+                                }
                             }
                         }
                     },
                     series: [{
                         name: 'Valor',
                         colorByPoint: true,
-                        data: data // valor dos itens 
+                        data: data
                     }],
                     credits: {
                         enabled: false
                     }
                 });
+
 
             }
         </script>
