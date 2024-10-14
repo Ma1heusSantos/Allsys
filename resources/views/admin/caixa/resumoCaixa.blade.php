@@ -21,6 +21,10 @@
                 margin-bottom: 1rem;
                 font-size: 1.2rem;
             }
+
+            .direction {
+                flex-direction: column;
+            }
         }
 
         @media (min-width: 1024px) {
@@ -57,12 +61,23 @@
         }
     </style>
     <div class="card mt-5" style="background-color:#1e1e2f; color:#fff;">
-        <div class="card-header mt-3 d-flex justify-content-between flex-column flex-sm-row">
-            <div class="col-md-3">
-                <h4>
-                    <span class="span-title text-primary fw-bold">Resumo do Caixa</span>
-                </h4>
-            </div>
+        <div class="d-flex justify-content-between p-4 direction">
+            <h4 class="span-title text-primary fw-bold">Resumo do Caixa</h4>
+            <form action="{{ route('resumo.caixa') }}" method="post">
+                @csrf
+                <div class="row g-3 align-items-center mx-1">
+                    <div class="col-12 col-sm-auto">
+                        <label for="dataFim" class="col-form-label text-light">Informe um terminal:</label>
+                    </div>
+                    <div class="col-12 col-sm-auto d-flex">
+                        <input type="text" name="terminal" class="form-control bg-dark text-light">
+                        <button type="submit" id="btn-form" class="input-group-addon btn btn-primary"
+                            style="background-color: rgb(13, 110, 253); color: #fff; width: 3rem; height: 2.3rem; border-radius: 0px 5px 5px 0px !important; margin-right: 2%">
+                            <i class="fas fa-search" style="color: #fff"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
         </div>
         <div class="card-body">
             <div class="container">

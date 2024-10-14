@@ -237,6 +237,7 @@ class vendasController extends Controller
         }
 
     }
+    public function resumoCombustivel(){}
 
     
 }
