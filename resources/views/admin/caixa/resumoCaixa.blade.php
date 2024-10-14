@@ -198,7 +198,7 @@
                         }
                     },
                     subtitle: {
-                        text: 'Recebimentos por categoria',
+                        text: 'Vendas por categoria',
                         style: {
                             color: '#ffffff'
                         }
