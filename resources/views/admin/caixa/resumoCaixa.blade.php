@@ -192,7 +192,7 @@
                         }
                     },
                     title: {
-                        text: 'Recebimentos',
+                        text: 'Vendas',
                         style: {
                             color: '#ffffff'
                         }

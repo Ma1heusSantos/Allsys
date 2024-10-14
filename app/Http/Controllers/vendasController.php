@@ -110,6 +110,7 @@ class vendasController extends Controller
             'Produtos' => $dados->caixa->totalProd ?? 0,
             'total'=> $dados->caixa->totalvenda ?? 0,
         ];
+        
         $recebimentos = [
             'cartao'=> $dados->caixa->recebimentos->ltipovendacartao ?? 0,
             'notas'=> $dados->caixa->recebimentos->ltipovendanotas ?? 0,
