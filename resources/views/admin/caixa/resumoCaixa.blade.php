@@ -264,13 +264,16 @@
                             point: {
                                 events: {
                                     click: function() {
-                                        var categoria = this
-                                            .name; // Nome da fatia (pode ser usado para redirecionamento)
+                                        var categoria = this.name;
+                                        var terminal = <?php echo $terminal; ?>;
+                                        var codigo = <?php echo $codigo; ?>;
 
                                         if (categoria === 'Combustivel') {
-                                            window.location.href = '/caixa';
+                                            window.location.href =
+                                                `/resumoCombustivel?terminal=${terminal}&codigo=${codigo}`;
                                         } else if (categoria === 'Produtos') {
-                                            window.location.href = '/monitor';
+                                            window.location.href =
+                                                `/resumoProduto?terminal=${terminal}&codigo=${codigo}`;
                                         }
                                     }
                                 }

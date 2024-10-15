@@ -104,7 +104,7 @@ class vendasController extends Controller
 
         $response = getResponse($url, $this->user->token);
         $dados = json_decode($response);
-        // dd($terminal);
+        $codigo = $dados->funcionario->codcaixa;
         $formaDePagamento = [];
         $vendas = [
             'Combustivel' => $dados->caixa->totalComb ?? 0,
@@ -186,7 +186,7 @@ class vendasController extends Controller
             $formaDePagamento[] = $pagamento;
         }
 
-        return view('admin.caixa.resumoCaixa',['recebimentos'=>$recebimentos,'formaDePagamento'=>$formaDePagamento,'vendas'=>$vendas]);
+        return view('admin.caixa.resumoCaixa',['recebimentos'=>$recebimentos,'formaDePagamento'=>$formaDePagamento,'vendas'=>$vendas,'codigo'=>$codigo,'terminal'=>$terminal]);
     }
     
     public function faturamento(request $request){
@@ -238,7 +238,23 @@ class vendasController extends Controller
         }
 
     }
-    public function resumoCombustivel(){}
+    public function resumoCombustivel(Request $request){
+        $terminal = $request->has('terminal') ? $request->terminal: 1;
+        $codigo = $request->codigo;
+        $url = $this->url.'caixa/rescomb/'.$terminal.'/'.$codigo;
+        $response = getResponse($url, $this->user->token);
+        $dados = json_decode($response);
+        return view('admin.caixa.resumoCombustivel',['dados'=>$dados]);
+    }
+
+    public function resumoProduto(Request $request){
+        $terminal = $request->has('terminal') ? $request->terminal: 1;
+        $codigo = $request->codigo;
+        $url = $this->url.'caixa/resprod/'.$terminal.'/'.$codigo;
+        $response = getResponse($url, $this->user->token);
+        $dados = json_decode($response);
+        return view('admin.caixa.resumoProduto',['dados'=>$dados]);
+    }
 
     
 }
