@@ -104,6 +104,7 @@ class vendasController extends Controller
 
         $response = getResponse($url, $this->user->token);
         $dados = json_decode($response);
+        // dd($terminal);
         $formaDePagamento = [];
         $vendas = [
             'Combustivel' => $dados->caixa->totalComb ?? 0,

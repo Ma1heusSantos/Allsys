@@ -25,6 +25,10 @@
             .direction {
                 flex-direction: column;
             }
+
+            #submit-btn-form {
+                height: 2.8rem;
+            }
         }
 
         @media (min-width: 1024px) {
@@ -32,6 +36,23 @@
                 height: 18rem;
                 margin-left: 2rem;
             }
+
+            #submit-btn-form {
+                border-radius: none;
+            }
+
+
+        }
+
+        #submit-btn-form {
+            z-index: 2;
+            /* Garante que o input e o botão de submit fiquem acima do carrossel */
+        }
+
+        .carousel-control-prev,
+        .carousel-control-next {
+            z-index: 1;
+            /* Mantém os botões de navegação abaixo do input */
         }
 
         /* Estilo dos botões */
@@ -67,12 +88,12 @@
                 @csrf
                 <div class="row g-3 align-items-center mx-1">
                     <div class="col-12 col-sm-auto">
-                        <label for="dataFim" class="col-form-label text-light">Informe um terminal:</label>
+                        <label for="terminal" class="col-form-label text-light">Informe um terminal:</label>
                     </div>
                     <div class="col-12 col-sm-auto d-flex">
-                        <input type="text" name="terminal" class="form-control bg-dark text-light">
-                        <button type="submit" id="btn-form" class="input-group-addon btn btn-primary"
-                            style="background-color: rgb(13, 110, 253); color: #fff; width: 3rem; height: 2.3rem; border-radius: 0px 5px 5px 0px !important; margin-right: 2%">
+                        <input type="text" name="terminal" id="terminal" class="form-control bg-dark text-light">
+                        <button type="submit" id="submit-btn-form" class="btn btn-primary"
+                            style="background-color: rgb(13, 110, 253); color: #fff; width: 3rem; border-radius: 0px 5px 5px 0px !important; margin-right: 2%">
                             <i class="fas fa-search" style="color: #fff"></i>
                         </button>
                     </div>
@@ -93,7 +114,7 @@
                     <div class="container mt-5">
                         <div class="d-flex justify-content-between align-items-center">
                             <!-- Botão de navegação anterior -->
-                            <button class="carousel-control-prev " style="margin-bottom:8rem" type="button"
+                            <button class="carousel-control-prev" style="margin-bottom:8rem;" type="button"
                                 data-bs-target="#cardCarousel" data-bs-slide="prev">
                                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                 <span class="visually-hidden">Anterior</span>
