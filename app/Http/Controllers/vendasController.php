@@ -99,7 +99,7 @@ class vendasController extends Controller
     }
 
     public function resumoCaixa(Request $request){
-        $terminal = (isset($request->terminal))? $request->terminal : 1;
+        $terminal = $request->terminal;
         $url = $this->url.'caixa/totais/'.$terminal;
 
         $response = getResponse($url, $this->user->token);

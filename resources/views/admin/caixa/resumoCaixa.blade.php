@@ -44,7 +44,8 @@
 
         }
 
-        #submit-btn-form {
+        #submit-btn-form,
+        #terminal {
             z-index: 2;
             /* Garante que o input e o botão de submit fiquem acima do carrossel */
         }
@@ -87,11 +88,12 @@
             <form action="{{ route('resumo.caixa') }}" method="post">
                 @csrf
                 <div class="row g-3 align-items-center mx-1">
-                    <div class="col-12 col-sm-auto">
-                        <label for="terminal" class="col-form-label text-light">Informe um terminal:</label>
-                    </div>
                     <div class="col-12 col-sm-auto d-flex">
-                        <input type="text" name="terminal" id="terminal" class="form-control bg-dark text-light">
+                        <select name="terminal" id="terminal" class="form-control bg-dark text-light">
+                            <option value="" disabled selected>Informe um terminal</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                        </select>
                         <button type="submit" id="submit-btn-form" class="btn btn-primary"
                             style="background-color: rgb(13, 110, 253); color: #fff; width: 3rem; border-radius: 0px 5px 5px 0px !important; margin-right: 2%">
                             <i class="fas fa-search" style="color: #fff"></i>
