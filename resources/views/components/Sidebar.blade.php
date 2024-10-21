@@ -114,8 +114,8 @@
                                         <div class="collapse" id="menu5-collapse">
                                             <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                                                 <li><a href="{{ route('resumo.caixa') }}"
-                                                        class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Resumo
-                                                        do Caixa</a>
+                                                        class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Caixa
+                                                        Sintético</a>
                                                 </li>
                                             </ul>
                                         </div>
@@ -129,7 +129,8 @@
                                         <div class="collapse" id="menu5-collapse">
                                             <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                                                 <li><a href="{{ route('caixa') }}"
-                                                        class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Caixa</a>
+                                                        class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Caixa
+                                                        Analítico</a>
                                                 </li>
                                             </ul>
                                         </div>
