@@ -113,9 +113,6 @@
                                         </button>
                                         <div class="collapse" id="menu5-collapse">
                                             <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                                                <li><a href="{{ route('caixa') }}"
-                                                        class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Caixa</a>
-                                                </li>
                                                 <li><a href="{{ route('resumo.caixa') }}"
                                                         class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Resumo
                                                         do Caixa</a>
@@ -129,6 +126,14 @@
                                                 </li>
                                             </ul>
                                         </div>
+                                        <div class="collapse" id="menu5-collapse">
+                                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                                                <li><a href="{{ route('caixa') }}"
+                                                        class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Caixa</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+
                                     </li>
                                     <li class="mb-1">
                                         <button
