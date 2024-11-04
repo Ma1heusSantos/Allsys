@@ -131,7 +131,7 @@
                 var data = [];
                 let configs = [{
                     id: 'lucroBrutoPorProduto',
-                    title: 'Lucro bruto em grupo em (R$)',
+                    title: 'Lucro bruto por grupo em (R$)',
                     yText: 'Lucro bruto por grupo em (R$)',
                     seriesName: 'Lucro bruto por Produto em (R$)',
                     color: '#007bff'
