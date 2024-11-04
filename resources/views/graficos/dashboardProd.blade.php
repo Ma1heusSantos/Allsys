@@ -112,8 +112,8 @@
                 var data = [];
                 let configs = [{
                     id: 'valorTotalPorProduto',
-                    title: 'Venda total por Produto em (R$)',
-                    yText: 'Venda total por Produto em (R$)',
+                    title: 'Venda total por grupo em (R$)',
+                    yText: 'Venda total por grupo em (R$)',
                     seriesName: 'Venda total por produto em (R$)',
                     color: "#dc3545"
                 }];
@@ -131,8 +131,8 @@
                 var data = [];
                 let configs = [{
                     id: 'lucroBrutoPorProduto',
-                    title: 'Lucro bruto em Produto em (R$)',
-                    yText: 'Lucro bruto por Produto em (R$)',
+                    title: 'Lucro bruto em grupo em (R$)',
+                    yText: 'Lucro bruto por grupo em (R$)',
                     seriesName: 'Lucro bruto por Produto em (R$)',
                     color: '#007bff'
                 }];
