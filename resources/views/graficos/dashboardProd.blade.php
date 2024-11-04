@@ -119,7 +119,7 @@
                 }];
 
                 dados.forEach(function(dado) {
-                    categories.push(dado.dscprod);
+                    categories.push(dado.dscgrupo);
                     data.push(parseFloat(dado.valorvenda.toFixed(2)));
                 });
                 renderGraphic(categories, data, configs[0]);
@@ -136,9 +136,10 @@
                     seriesName: 'Lucro bruto por Produto em (R$)',
                     color: '#007bff'
                 }];
+                console.log(dados)
 
                 dados.forEach(function(dado) {
-                    categories.push(dado.dscprod);
+                    categories.push(dado.dscgrupo);
                     data.push(parseFloat(dado.lucrobruto.toFixed(2)));
                 });
                 renderGraphic(categories, data, configs[0]);

@@ -19,6 +19,7 @@ class produtoController extends Controller
     public function __construct() {
         $this->user = Auth::user();
         $this->url = "http://{$this->user->cnpj}.ddns.net:8098/api/svrpista/";
+  
     }
     public function listar(){
 
@@ -108,7 +109,7 @@ class produtoController extends Controller
         ];
 
         try {
-            $url = $this->url."venda/prodsintetico";
+            $url = $this->url."venda/prodgruposintetico";
             
             $response = putResponse($url,$this->user->token,$datas);
             $dados = json_decode($response, false);
