@@ -151,9 +151,9 @@
                 var data = [];
                 let configs = [{
                     id: 'vendasPorVendedores',
-                    title: 'Vendas por Frentista (Produto)',
-                    yText: 'Vendas por Frentista (Produto)',
-                    seriesName: 'total vendido (Produto)',
+                    title: 'Vendas por Frentista',
+                    yText: 'Vendas por Frentista',
+                    seriesName: 'total vendido',
                     color: '#28a745'
                 }];
 
