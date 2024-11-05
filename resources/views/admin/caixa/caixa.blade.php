@@ -86,7 +86,7 @@
                             <table class="table table-bordered table-striped table-dark">
                                 <thead class="thead-dark">
                                     <tr>
-                                        <th>Grupo</th>
+                                        <th>Nome</th>
                                         <th>Quantidade Total</th>
                                         <th>Preço Médio</th>
                                         <th>Valor</th>
@@ -97,7 +97,7 @@
                                         @if (is_array($prod))
                                             @foreach ($prod as $item)
                                                 <tr>
-                                                    <td>{{ $item->dscgrupo }}</td>
+                                                    <td>{{ $item->dscprod }}</td>
                                                     <td>{{ "R$ " . money($item->qtdtotal) }}</td>
                                                     <td>{{ "R$ " . money($item->precomedio) }}</td>
                                                     <td>{{ "R$ " . money($item->valor) }}</td>
