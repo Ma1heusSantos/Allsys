@@ -115,7 +115,7 @@
                     id: 'valorTotalPorProduto',
                     title: 'Venda por Combustivel',
                     yText: 'Venda por Combustivel',
-                    seriesName: 'valor total por produto',
+                    seriesName: 'Venda por combustivel',
                     color: "#dc3545"
                 }];
 
