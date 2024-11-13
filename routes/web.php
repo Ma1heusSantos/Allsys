@@ -45,4 +45,5 @@ Route::middleware([adminAcess::class])->group(function () {
     Route::any('resumoCaixa',[vendasController::class,'resumoCaixa'])->name('resumo.caixa');
     Route::get('resumoCombustivel',[vendasController::class,'resumoCombustivel'])->name('resumo.combustivel');
     Route::get('resumoProduto',[vendasController::class,'resumoProduto'])->name('resumo.produto');
+    Route::any('vendasGerais',[vendasController::class,'vendasGerais'])->name('vendas.gerais');
 });

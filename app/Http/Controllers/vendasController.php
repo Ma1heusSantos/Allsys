@@ -10,6 +10,7 @@ use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Http;
 use stdClass;
+use Carbon\Carbon;
 
 class vendasController extends Controller
 {
@@ -247,7 +248,8 @@ class vendasController extends Controller
         return view('admin.caixa.resumoCombustivel',['dados'=>$dados]);
     }
 
-    public function resumoProduto(Request $request){
+    public function resumoProduto(Request $request)
+    {
         $terminal = $request->has('terminal') ? $request->terminal: 1;
         $codigo = $request->codigo;
         $url = $this->url.'caixa/resprod/'.$terminal.'/'.$codigo;
@@ -256,5 +258,91 @@ class vendasController extends Controller
         return view('admin.caixa.resumoProduto',['dados'=>$dados]);
     }
 
+    public function vendasGerais(Request $request)
+    {
+        try{
+            $dataIni = $request->has('dataIni') ? formatDate($request->dataIni) : Carbon::now()->format("d/m/Y");
+            $dataFim = $request->has('dataFim') ? formatDate($request->dataFim) : Carbon::now()->format("d/m/Y");
+            $datas =[
+                "dataini"=>$dataIni,
+                "datafim"=>$dataFim
+            ];
+            $url = $this->url.'venda/totais';
+            $response = putResponse($url,$this->user->token, $datas);
+            $dados = json_decode($response,false);
+            $recebimentos = [
+                'cartao'=> $dados->TipoPag->ltipovendacartao ?? 0,
+                'notas'=> $dados->TipoPag->ltipovendanotas?? 0,
+                'ticket'=> $dados->TipoPag->ltipovendaticket ?? 0,
+                'valeFrete'=>$dados->TipoPag->ltipovendavalefrete?? 0,
+                'chequeAVista'=> $dados->TipoPag->ltipovendachequeavista ?? 0,
+                'chequeAPrazo'=> $dados->TipoPag->ltipovendachequeaprazo ?? 0,
+                'valeCliente'=> $dados->TipoPag->ltipovendaticketvalecliente ?? 0,
+                'pix'=> $dados->TipoPag->ltipovendapix ?? 0,
+                'dinheiro'=> $dados->TipoPag->ltipovendadinheiro ?? 0,
+            ];
     
+            $formaDePagamento = []; 
+
+            foreach ($recebimentos as $tipo => $valor) {
+                $pagamento = new stdClass(); 
+                $pagamento->nome = ucfirst($tipo); 
+                $pagamento->valor = money($valor); 
+            
+                switch($tipo){
+                    case 'cartao':
+                        $pagamento->cor = '#40B6E8';
+                        $pagamento->icone = 'fa-solid fa-credit-card';
+                        break;
+                    case 'notas':
+                        $pagamento->cor = '#6460CA';
+                        $pagamento->icone = 'fa-solid fa-note-sticky';
+                        break;
+                    case 'ticket':
+                        $pagamento->cor = '#19E47F';
+                        $pagamento->icone = 'fa-solid fa-ticket';
+                        break;
+                    case 'valeFrete':
+                        $pagamento->cor = '#E87848';
+                        $pagamento->icone = 'fa-regular fa-clipboard';
+                        break;
+                    case 'chequeAVista':
+                        $pagamento->cor = '#7995C2';
+                        $pagamento->icone = 'fa-solid fa-money-check';
+                        break;
+                    case 'chequeAPrazo':
+                        $pagamento->cor = '#D976E8';
+                        $pagamento->icone = 'fa-solid fa-money-check-dollar';
+                        break;
+                    case 'valeCliente':
+                        $pagamento->cor = '#42E3CF';
+                        $pagamento->icone = 'fa-solid fa-person-circle-check';
+                        break;
+                    case 'pix':
+                        $pagamento->cor = '#E85C54';
+                        $pagamento->icone = 'fa-brands fa-pix';
+                        break;
+                    case 'dinheiro':
+                        $pagamento->cor = '#9BE8E3';
+                        $pagamento->icone = 'fa-solid fa-money-bill';
+                        break;
+                    default:
+                        $pagamento->cor = 'secondary'; 
+                        $pagamento->icone = 'fa-solid fa-question'; 
+                        break;
+                }
+            
+                $formaDePagamento[] = $pagamento;
+                $dataIniFormatted = Carbon::createFromFormat('d/m/Y', $dataIni)->format('Y-m-d');
+                $dataFimFormatted = Carbon::createFromFormat('d/m/Y', $dataFim)->format('Y-m-d');
+            }
+            
+            return view("relatorios/vendasGerais",['dados'=>$dados,'formaDePagamento'=>$formaDePagamento,"dataIni"=>$dataIniFormatted,
+                                      "dataFim"=>$dataFimFormatted,]);
+            
+        }catch(Exception $e){
+            Log::info('mensagem de erro:', [$e->getMessage()]);
+            return redirect()->route('vendas.dia')->with('Error', $e->getMessage());
+        }
+    }
 }

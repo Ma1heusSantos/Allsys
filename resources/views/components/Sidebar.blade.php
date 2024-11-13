@@ -198,6 +198,10 @@
                                     <li><a href="{{ route('vendas.dia') }}"
                                             class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Cupons</a>
                                     </li>
+                                    <li><a href="{{ route('vendas.gerais') }}"
+                                            class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Vendas
+                                            Gerais</a>
+                                    </li>
                                 </ul>
                             </div>
                         </li>
