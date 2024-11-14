@@ -183,7 +183,6 @@ class vendasController extends Controller
                 break;
             }
         
-            // Adiciona o objeto ao array de forma de pagamento
             $formaDePagamento[] = $pagamento;
         }
 
@@ -343,6 +342,43 @@ class vendasController extends Controller
         }catch(Exception $e){
             Log::info('mensagem de erro:', [$e->getMessage()]);
             return redirect()->route('vendas.dia')->with('Error', $e->getMessage());
+        }
+    }
+
+    public function vendasCombustivel(Request $request)
+    {
+        $dataIni = $request->has('dataIni') ?  formatDate($request->dataIni) : Carbon::now()->format("d/m/Y");
+        $dataFim = $request->has('dataFim') ?  formatDate($request->dataFim) : Carbon::now()->format("d/m/Y");
+        $datas =[
+            "dataini"=>$dataIni,
+            "datafim"=>$dataFim
+        ];
+        try{
+            $url = $this->url.'venda/combanalitico';
+            $response = putResponse($url,$this->user->token, $datas);
+            $dados = json_decode($response,false);
+            // dd($dados);
+            return view('relatorios.vendasCombustivel',['dados'=>$dados]);
+        }catch(Exception $e){
+            Log::info("erro :",[$e->getMessage()]);
+        }
+    }
+    public function vendasProduto(Request $request)
+    {
+        $dataIni = $request->has('dataIni') ?  formatDate($request->dataIni) : Carbon::now()->format("d/m/Y");
+        $dataFim = $request->has('dataFim') ?  formatDate($request->dataFim) : Carbon::now()->format("d/m/Y");
+        $datas =[
+            "dataini"=>$dataIni,
+            "datafim"=>$dataFim
+        ];
+        try{
+            $url = $this->url.'venda/prodanalitico';
+            $response = putResponse($url,$this->user->token, $datas);
+            $dados = json_decode($response,false);
+            // dd($dados);
+            return view('relatorios.vendasProduto',['dados'=>$dados]);
+        }catch(Exception $e){
+            Log::info("erro :",[$e->getMessage()]);
         }
     }
 }

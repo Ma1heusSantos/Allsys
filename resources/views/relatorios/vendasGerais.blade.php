@@ -186,8 +186,6 @@
 
         function recebimentos() {
             var dados = <?php echo json_encode($dados); ?>;
-            console.log(dados);
-
             var total = new Intl.NumberFormat('pt-BR', {
                 minimumFractionDigits: 2,
                 maximumFractionDigits: 2
@@ -282,7 +280,19 @@
                         point: {
                             events: {
                                 click: function() {
-                                    console.log(this); // Mostra o ponto clicado
+                                    var categoria = this.name;
+                                    var dataIni = "{{ $dataIni }}";
+                                    var dataFim = "{{ $dataFim }}";
+
+                                    if (categoria === 'combustivel') {
+
+                                        window.location.href =
+                                            `/vendasCombustivel?dataIni=${dataIni}&dataFim=${dataFim}`;
+                                    } else if (categoria === 'produto') {
+
+                                        window.location.href =
+                                            `/vendasProduto?dataIni=${dataIni}&dataFim=${dataFim}`;
+                                    }
                                 }
                             }
                         }
