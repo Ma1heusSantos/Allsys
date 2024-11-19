@@ -97,6 +97,7 @@
                                 <th>Valor de venda</th>
                                 <th>Última data de compra</th>
                                 <th>Última data de venda</th>
+                                <th>Estoque</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -108,6 +109,7 @@
                                     <td>R$ {{ money($produto->valorvendaprod) }}</td>
                                     <td>{{ formatDate($produto->dataultcompraprod) }}</td>
                                     <td>{{ formatDate($produto->dataultvendaprod) }}</td>
+                                    <td>{{ money($produto->estoque) }}</td>
                                 </tr>
                             @endforeach
                         </tbody>

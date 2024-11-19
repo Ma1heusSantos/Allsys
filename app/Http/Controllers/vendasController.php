@@ -357,7 +357,6 @@ class vendasController extends Controller
             $url = $this->url.'venda/combanalitico';
             $response = putResponse($url,$this->user->token, $datas);
             $dados = json_decode($response,false);
-            // dd($dados);
             return view('relatorios.vendasCombustivel',['dados'=>$dados]);
         }catch(Exception $e){
             Log::info("erro :",[$e->getMessage()]);

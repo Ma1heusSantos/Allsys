@@ -11,16 +11,16 @@
                             <div class="card-body">
                                 <h5 class="card-title text-center fw-bold">{{ $dado->dscprod }}</h5>
                                 <div class="d-flex justify-content-between mb-3">
-                                    <span><strong>Código do Produto:</strong></span>
-                                    <span>{{ $dado->codprod }}</span>
+                                    <span><strong>Valor Liquido:</strong></span>
+                                    <span>{{ money($dado->valorliquido) }}</span>
                                 </div>
                                 <div class="d-flex justify-content-between mb-3">
                                     <span><strong>Valor Bruto:</strong></span>
                                     <span>{{ "R$ " . money($dado->valorbruto) }}</span>
                                 </div>
                                 <div class="d-flex justify-content-between mb-3">
-                                    <span><strong>Número de Vendas:</strong></span>
-                                    <span>{{ "R$ " . money($dado->numvenda) }}</span>
+                                    <span><strong>Lucro Bruto:</strong></span>
+                                    <span>{{ "R$ " . money($dado->lucrobruto) }}</span>
                                 </div>
                                 <div class="d-flex justify-content-between mb-3">
                                     <span><strong>Custo:</strong></span>
@@ -29,6 +29,10 @@
                                 <div class="d-flex justify-content-between mb-3">
                                     <span><strong>Desconto:</strong></span>
                                     <span>{{ "R$ " . money($dado->desconto) }}</span>
+                                </div>
+                                <div class="d-flex justify-content-between mb-3">
+                                    <span><strong>Margem:</strong></span>
+                                    <span>{{ "R$ " . money($dado->margem) }}</span>
                                 </div>
                             </div>
                         </div>
