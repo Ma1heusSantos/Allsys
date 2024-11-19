@@ -91,12 +91,12 @@
                     <table id="table" class="table-dark">
                         <thead>
                             <tr>
-                                <th class="col-1">Cód. do prod</th>
+                                <th class="col-1">Código</th>
                                 <th style="width: 40%">Produto</th>
-                                <th>Valor de compra</th>
-                                <th>Valor de venda</th>
-                                <th>Última data de compra</th>
-                                <th>Última data de venda</th>
+                                <th>Compra</th>
+                                <th>Venda</th>
+                                <th>data de compra</th>
+                                <th>data de venda</th>
                                 <th>Estoque</th>
                             </tr>
                         </thead>
