@@ -11,12 +11,16 @@
                             <div class="card-body">
                                 <h5 class="card-title text-center fw-bold">{{ $dado->dscprod }}</h5>
                                 <div class="d-flex justify-content-between mb-3">
-                                    <span><strong>Valor Liquido:</strong></span>
-                                    <span>{{ "R$ " . money($dado->valorliquido) }}</span>
+                                    <span><strong>Quantidade:</strong></span>
+                                    <span>{{ $dado->volabast }}</span>
                                 </div>
                                 <div class="d-flex justify-content-between mb-3">
-                                    <span><strong>Valor Abastecido:</strong></span>
-                                    <span>{{ "R$ " . money($dado->volabast) }}</span>
+                                    <span><strong>Valor Bruto:</strong></span>
+                                    <span>{{ "R$ " . money($dado->valorbruto) }}</span>
+                                </div>
+                                <div class="d-flex justify-content-between mb-3">
+                                    <span><strong>Valor Liquido:</strong></span>
+                                    <span>{{ "R$ " . money($dado->valorliquido) }}</span>
                                 </div>
                                 <div class="d-flex justify-content-between mb-3">
                                     <span><strong>Custo:</strong></span>

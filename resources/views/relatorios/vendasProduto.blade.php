@@ -11,24 +11,24 @@
                             <div class="card-body">
                                 <h5 class="card-title text-center fw-bold">{{ $dado->dscprod }}</h5>
                                 <div class="d-flex justify-content-between mb-3">
-                                    <span><strong>Valor Liquido:</strong></span>
-                                    <span>{{ money($dado->valorliquido) }}</span>
+                                    <span><strong> Quantidade:</strong></span>
+                                    <span>{{ $dado->qtdeitens }}</span>
                                 </div>
                                 <div class="d-flex justify-content-between mb-3">
                                     <span><strong>Valor Bruto:</strong></span>
                                     <span>{{ "R$ " . money($dado->valorbruto) }}</span>
                                 </div>
                                 <div class="d-flex justify-content-between mb-3">
-                                    <span><strong>Lucro Bruto:</strong></span>
-                                    <span>{{ "R$ " . money($dado->lucrobruto) }}</span>
+                                    <span><strong>Valor Liquido:</strong></span>
+                                    <span>{{ money($dado->valorliquido) }}</span>
                                 </div>
                                 <div class="d-flex justify-content-between mb-3">
                                     <span><strong>Custo:</strong></span>
                                     <span>{{ "R$ " . money($dado->custo) }}</span>
                                 </div>
                                 <div class="d-flex justify-content-between mb-3">
-                                    <span><strong>Desconto:</strong></span>
-                                    <span>{{ "R$ " . money($dado->desconto) }}</span>
+                                    <span><strong>Lucro Bruto:</strong></span>
+                                    <span>{{ "R$ " . money($dado->lucrobruto) }}</span>
                                 </div>
                                 <div class="d-flex justify-content-between mb-3">
                                     <span><strong>Margem:</strong></span>
