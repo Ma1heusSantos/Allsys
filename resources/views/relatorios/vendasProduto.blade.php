@@ -32,7 +32,7 @@
                                 </div>
                                 <div class="d-flex justify-content-between mb-3">
                                     <span><strong>Margem:</strong></span>
-                                    <span>{{ "R$ " . money($dado->margem) }}</span>
+                                    <span>{{ money($dado->margem) . ' %' }}</span>
                                 </div>
                             </div>
                         </div>
