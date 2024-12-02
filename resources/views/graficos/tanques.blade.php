@@ -61,13 +61,12 @@
         }
 
         function treatDados(dados) {
-            console.log(dados.estatualtanque)
             return dados.map(dado => {
                 let color;
                 dado.name = dado.dscprod;
                 dado.cod = dado.dsctanque;
                 dado.y = Math.abs(dado.estatualtanque).toFixed(0);
-                dado.estado = dado.estatualtanque;
+                dado.estado = Math.abs(dado.estatualtanque).toFixed(0);
 
                 switch (dado.cod) {
                     case "TQ03-ALC":
