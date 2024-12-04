@@ -29,6 +29,11 @@
             #submit-btn-form {
                 height: 2.8rem;
             }
+
+            .carousel-control-prev,
+            .carousel-control-next {
+                margin-top: 26rem;
+            }
         }
 
         @media (min-width: 1024px) {
@@ -39,6 +44,16 @@
 
             #submit-btn-form {
                 border-radius: none;
+            }
+
+            .carousel-control-prev,
+            .carousel-control-next {
+                z-index: 1;
+                margin-top: 26rem;
+            }
+
+            .carousel-control-next {
+                margin-right: 3rem;
             }
 
 
@@ -130,13 +145,13 @@
                     <div class="container mt-5">
                         <div class="d-flex justify-content-between align-items-center">
                             <!-- Botão de navegação anterior -->
-                            <button class="carousel-control-prev" style="margin-bottom:8rem;" type="button"
-                                data-bs-target="#cardCarousel" data-bs-slide="prev">
+                            <button class="carousel-control-prev" type="button" data-bs-target="#cardCarousel"
+                                data-bs-slide="prev">
                                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                 <span class="visually-hidden">Anterior</span>
                             </button>
                             <!-- Carrossel -->
-                            <div id="cardCarousel" class="carousel slide w-100" data-bs-ride="carousel">
+                            <div id="cardCarousel" class="carousel slide w-100" data-bs-ride="false">
                                 <div class="carousel-inner">
                                     @foreach (array_chunk($formaDePagamento, 3) as $chunk)
                                         <!-- Exibe 3 cards por slide -->
@@ -167,8 +182,8 @@
                             </div>
 
                             <!-- Botão de navegação próximo -->
-                            <button class="carousel-control-next" style="margin-bottom:8rem"type="button"
-                                data-bs-target="#cardCarousel" data-bs-slide="next">
+                            <button class="carousel-control-next" type="button" data-bs-target="#cardCarousel"
+                                data-bs-slide="next">
                                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                 <span class="visually-hidden">Próximo</span>
                             </button>
