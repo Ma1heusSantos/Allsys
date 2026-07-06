@@ -178,13 +178,28 @@
                 }).format(dados.total)
                 var categories = Object.keys(dados); // Pega as chaves, como 'cartao', 'notas', etc.
                 var data = categories.map(function(key) {
+                    var url = null;
+
+                    if (key === 'Combustivel') {
+                        url = "{{ route('resumo.combustivel') }}?terminal={{ $terminal }}&codigo={{ $codigo }}";
+                    } else if (key === 'Produtos') {
+                        url = "{{ route('resumo.produto') }}?terminal={{ $terminal }}&codigo={{ $codigo }}";
+                    }
+
                     return {
                         name: key, // Nome do item (ex: 'cartao')
-                        y: dados[key] // Valor referente ao item    
+                        y: dados[key], // Valor referente ao item
+                        url: url
                     };
                 });
                 data = data.filter(item => item.name !== 'total');
                 renderGraphic(data, total)
+            }
+
+            function abrirResumo(point) {
+                if (point && point.url) {
+                    window.location.assign(point.url);
+                }
             }
 
             function renderGraphic(data, total) {
@@ -209,7 +224,8 @@
                                         )
                                         .css({
                                             color: '#ffffff',
-                                            textAnchor: 'middle'
+                                            textAnchor: 'middle',
+                                            pointerEvents: 'none'
                                         })
                                         .add();
                                 }
@@ -253,6 +269,7 @@
                     },
                     plotOptions: {
                         pie: {
+                            cursor: 'pointer',
                             innerSize: '75%',
                             dataLabels: {
                                 enabled: false,
@@ -266,17 +283,13 @@
                             point: {
                                 events: {
                                     click: function() {
-                                        var categoria = this.name;
-                                        var terminal = <?php echo $terminal; ?>;
-                                        var codigo = <?php echo $codigo; ?>;
-
-                                        if (categoria === 'Combustivel') {
-                                            window.location.href =
-                                                `/resumoCombustivel?terminal=${terminal}&codigo=${codigo}`;
-                                        } else if (categoria === 'Produtos') {
-                                            window.location.href =
-                                                `/resumoProduto?terminal=${terminal}&codigo=${codigo}`;
+                                        abrirResumo(this);
+                                    },
+                                    touchend: function(event) {
+                                        if (event && event.preventDefault) {
+                                            event.preventDefault();
                                         }
+                                        abrirResumo(this);
                                     }
                                 }
                             }

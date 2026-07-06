@@ -211,15 +211,23 @@
 
             var categories = [{
                     name: "combustivel",
-                    y: combustivel
+                    y: combustivel,
+                    url: "{{ route('vendas.combustivel') }}?dataIni={{ $dataIni }}&dataFim={{ $dataFim }}"
                 },
                 {
                     name: "produto",
-                    y: produto
+                    y: produto,
+                    url: "{{ route('vendas.produto') }}?dataIni={{ $dataIni }}&dataFim={{ $dataFim }}"
                 }
             ];
 
             renderGraphic(categories, total);
+        }
+
+        function abrirResumo(point) {
+            if (point && point.url) {
+                window.location.assign(point.url);
+            }
         }
 
         function renderGraphic(data, total) {
@@ -241,7 +249,8 @@
                                     )
                                     .css({
                                         color: '#ffffff',
-                                        textAnchor: 'middle'
+                                        textAnchor: 'middle',
+                                        pointerEvents: 'none'
                                     })
                                     .add();
                             }
@@ -283,6 +292,7 @@
                 },
                 plotOptions: {
                     pie: {
+                        cursor: 'pointer',
                         innerSize: '75%',
                         dataLabels: {
                             enabled: false,
@@ -295,19 +305,13 @@
                         point: {
                             events: {
                                 click: function() {
-                                    var categoria = this.name;
-                                    var dataIni = "{{ $dataIni }}";
-                                    var dataFim = "{{ $dataFim }}";
-
-                                    if (categoria === 'combustivel') {
-
-                                        window.location.href =
-                                            `/vendasCombustivel?dataIni=${dataIni}&dataFim=${dataFim}`;
-                                    } else if (categoria === 'produto') {
-
-                                        window.location.href =
-                                            `/vendasProduto?dataIni=${dataIni}&dataFim=${dataFim}`;
+                                    abrirResumo(this);
+                                },
+                                touchend: function(event) {
+                                    if (event && event.preventDefault) {
+                                        event.preventDefault();
                                     }
+                                    abrirResumo(this);
                                 }
                             }
                         }

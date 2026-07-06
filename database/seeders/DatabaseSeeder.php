@@ -20,14 +20,20 @@ class DatabaseSeeder extends Seeder
             'name' => 'Admin',
             'email' => 'geniusissuporte1@gmail.com',
             'password' => Hash::make('1234'),
-            'role'=> 'Admin'
+            'token' => 'local-dev-token',
+            'empresa' => 'Gerencial AllSYS X',
+            'nivel'=> 'Admin',
+            'cnpj' => '00000000000000',
         ]);
 
         User::factory()->create([
             'name' => 'Tester',
             'email' => 'teste@hotmail.com',
             'password' => Hash::make('1234'),
-            'role'=> 'User'
+            'token' => 'local-dev-token',
+            'empresa' => 'Gerencial AllSYS X',
+            'nivel'=> 'User',
+            'cnpj' => '00000000000000',
         ]);
     }
 }

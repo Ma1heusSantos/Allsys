@@ -124,7 +124,7 @@
         </div>
         @if(Auth::user()->tipo != 'admin')
             <li class="nav-item {{ Nav::isRoute('profile') }}">
-                <a class="nav-link" href="{{ route('empresa.show') }}">
+                <a class="nav-link" href="{{ route('show.company') }}">
                     <i class="fas fa-building"></i>
                     <span>Minha Empresa</span>
                 </a>
