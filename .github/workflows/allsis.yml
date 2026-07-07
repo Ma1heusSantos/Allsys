@@ -16,5 +16,5 @@ jobs:
         uses: SamKirkland/FTP-Deploy-Action@4.3.0
         with:
           server: ftp.geniusis.com.br
-          username: prosis@prosisx-homol.geniusis.com.br
+          username: prosis@geniusis.com.br
           password: matrix@1977
