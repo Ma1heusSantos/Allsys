@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Contracts\Auth\Authenticatable;
 use App\Models\User;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Hash;
 
 class authController extends Controller
 {
@@ -23,19 +22,6 @@ class authController extends Controller
             "usuario"=>$request->email,
             "senha"=> $request->password
         ];
-        if (app()->environment('local') && $cnpj === '00000000000000') {
-            $user = User::where('email', $request->email)->first();
-
-            if ($user && Hash::check($request->password, $user->password)) {
-                Auth::login($user, $request->has("remember"));
-                $request->session()->regenerate();
-
-                return redirect()->route("home");
-            }
-
-            return redirect()->back()->withErrors(['msg' => 'usuario ou senha incorretos']);
-        }
-
        try{
         $url = "http://{$cnpj}.ddns.net:8098/api/svrpista/login";
         $response = Http::put($url, $dados);
