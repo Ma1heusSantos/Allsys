@@ -222,6 +222,36 @@
             renderGraphic(categories, total);
         }
 
+        function abrirResumo(categoria) {
+            var dataIni = "{{ $dataIni }}";
+            var dataFim = "{{ $dataFim }}";
+
+            if (categoria === 'combustivel') {
+                window.location.href = `/vendasCombustivel?dataIni=${dataIni}&dataFim=${dataFim}`;
+            } else if (categoria === 'produto') {
+                window.location.href = `/vendasProduto?dataIni=${dataIni}&dataFim=${dataFim}`;
+            }
+        }
+
+        function ativarToqueMobile(chart) {
+            chart.series[0].points.forEach(function(point) {
+                if (!point.graphic || !point.graphic.element || point.touchMobileAtivo) {
+                    return;
+                }
+
+                point.touchMobileAtivo = true;
+                point.graphic.element.addEventListener('touchstart', function(event) {
+                    if (event.cancelable) {
+                        event.preventDefault();
+                    }
+
+                    abrirResumo(point.name);
+                }, {
+                    passive: false
+                });
+            });
+        }
+
         function renderGraphic(data, total) {
             Highcharts.chart('recebimentos', {
                 chart: {
@@ -229,6 +259,9 @@
                     backgroundColor: '#1e1e2f',
                     custom: {},
                     events: {
+                        load() {
+                            ativarToqueMobile(this);
+                        },
                         render() {
                             const chart = this,
                                 series = chart.series[0];
@@ -241,7 +274,8 @@
                                     )
                                     .css({
                                         color: '#ffffff',
-                                        textAnchor: 'middle'
+                                        textAnchor: 'middle',
+                                        pointerEvents: 'none'
                                     })
                                     .add();
                             }
@@ -295,19 +329,7 @@
                         point: {
                             events: {
                                 click: function() {
-                                    var categoria = this.name;
-                                    var dataIni = "{{ $dataIni }}";
-                                    var dataFim = "{{ $dataFim }}";
-
-                                    if (categoria === 'combustivel') {
-
-                                        window.location.href =
-                                            `/vendasCombustivel?dataIni=${dataIni}&dataFim=${dataFim}`;
-                                    } else if (categoria === 'produto') {
-
-                                        window.location.href =
-                                            `/vendasProduto?dataIni=${dataIni}&dataFim=${dataFim}`;
-                                    }
+                                    abrirResumo(this.name);
                                 }
                             }
                         }
