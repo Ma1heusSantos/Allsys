@@ -75,6 +75,15 @@
         #recebimentos {
             background-color: #2b2b3d;
             border-radius: 10px;
+            cursor: pointer;
+            position: relative;
+            touch-action: manipulation;
+            z-index: 3;
+        }
+
+        #recebimentos .highcharts-container,
+        #recebimentos svg {
+            touch-action: manipulation;
         }
 
         /* Carrossel */
@@ -198,8 +207,79 @@
 
             function abrirResumo(point) {
                 if (point && point.url) {
+                    if (window.chartNavigationInProgress) {
+                        return;
+                    }
+
+                    window.chartNavigationInProgress = true;
                     window.location.assign(point.url);
                 }
+            }
+
+            function encontrarPontoDoGrafico(chart, event) {
+                var touch = event.changedTouches ? event.changedTouches[0] : event;
+                var rect = chart.container.getBoundingClientRect();
+                var series = chart.series[0];
+                var center = series.center;
+                var x = touch.clientX - rect.left - chart.plotLeft;
+                var y = touch.clientY - rect.top - chart.plotTop;
+                var dx = x - center[0];
+                var dy = y - center[1];
+                var distance = Math.sqrt((dx * dx) + (dy * dy));
+                var outerRadius = center[2] / 2;
+                var innerRadius = center[3] / 2;
+
+                if (distance > outerRadius + 20) {
+                    return null;
+                }
+
+                if (distance < innerRadius - 20) {
+                    return series.points.reduce(function(maior, point) {
+                        return point.y > maior.y ? point : maior;
+                    }, series.points[0]);
+                }
+
+                var angle = Math.atan2(dy, dx);
+                if (angle < -Math.PI / 2) {
+                    angle += Math.PI * 2;
+                }
+
+                return series.points.find(function(point) {
+                    var start = point.shapeArgs.start;
+                    var end = point.shapeArgs.end;
+
+                    if (end < start) {
+                        end += Math.PI * 2;
+                    }
+
+                    return angle >= start && angle <= end;
+                });
+            }
+
+            function ativarNavegacaoMobile(chart) {
+                if (chart.options.chart.custom.mobileNavigationReady) {
+                    return;
+                }
+
+                chart.options.chart.custom.mobileNavigationReady = true;
+
+                ['click', 'touchend', 'pointerup'].forEach(function(eventName) {
+                    chart.container.addEventListener(eventName, function(event) {
+                        var point = encontrarPontoDoGrafico(chart, event);
+
+                        if (!point || !point.url) {
+                            return;
+                        }
+
+                        if (event.cancelable) {
+                            event.preventDefault();
+                        }
+
+                        abrirResumo(point);
+                    }, {
+                        passive: false
+                    });
+                });
             }
 
             function renderGraphic(data, total) {
@@ -242,6 +322,8 @@
                                 customLabel.css({
                                     fontSize: `${series.center[2] / 12}px`
                                 });
+
+                                ativarNavegacaoMobile(chart);
                             }
                         }
                     },
