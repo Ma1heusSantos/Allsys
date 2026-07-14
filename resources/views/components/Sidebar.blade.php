@@ -177,6 +177,9 @@
                                             class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Resumo
                                             Produtos</a>
                                     </li>
+                                    <li><a href="{{ route('dashboard.compras') }}"
+                                            class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Compras</a>
+                                    </li>
 
                                 </ul>
                             </div>
@@ -201,6 +204,10 @@
                                     <li><a href="{{ route('vendas.gerais') }}"
                                             class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Vendas
                                             Gerais</a>
+                                    </li>
+                                    <li><a href="{{ route('faturamento.debitos') }}"
+                                            class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Debitos
+                                            Cliente</a>
                                     </li>
                                 </ul>
                             </div>

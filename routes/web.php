@@ -34,10 +34,13 @@ Route::middleware([adminAcess::class])->group(function () {
     Route::get('/editUser/{id}', [adminController::class, 'edit'])->name('edit.user');
     Route::get('/updateUser/{id}', [adminController::class, 'editUser'])->name('update.user');
     Route::any('/faturamento',[vendasController::class,'faturamento'])->name('faturamento');
+    Route::any('/faturamentoDebitos',[vendasController::class,'faturamentoDebitos'])->name('faturamento.debitos');
     Route::get("/faturamento/{id}",[vendasController::class,"faturamentoPorCliente"])->name("faturamento.cliente");
     Route::get('/listProduct', [produtoController::class, 'listar'])->name("produto.listar");
     Route::any('/dashboardCombustivel', [produtoController::class, "dashboardCombustivel"])->name("dashboard.combustivel");
     Route::any('/dashboardProduto', [produtoController::class, "dashboardProduto"])->name("dashboard.produto");
+    Route::any('/dashboardCompras', [vendasController::class, "dashboardCompras"])->name("dashboard.compras");
+    Route::get('/comprasGrupo/{codgrupo}', [vendasController::class, "comprasGrupo"])->name("compras.grupo");
     Route::get('/trocaPreco',[produtoController::class,'trocaPreco'])->name("trocar.preco");
     Route::post('/atualizaPreco',[produtoController::class,'atualizaPreco'])->name("atualiza.preco");
     Route::get('/monitor',[produtoController::class,'monitor'])->name("monitor");

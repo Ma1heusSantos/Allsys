@@ -214,11 +214,108 @@ class vendasController extends Controller
         }
 
     }
+    public function faturamentoDebitos(Request $request)
+    {
+        $dataIni = $request->has('dataIni') ? formatDate($request->dataIni) : Carbon::now()->startOfMonth()->format("d/m/Y");
+        $dataFim = $request->has('dataFim') ? formatDate($request->dataFim) : Carbon::now()->format("d/m/Y");
+        $url = $this->url.'faturamento/debitoscliente';
+        $datas = [
+            'dataini' => $dataIni,
+            'datafim' => $dataFim,
+        ];
+
+        try {
+            if ($request->filled('cliente')) {
+                $url .= '?find='.urlencode($request->cliente);
+            }
+
+            $response = Http::withHeaders([
+                'Authorization' => 'Bearer ' . $this->user->token,
+            ])->put($url, $datas);
+            $debitos = json_decode($response->body()) ?? [];
+            $debitos = is_array($debitos) ? $debitos : [];
+
+            $qtdPag = 30;
+            $currentPage = LengthAwarePaginator::resolveCurrentPage();
+            $paginatedDebitos = $this->paginateArray($debitos, $qtdPag, $currentPage, [
+                'path' => LengthAwarePaginator::resolveCurrentPath()
+            ]);
+
+            $dataIniFormatted = Carbon::createFromFormat('d/m/Y', $dataIni)->format('Y-m-d');
+            $dataFimFormatted = Carbon::createFromFormat('d/m/Y', $dataFim)->format('Y-m-d');
+
+            return view('admin/caixa/faturamentoDebitos', [
+                'paginatedDebitos' => $paginatedDebitos,
+                'dataIni' => $dataIniFormatted,
+                'dataFim' => $dataFimFormatted,
+                'cliente' => $request->cliente,
+            ]);
+        } catch (Exception $e) {
+            Log::info($e->getMessage());
+        }
+
+    }
     function paginateArray($items, $perPage = 10, $page = null, $options = []){
         $page = $page ?: (LengthAwarePaginator::resolveCurrentPage() ?: 1);
         $items = $items instanceof Collection ? $items : Collection::make($items);
         $currentPageItems = $items->slice(($page - 1) * $perPage, $perPage)->values();
         return new LengthAwarePaginator($currentPageItems, $items->count(), $perPage, $page, $options);
+    }
+
+    public function dashboardCompras(Request $request)
+    {
+        $dataIni = $request->has('dataIni') ? formatDate($request->dataIni) : Carbon::now()->startOfMonth()->format("d/m/Y");
+        $dataFim = $request->has('dataFim') ? formatDate($request->dataFim) : Carbon::now()->format("d/m/Y");
+        $datas = [
+            'dataini' => $dataIni,
+            'datafim' => $dataFim,
+        ];
+
+        try {
+            $url = $this->url.'compra/data';
+            $response = Http::withHeaders([
+                'Authorization' => 'Bearer ' . $this->user->token,
+            ])->put($url, $datas);
+
+            $compras = json_decode($response->body()) ?? [];
+            $compras = is_array($compras) ? $compras : [];
+            $dataIniFormatted = Carbon::createFromFormat('d/m/Y', $dataIni)->format('Y-m-d');
+            $dataFimFormatted = Carbon::createFromFormat('d/m/Y', $dataFim)->format('Y-m-d');
+
+            return view('graficos.dashboardCompras', [
+                'compras' => $compras,
+                'dataIni' => $dataIniFormatted,
+                'dataFim' => $dataFimFormatted,
+            ]);
+        } catch (Exception $e) {
+            Log::info($e->getMessage());
+            return redirect()->route('home')->with('Error', $e->getMessage());
+        }
+    }
+
+    public function comprasGrupo(Request $request, $codgrupo)
+    {
+        $dataIni = $request->has('dataIni') ? formatDate($request->dataIni) : Carbon::now()->startOfMonth()->format("d/m/Y");
+        $dataFim = $request->has('dataFim') ? formatDate($request->dataFim) : Carbon::now()->format("d/m/Y");
+        $datas = [
+            'dataini' => $dataIni,
+            'datafim' => $dataFim,
+        ];
+
+        try {
+            $url = $this->url.'compra/grupo/'.$codgrupo;
+            $response = Http::withHeaders([
+                'Authorization' => 'Bearer ' . $this->user->token,
+            ])->put($url, $datas);
+
+            $compras = json_decode($response->body()) ?? [];
+            $compras = is_array($compras) ? $compras : [];
+
+            return response()->json($compras);
+        } catch (Exception $e) {
+            Log::info($e->getMessage());
+            return response()->json(['message' => 'Nao foi possivel carregar as compras do grupo.'], 500);
+        }
     }
 
 

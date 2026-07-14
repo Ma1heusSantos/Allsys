@@ -1,6 +1,17 @@
 @extends('layouts.template')
 @section('conteudo')
     @foreach ($dados as $dado)
+        @php
+            $quantidade = $dado->qtdeitens ?? 0;
+            $custoUnitario = $dado->custounitario ?? ($quantidade > 0 ? ($dado->custo ?? 0) / $quantidade : 0);
+            $precoVenda = $dado->precounitario ?? null;
+
+            if ($precoVenda === null) {
+                $precoVenda = $quantidade > 0 ? (($dado->valorabast ?? $dado->valorliquido ?? 0) / $quantidade) : 0;
+            } elseif ($quantidade > 0 && $precoVenda > 1000) {
+                $precoVenda = $precoVenda / $quantidade;
+            }
+        @endphp
 
         <body style="background-color: #f5f5f5;">
             <div class="container mt-5">
@@ -25,6 +36,14 @@
                                 <div class="d-flex justify-content-between mb-3">
                                     <span><strong>Custo:</strong></span>
                                     <span>{{ "R$ " . money($dado->custo) }}</span>
+                                </div>
+                                <div class="d-flex justify-content-between mb-3">
+                                    <span><strong>Preço Custo Unitário:</strong></span>
+                                    <span>{{ "R$ " . number_format($custoUnitario, 3, ',', '.') }}</span>
+                                </div>
+                                <div class="d-flex justify-content-between mb-3">
+                                    <span><strong>Preço Venda Unitário:</strong></span>
+                                    <span>{{ "R$ " . number_format($precoVenda, 3, ',', '.') }}</span>
                                 </div>
                                 <div class="d-flex justify-content-between mb-3">
                                     <span><strong>Lucro Bruto:</strong></span>

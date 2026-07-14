@@ -1,52 +1,33 @@
 @extends('layouts.template')
 @section('titulo')
-    Monitor
+    Debitos de clientes
 @endsection
 
 @section('conteudo')
     <style>
-        /* Estilo da Paginação */
         .pagination .page-item .page-link {
             color: #ffffff;
-            /* Cor do texto */
             background-color: #343a40;
-            /* Cor de fundo cinza */
             border: 1px solid #343a40;
-            /* Cor da borda cinza */
         }
 
-        .pagination .page-item.active .page-link {
-            background-color: #6f42c1;
-            /* Cor de fundo roxo para o item ativo */
-            border-color: #6f42c1;
-            /* Cor da borda roxo para o item ativo */
-            color: #ffffff;
-            /* Cor do texto branco */
-        }
-
+        .pagination .page-item.active .page-link,
         .pagination .page-item .page-link:hover {
             background-color: #6f42c1;
-            /* Cor de fundo roxo ao passar o mouse */
             border-color: #6f42c1;
-            /* Cor da borda roxo ao passar o mouse */
             color: #ffffff;
-            /* Cor do texto branco */
         }
 
         .pagination .page-item.disabled .page-link {
             color: #6c757d;
-            /* Cor do texto para itens desabilitados */
             background-color: #343a40;
-            /* Cor de fundo cinza para itens desabilitados */
             border-color: #343a40;
-            /* Cor da borda cinza para itens desabilitados */
         }
 
         .table-responsive .pagination {
             flex-wrap: wrap;
         }
 
-        /* Estilo Geral */
         body {
             background-color: #121212;
             color: #ffffff;
@@ -75,7 +56,6 @@
             font-size: 1.75rem;
             margin-bottom: 0;
             color: #6f42c1;
-            /* primary do Bootstrap */
         }
 
         .search-form {
@@ -98,9 +78,7 @@
 
         .search-form input::placeholder {
             color: #cccccc;
-            /* Cor desejada para o placeholder */
             opacity: 1;
-            /* Garante que a cor definida será aplicada completamente */
         }
 
         .search-form input:focus {
@@ -117,7 +95,6 @@
         .search-form button {
             padding: 0.75rem 1rem;
             background-color: #6f42c1;
-            /* primary do Bootstrap */
             border: none;
             border-radius: 5px;
             color: #ffffff;
@@ -128,11 +105,9 @@
 
         .search-form button:hover {
             background-color: #6f42c1;
-            /* primary do Bootstrap escuro */
         }
 
         @media (min-width: 576px) {
-
             .search-form input,
             .search-form button {
                 width: auto;
@@ -140,7 +115,6 @@
             }
         }
 
-        /* Estilo da Tabela */
         .table-responsive {
             overflow-x: auto;
         }
@@ -170,14 +144,12 @@
 
         a.btn-primary {
             background-color: #6f42c1;
-            /* primary do Bootstrap */
             border: none;
             transition: background-color 0.3s ease, transform 0.3s ease;
         }
 
         a.btn-primary:hover {
             background-color: #6f42c1;
-            /* primary do Bootstrap escuro */
             transform: scale(1.05);
         }
 
@@ -186,7 +158,6 @@
             box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5);
         }
 
-        /* Responsividade para dispositivos móveis */
         @media (max-width: 576px) {
             .card-header h4 {
                 font-size: 1.5rem;
@@ -196,20 +167,22 @@
 
     <div class="card mt-5">
         <div class="card-header d-flex justify-content-between align-items-center flex-column flex-sm-row">
-            <h4 class="fw-bold"><i class="fa-solid fa-receipt"></i> Notas de clientes</h4>
+            <h4 class="fw-bold"><i class="fa-solid fa-receipt"></i> Debitos de clientes</h4>
         </div>
         <div class="card-body">
             <div class="container mt-4">
                 <div class="row">
                     <div class="col-12">
                         <div class="form-group">
-                            <form action="{{ route('faturamento') }}" method="post" class="search-form">
+                            <form action="{{ route('faturamento.debitos') }}" method="post" class="search-form">
                                 @csrf
                                 <input name="cliente" class="form-control" type="text"
-                                    placeholder="Pesquise por um cliente">
+                                    value="{{ $cliente ?? '' }}" placeholder="Pesquise por um cliente">
+                                <input name="dataIni" class="form-control" type="date" value="{{ $dataIni }}">
+                                <input name="dataFim" class="form-control" type="date" value="{{ $dataFim }}">
                                 <button class="btn btn-primary" type="submit">Enviar</button>
                                 <button type="button"
-                                    onclick="window.location.href='{{ route('faturamento') }}'">Limpar Filtro</button>
+                                    onclick="window.location.href='{{ route('faturamento.debitos') }}'">Limpar Filtro</button>
                             </form>
                         </div>
                         <div class="table-responsive">
@@ -217,22 +190,24 @@
                                 <thead class="thead-dark">
                                     <tr>
                                         <th>Nome do cliente</th>
-                                        <th class="text-center">Notas</th>
-                                        <th class="text-center">Faturas</th>
-                                        <th class="text-center">Total</th>
+                                        <th class="text-center">Saldo anterior</th>
+                                        <th class="text-center">Novos debitos</th>
+                                        <th class="text-center">Recebimentos</th>
+                                        <th class="text-center">Saldo final</th>
                                         <th class="text-center">Detalhes</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($paginatedFaturamento as $faturamento)
+                                    @foreach ($paginatedDebitos as $debito)
                                         <tr>
-                                            <td>{{ $faturamento->nomecliente }}</td>
-                                            <td class="text-center">{{ "R$ " . money($faturamento->notas) }}</td>
-                                            <td class="text-center">{{ "R$ " . money($faturamento->faturas) }}</td>
-                                            <td class="text-center">{{ "R$ " . money($faturamento->total) }}</td>
+                                            <td>{{ $debito->nomecliente }}</td>
+                                            <td class="text-center">{{ "R$ " . money($debito->saldoAnterior ?? 0) }}</td>
+                                            <td class="text-center">{{ "R$ " . money($debito->novosDebitos ?? 0) }}</td>
+                                            <td class="text-center">{{ "R$ " . money($debito->recebimentos ?? 0) }}</td>
+                                            <td class="text-center">{{ "R$ " . money($debito->saldoFinal ?? 0) }}</td>
                                             <td class="text-center">
                                                 <a class="btn btn-primary"
-                                                    href="{{ route('faturamento.cliente', [$faturamento->codcliente]) }}">Detalhes</a>
+                                                    href="{{ route('faturamento.cliente', [$debito->codcliente]) }}">Detalhes</a>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -245,6 +220,6 @@
         </div>
     </div>
     <div class="d-flex justify-content-center table-responsive">
-        {{ $paginatedFaturamento->links() }}
+        {{ $paginatedDebitos->links() }}
     </div>
 @endsection
