@@ -25,6 +25,10 @@
             min-height: 420px;
         }
 
+        .chart-card {
+            overflow-x: auto;
+        }
+
         .filter-form {
             display: flex;
             flex-wrap: wrap;
@@ -70,6 +74,30 @@
             padding: 2rem;
             text-align: center;
         }
+
+        @media (max-width: 576px) {
+            .dashboard-card {
+                margin-top: 1rem;
+                padding: 1rem;
+            }
+
+            .chart-container {
+                min-height: 360px;
+                min-width: 640px;
+            }
+
+            .filter-form,
+            .filter-form input,
+            .filter-form button {
+                width: 100%;
+            }
+
+            .page-title {
+                font-size: 1.5rem;
+                margin-bottom: 0.75rem;
+                width: 100%;
+            }
+        }
     </style>
 
     <div class="dashboard-card">
@@ -84,12 +112,8 @@
         </div>
     </div>
 
-    <div class="dashboard-card">
+    <div class="dashboard-card chart-card">
         <div id="comprasPorGrupo" class="chart-container"></div>
-    </div>
-
-    <div class="dashboard-card" id="detalheGrupoCard" style="display: none;">
-        <div id="comprasPorProduto" class="chart-container"></div>
     </div>
 
     <script>
@@ -102,11 +126,6 @@
                 style: 'currency',
                 currency: 'BRL'
             }).format(Number(valor || 0));
-        }
-
-        function nomeProduto(item) {
-            return item.dscproduto || item.descricao || item.nomeproduto || item.nome || item.dscgrupo ||
-                `Codigo ${item.codprod || item.codproduto || item.codgrupo || ''}`;
         }
 
         function valorTotal(item) {
@@ -193,7 +212,7 @@
                         point: {
                             events: {
                                 click: function() {
-                                    carregarGrupo(compras[this.index]);
+                                    abrirGrupo(compras[this.index]);
                                 }
                             }
                         }
@@ -212,111 +231,13 @@
             });
         }
 
-        async function carregarGrupo(grupo) {
-            const card = document.getElementById('detalheGrupoCard');
-            card.style.display = 'block';
-            renderEmpty('comprasPorProduto', `Carregando ${grupo.dscgrupo}...`);
-
-            try {
-                const params = new URLSearchParams({
-                    dataIni,
-                    dataFim
-                });
-                const response = await fetch(`/comprasGrupo/${grupo.codgrupo}?${params.toString()}`);
-
-                if (!response.ok) {
-                    throw new Error('Erro ao buscar compras do grupo.');
-                }
-
-                const produtos = await response.json();
-                renderProdutoChart(grupo, Array.isArray(produtos) ? produtos : []);
-            } catch (error) {
-                renderEmpty('comprasPorProduto', error.message);
-            }
-        }
-
-        function renderProdutoChart(grupo, produtos) {
-            if (!produtos.length) {
-                renderEmpty('comprasPorProduto', `Nenhuma compra encontrada para ${grupo.dscgrupo}.`);
-                return;
-            }
-
-            Highcharts.chart('comprasPorProduto', {
-                chart: {
-                    type: 'column',
-                    backgroundColor: '#1f1f2f'
-                },
-                title: {
-                    text: `COMPRA TOTAL - ${grupo.dscgrupo}`,
-                    style: {
-                        color: '#ffffff',
-                        fontWeight: '700'
-                    }
-                },
-                xAxis: {
-                    categories: produtos.map(nomeProduto),
-                    labels: {
-                        style: {
-                            color: '#ffffff'
-                        }
-                    }
-                },
-                yAxis: {
-                    min: 0,
-                    title: {
-                        text: 'Compra total por produto',
-                        style: {
-                            color: '#cfcfe1'
-                        }
-                    },
-                    labels: {
-                        formatter: function() {
-                            return moeda(this.value);
-                        },
-                        style: {
-                            color: '#ffffff'
-                        }
-                    },
-                    gridLineColor: '#444459'
-                },
-                legend: {
-                    enabled: false
-                },
-                tooltip: {
-                    backgroundColor: '#2a2a3b',
-                    borderColor: '#6f42c1',
-                    style: {
-                        color: '#ffffff'
-                    },
-                    formatter: function() {
-                        const item = produtos[this.point.index];
-                        return `<b>${nomeProduto(item)}</b><br>Total: ${moeda(valorTotal(item))}<br>Quantidade: ${item.qtde || 0}<br>Preco medio: ${moeda(item.precomedio)}`;
-                    }
-                },
-                plotOptions: {
-                    column: {
-                        color: '#ca3146',
-                        borderColor: '#f06b7b',
-                        dataLabels: {
-                            enabled: true,
-                            formatter: function() {
-                                return moeda(this.y);
-                            },
-                            style: {
-                                color: '#ffffff',
-                                textOutline: 'none'
-                            }
-                        }
-                    }
-                },
-                series: [{
-                    name: 'Compras',
-                    data: produtos.map(valorTotal)
-                }],
-                credits: {
-                    enabled: false
-                }
+        function abrirGrupo(grupo) {
+            const params = new URLSearchParams({
+                dataIni,
+                dataFim,
+                grupo: grupo.dscgrupo || `Grupo ${grupo.codgrupo}`
             });
+            window.location.href = `/comprasGrupo/${grupo.codgrupo}?${params.toString()}`;
         }
 
         document.addEventListener('DOMContentLoaded', renderGrupoChart);

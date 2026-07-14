@@ -297,6 +297,50 @@ class vendasController extends Controller
     {
         $dataIni = $request->has('dataIni') ? formatDate($request->dataIni) : Carbon::now()->startOfMonth()->format("d/m/Y");
         $dataFim = $request->has('dataFim') ? formatDate($request->dataFim) : Carbon::now()->format("d/m/Y");
+        $grupo = $request->grupo ?? 'Grupo '.$codgrupo;
+        $datas = [
+            'dataini' => $dataIni,
+            'datafim' => $dataFim,
+        ];
+
+        try {
+            $url = $this->url.'compra/grupo/'.$codgrupo;
+            $response = Http::withHeaders([
+                'Authorization' => 'Bearer ' . $this->user->token,
+            ])->put($url, $datas);
+
+            $compras = json_decode($response->body()) ?? [];
+            $compras = is_array($compras) ? $compras : [];
+
+            if ($request->expectsJson()) {
+                return response()->json($compras);
+            }
+
+            $dataIniFormatted = Carbon::createFromFormat('d/m/Y', $dataIni)->format('Y-m-d');
+            $dataFimFormatted = Carbon::createFromFormat('d/m/Y', $dataFim)->format('Y-m-d');
+
+            return view('graficos.comprasGrupo', [
+                'compras' => $compras,
+                'codgrupo' => $codgrupo,
+                'grupo' => $grupo,
+                'dataIni' => $dataIniFormatted,
+                'dataFim' => $dataFimFormatted,
+            ]);
+
+        } catch (Exception $e) {
+            Log::info($e->getMessage());
+            if ($request->expectsJson()) {
+                return response()->json(['message' => 'Nao foi possivel carregar as compras do grupo.'], 500);
+            }
+
+            return redirect()->route('dashboard.compras')->with('Error', 'Nao foi possivel carregar as compras do grupo.');
+        }
+    }
+
+    public function comprasGrupoJson(Request $request, $codgrupo)
+    {
+        $dataIni = $request->has('dataIni') ? formatDate($request->dataIni) : Carbon::now()->startOfMonth()->format("d/m/Y");
+        $dataFim = $request->has('dataFim') ? formatDate($request->dataFim) : Carbon::now()->format("d/m/Y");
         $datas = [
             'dataini' => $dataIni,
             'datafim' => $dataFim,
