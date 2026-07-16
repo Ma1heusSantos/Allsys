@@ -1,225 +1,234 @@
 @extends('layouts.template')
-@section('titulo')
-    Debitos de clientes
-@endsection
+
+@section('titulo', 'Débitos de clientes')
 
 @section('conteudo')
     <style>
-        .pagination .page-item .page-link {
-            color: #ffffff;
-            background-color: #343a40;
-            border: 1px solid #343a40;
-        }
-
-        .pagination .page-item.active .page-link,
-        .pagination .page-item .page-link:hover {
-            background-color: #6f42c1;
-            border-color: #6f42c1;
-            color: #ffffff;
-        }
-
-        .pagination .page-item.disabled .page-link {
-            color: #6c757d;
-            background-color: #343a40;
-            border-color: #343a40;
-        }
-
-        .table-responsive .pagination {
-            flex-wrap: wrap;
-        }
-
         body {
             background-color: #121212;
-            color: #ffffff;
+            color: #fff;
             color-scheme: dark;
             font-family: 'Roboto', sans-serif;
         }
 
-        .card {
+        .debitos-panel,
+        .debito-card {
             background-color: #1f1f2f;
-            color: #ffffff;
-            border: none;
-            border-radius: 8px;
-            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+            border: 1px solid #2b2c42;
+            border-radius: 12px;
+            color: #fff;
         }
 
-        .card-header {
-            flex-direction: column;
-            flex-direction: row;
-            background-color: #27293d;
-            border-bottom: none;
-            border-radius: 8px 8px 0 0;
-            padding: 1.5rem 2rem;
+        .debitos-panel {
+            margin-top: 2rem;
+            padding: 1.5rem;
         }
 
-        .card-header h4 {
-            font-size: 1.75rem;
-            margin-bottom: 0;
+        .page-title {
             color: #6f42c1;
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin: 0;
         }
 
         .search-form {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 1rem;
+            display: grid;
+            gap: .75rem;
+            grid-template-columns: minmax(220px, 1fr) repeat(2, minmax(150px, auto)) auto auto;
+            margin-top: 1.25rem;
+        }
+
+        .search-form input,
+        .search-form button,
+        .search-form a {
+            border: 0;
+            border-radius: 6px;
+            min-height: 46px;
+            padding: .7rem 1rem;
         }
 
         .search-form input {
-            width: 100%;
-            padding: 0.75rem 1rem;
             background-color: #2a2a3b;
-            border: none;
-            border-radius: 5px;
-            color: #ffffff;
-            color-scheme: dark;
-            font-size: 1rem;
-        }
-
-        .search-form input::placeholder {
-            color: #cccccc;
-            opacity: 1;
+            color: #fff;
         }
 
         .search-form input:focus {
-            outline: none;
-            background-color: #343a40;
+            background-color: #343447;
+            box-shadow: 0 0 0 2px #6f42c1;
+            outline: 0;
         }
 
-        .search-form input[type="date"]::-webkit-calendar-picker-indicator {
-            cursor: pointer;
-            filter: invert(1);
-            opacity: 0.8;
-        }
-
-        .search-form button {
-            padding: 0.75rem 1rem;
+        .filter-button,
+        .details-button {
+            align-items: center;
             background-color: #6f42c1;
-            border: none;
-            border-radius: 5px;
-            color: #ffffff;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
+            color: #fff;
+            display: inline-flex;
+            justify-content: center;
+            text-decoration: none;
         }
 
-        .search-form button:hover {
-            background-color: #6f42c1;
+        .clear-button {
+            align-items: center;
+            background-color: #343447;
+            color: #fff;
+            display: inline-flex;
+            justify-content: center;
+            text-decoration: none;
         }
 
-        @media (min-width: 576px) {
-            .search-form input,
-            .search-form button {
-                width: auto;
-                margin-bottom: 0;
-            }
+        .filter-button:hover,
+        .details-button:hover,
+        .clear-button:hover {
+            color: #fff;
+            filter: brightness(1.12);
         }
 
-        .table-responsive {
-            overflow-x: auto;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
+        .debitos-grid {
+            display: grid;
+            gap: 1rem;
+            grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
             margin-top: 1.5rem;
         }
 
-        th,
-        td {
-            white-space: nowrap;
-            padding: 0.75rem 1rem;
-            text-align: left;
-            border-bottom: 1px solid #343a40;
+        .debito-card {
+            display: flex;
+            flex-direction: column;
+            padding: 1.25rem;
         }
 
-        th {
-            background-color: #343a40;
-            font-weight: bold;
+        .client-name {
+            border-bottom: 1px solid #35364d;
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            overflow-wrap: anywhere;
+            padding-bottom: .75rem;
         }
 
-        td {
+        .value-row {
+            align-items: center;
+            color: #cfcfe1;
+            display: flex;
+            gap: 1rem;
+            justify-content: space-between;
+            margin-bottom: .65rem;
+        }
+
+        .value-row strong {
+            color: #fff;
+            text-align: right;
+        }
+
+        .value-row.total {
+            border-top: 1px solid #35364d;
+            color: #fff;
+            font-size: 1.05rem;
+            margin-top: .25rem;
+            padding-top: .8rem;
+        }
+
+        .value-row.total strong {
+            color: #b995ff;
+        }
+
+        .details-button {
+            margin-top: auto;
+            min-height: 42px;
+            padding: .65rem 1rem;
+        }
+
+        .empty-state {
+            background: #1f1f2f;
+            border: 1px solid #2b2c42;
+            border-radius: 12px;
+            color: #cfcfe1;
+            grid-column: 1 / -1;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .pagination {
+            flex-wrap: wrap;
+        }
+
+        .pagination .page-link {
             background-color: #2a2a3b;
+            border-color: #343447;
+            color: #fff;
         }
 
-        a.btn-primary {
+        .pagination .page-item.active .page-link,
+        .pagination .page-link:hover {
             background-color: #6f42c1;
-            border: none;
-            transition: background-color 0.3s ease, transform 0.3s ease;
+            border-color: #6f42c1;
+            color: #fff;
         }
 
-        a.btn-primary:hover {
-            background-color: #6f42c1;
-            transform: scale(1.05);
-        }
+        @media (max-width: 991px) {
+            .search-form {
+                grid-template-columns: 1fr 1fr;
+            }
 
-        a.btn-primary:focus {
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5);
+            .search-form input[name="cliente"] {
+                grid-column: 1 / -1;
+            }
         }
 
         @media (max-width: 576px) {
-            .card-header h4 {
-                font-size: 1.5rem;
+            .debitos-panel {
+                margin-top: 1rem;
+                padding: 1rem;
+            }
+
+            .page-title {
+                font-size: 1.45rem;
+            }
+
+            .search-form {
+                grid-template-columns: 1fr;
+            }
+
+            .search-form input[name="cliente"] {
+                grid-column: auto;
+            }
+
+            .debitos-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 
-    <div class="card mt-5">
-        <div class="card-header d-flex justify-content-between align-items-center flex-column flex-sm-row">
-            <h4 class="fw-bold"><i class="fa-solid fa-receipt"></i> Debitos de clientes</h4>
-        </div>
-        <div class="card-body">
-            <div class="container mt-4">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="form-group">
-                            <form action="{{ route('faturamento.debitos') }}" method="post" class="search-form">
-                                @csrf
-                                <input name="cliente" class="form-control" type="text"
-                                    value="{{ $cliente ?? '' }}" placeholder="Pesquise por um cliente">
-                                <input name="dataIni" class="form-control" type="date" value="{{ $dataIni }}">
-                                <input name="dataFim" class="form-control" type="date" value="{{ $dataFim }}">
-                                <button class="btn btn-primary" type="submit">Enviar</button>
-                                <button type="button"
-                                    onclick="window.location.href='{{ route('faturamento.debitos') }}'">Limpar Filtro</button>
-                            </form>
-                        </div>
-                        <div class="table-responsive">
-                            <table class="table table-bordered table-striped table-dark">
-                                <thead class="thead-dark">
-                                    <tr>
-                                        <th>Nome do cliente</th>
-                                        <th class="text-center">Saldo anterior</th>
-                                        <th class="text-center">Novos debitos</th>
-                                        <th class="text-center">Recebimentos</th>
-                                        <th class="text-center">Saldo final</th>
-                                        <th class="text-center">Detalhes</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($paginatedDebitos as $debito)
-                                        <tr>
-                                            <td>{{ $debito->nomecliente }}</td>
-                                            <td class="text-center">{{ "R$ " . money($debito->saldoAnterior ?? 0) }}</td>
-                                            <td class="text-center">{{ "R$ " . money($debito->novosDebitos ?? 0) }}</td>
-                                            <td class="text-center">{{ "R$ " . money($debito->recebimentos ?? 0) }}</td>
-                                            <td class="text-center">{{ "R$ " . money($debito->saldoFinal ?? 0) }}</td>
-                                            <td class="text-center">
-                                                <a class="btn btn-primary"
-                                                    href="{{ route('faturamento.cliente', [$debito->codcliente]) }}">Detalhes</a>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="d-flex justify-content-center table-responsive">
-        {{ $paginatedDebitos->links() }}
+    <section class="debitos-panel">
+        <h1 class="page-title"><i class="fa-solid fa-receipt"></i> Débitos de clientes</h1>
+
+        <form action="{{ route('faturamento.debitos') }}" method="post" class="search-form">
+            @csrf
+            <input name="cliente" type="search" value="{{ $cliente ?? '' }}"
+                placeholder="Pesquise por um cliente" aria-label="Pesquisar cliente">
+            <input name="dataIni" type="date" value="{{ $dataIni }}" aria-label="Data inicial">
+            <input name="dataFim" type="date" value="{{ $dataFim }}" aria-label="Data final">
+            <button class="filter-button" type="submit"><i class="fa-solid fa-magnifying-glass me-2"></i>Pesquisar</button>
+            <a class="clear-button" href="{{ route('faturamento.debitos') }}">Limpar filtro</a>
+        </form>
+    </section>
+
+    <section class="debitos-grid" aria-live="polite">
+        @forelse ($paginatedDebitos as $debito)
+            <article class="debito-card">
+                <h2 class="client-name">{{ $debito->nomecliente ?? 'Cliente sem nome' }}</h2>
+                <div class="value-row"><span>Saldo anterior</span><strong>R$ {{ money($debito->saldoAnterior ?? 0) }}</strong></div>
+                <div class="value-row"><span>Novos débitos</span><strong>R$ {{ money($debito->novosDebitos ?? 0) }}</strong></div>
+                <div class="value-row"><span>Recebimentos</span><strong>R$ {{ money($debito->recebimentos ?? 0) }}</strong></div>
+                <div class="value-row total"><span>Saldo final</span><strong>R$ {{ money($debito->saldoFinal ?? 0) }}</strong></div>
+                <a class="details-button" href="{{ route('faturamento.cliente', [$debito->codcliente]) }}">Ver detalhes</a>
+            </article>
+        @empty
+            <div class="empty-state">Nenhum débito encontrado para os filtros selecionados.</div>
+        @endforelse
+    </section>
+
+    <div class="d-flex justify-content-center mt-4">
+        {{ $paginatedDebitos->appends(request()->except('page', '_token'))->links() }}
     </div>
 @endsection

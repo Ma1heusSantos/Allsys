@@ -23,10 +23,12 @@
 
         .chart-container {
             min-height: 420px;
+            width: 100%;
         }
 
         .chart-card {
-            overflow-x: auto;
+            min-width: 0;
+            overflow: hidden;
         }
 
         .filter-form {
@@ -83,7 +85,7 @@
 
             .chart-container {
                 min-height: 360px;
-                min-width: 640px;
+                min-width: 0;
             }
 
             .filter-form,
@@ -120,6 +122,7 @@
         const compras = @json($compras);
         const dataIni = @json($dataIni);
         const dataFim = @json($dataFim);
+        const comprasGrupoUrl = @json(route('compras.grupo', ['codgrupo' => '__CODGRUPO__']));
 
         function moeda(valor) {
             return new Intl.NumberFormat('pt-BR', {
@@ -145,7 +148,9 @@
             Highcharts.chart('comprasPorGrupo', {
                 chart: {
                     type: 'column',
-                    backgroundColor: '#1f1f2f'
+                    backgroundColor: '#1f1f2f',
+                    reflow: true,
+                    spacing: [10, 8, 15, 8]
                 },
                 title: {
                     text: 'COMPRA TOTAL POR GRUPO',
@@ -157,8 +162,11 @@
                 xAxis: {
                     categories: compras.map(item => item.dscgrupo),
                     labels: {
+                        autoRotation: [-45, -90],
+                        overflow: 'justify',
                         style: {
-                            color: '#ffffff'
+                            color: '#ffffff',
+                            fontSize: '11px'
                         }
                     }
                 },
@@ -212,7 +220,7 @@
                         point: {
                             events: {
                                 click: function() {
-                                    abrirGrupo(compras[this.index]);
+                                    abrirGrupo(this.options.custom);
                                 }
                             }
                         }
@@ -222,9 +230,44 @@
                     name: 'Compras',
                     data: compras.map(item => ({
                         y: valorTotal(item),
-                        codgrupo: item.codgrupo
+                        name: item.dscgrupo,
+                        custom: item
                     }))
                 }],
+                responsive: {
+                    rules: [{
+                        condition: {
+                            maxWidth: 576
+                        },
+                        chartOptions: {
+                            chart: {
+                                height: 390
+                            },
+                            title: {
+                                style: {
+                                    fontSize: '15px'
+                                }
+                            },
+                            yAxis: {
+                                title: {
+                                    text: null
+                                },
+                                labels: {
+                                    style: {
+                                        fontSize: '10px'
+                                    }
+                                }
+                            },
+                            plotOptions: {
+                                column: {
+                                    dataLabels: {
+                                        enabled: false
+                                    }
+                                }
+                            }
+                        }
+                    }]
+                },
                 credits: {
                     enabled: false
                 }
@@ -232,12 +275,17 @@
         }
 
         function abrirGrupo(grupo) {
+            if (!grupo || grupo.codgrupo === undefined || grupo.codgrupo === null) {
+                return;
+            }
+
             const params = new URLSearchParams({
                 dataIni,
                 dataFim,
                 grupo: grupo.dscgrupo || `Grupo ${grupo.codgrupo}`
             });
-            window.location.href = `/comprasGrupo/${grupo.codgrupo}?${params.toString()}`;
+            const url = comprasGrupoUrl.replace('__CODGRUPO__', encodeURIComponent(grupo.codgrupo));
+            window.location.assign(`${url}?${params.toString()}`);
         }
 
         document.addEventListener('DOMContentLoaded', renderGrupoChart);
