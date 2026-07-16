@@ -139,14 +139,15 @@
 
         .total-card-value {
             bottom: 1.25rem;
-            font-size: clamp(1.35rem, 2vw, 2rem);
+            font-size: clamp(1.15rem, 1.5vw, 1.55rem);
             font-weight: 800;
             left: 1.4rem;
+            letter-spacing: -.02em;
             line-height: 1.1;
             margin: 0;
+            white-space: nowrap;
             position: absolute;
             right: 1.4rem;
-            overflow-wrap: anywhere;
         }
 
         .debito-card {
