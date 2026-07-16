@@ -91,6 +91,16 @@
             margin-top: 1.5rem;
         }
 
+        .debitos-chart {
+            background-color: #1f1f2f;
+            border: 1px solid #2b2c42;
+            border-radius: 12px;
+            margin-top: 1.5rem;
+            min-height: 420px;
+            padding: 1rem;
+            width: 100%;
+        }
+
         .debito-card {
             display: flex;
             flex-direction: column;
@@ -196,6 +206,11 @@
             .debitos-grid {
                 grid-template-columns: 1fr;
             }
+
+            .debitos-chart {
+                min-height: 360px;
+                padding: .5rem;
+            }
         }
     </style>
 
@@ -211,6 +226,10 @@
             <button class="filter-button" type="submit"><i class="fa-solid fa-magnifying-glass me-2"></i>Pesquisar</button>
             <a class="clear-button" href="{{ route('faturamento.debitos') }}">Limpar filtro</a>
         </form>
+    </section>
+
+    <section aria-label="Resumo dos débitos">
+        <div id="debitosTotais" class="debitos-chart"></div>
     </section>
 
     <section class="debitos-grid" aria-live="polite">
@@ -231,4 +250,86 @@
     <div class="d-flex justify-content-center mt-4">
         {{ $paginatedDebitos->appends(request()->except('page', '_token'))->links() }}
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const resumo = @json($resumoDebitos);
+
+            function numero(...campos) {
+                for (const campo of campos) {
+                    if (resumo && resumo[campo] !== undefined && resumo[campo] !== null) {
+                        return Number(resumo[campo]) || 0;
+                    }
+                }
+                return 0;
+            }
+
+            function moeda(valor) {
+                return new Intl.NumberFormat('pt-BR', {
+                    style: 'currency',
+                    currency: 'BRL'
+                }).format(valor);
+            }
+
+            Highcharts.chart('debitosTotais', {
+                chart: {
+                    type: 'column',
+                    backgroundColor: '#1f1f2f',
+                    reflow: true
+                },
+                title: {
+                    text: 'RESUMO DE DÉBITOS',
+                    style: { color: '#fff', fontWeight: '700' }
+                },
+                xAxis: {
+                    categories: ['Saldo anterior', 'Novos débitos', 'Recebimentos', 'Saldo final'],
+                    labels: { style: { color: '#fff' } }
+                },
+                yAxis: {
+                    title: { text: null },
+                    labels: {
+                        formatter: function() { return moeda(this.value); },
+                        style: { color: '#fff' }
+                    },
+                    gridLineColor: '#444459'
+                },
+                legend: { enabled: false },
+                tooltip: {
+                    formatter: function() { return `<b>${this.key}</b><br>${moeda(this.y)}`; }
+                },
+                plotOptions: {
+                    column: {
+                        borderWidth: 0,
+                        dataLabels: {
+                            enabled: true,
+                            formatter: function() { return moeda(this.y); },
+                            style: { color: '#fff', textOutline: 'none' }
+                        }
+                    }
+                },
+                series: [{
+                    name: 'Total',
+                    colorByPoint: true,
+                    colors: ['#6f42c1', '#ca3146', '#2f9e78', '#b995ff'],
+                    data: [
+                        numero('saldoAnterior', 'saldoanterior', 'saldo_anterior'),
+                        numero('novosDebitos', 'novosdebitos', 'novos_debitos'),
+                        numero('recebimentos'),
+                        numero('saldoFinal', 'saldofinal', 'saldo_final')
+                    ]
+                }],
+                responsive: {
+                    rules: [{
+                        condition: { maxWidth: 576 },
+                        chartOptions: {
+                            chart: { height: 360 },
+                            xAxis: { labels: { rotation: -35 } },
+                            plotOptions: { column: { dataLabels: { enabled: false } } }
+                        }
+                    }]
+                },
+                credits: { enabled: false }
+            });
+        });
+    </script>
 @endsection

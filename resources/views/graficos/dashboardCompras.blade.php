@@ -150,7 +150,15 @@
                     type: 'column',
                     backgroundColor: '#1f1f2f',
                     reflow: true,
-                    spacing: [10, 8, 15, 8]
+                    spacing: [10, 8, 15, 8],
+                    events: {
+                        load: function() {
+                            habilitarToqueNasColunas(this);
+                        },
+                        redraw: function() {
+                            habilitarToqueNasColunas(this);
+                        }
+                    }
                 },
                 title: {
                     text: 'COMPRA TOTAL POR GRUPO',
@@ -220,7 +228,7 @@
                         point: {
                             events: {
                                 click: function() {
-                                    abrirGrupo(this.options.custom);
+                                    abrirGrupo(compras[this.index]);
                                 }
                             }
                         }
@@ -230,8 +238,7 @@
                     name: 'Compras',
                     data: compras.map(item => ({
                         y: valorTotal(item),
-                        name: item.dscgrupo,
-                        custom: item
+                        name: item.dscgrupo
                     }))
                 }],
                 responsive: {
@@ -286,6 +293,40 @@
             });
             const url = comprasGrupoUrl.replace('__CODGRUPO__', encodeURIComponent(grupo.codgrupo));
             window.location.assign(`${url}?${params.toString()}`);
+        }
+
+        function habilitarToqueNasColunas(chart) {
+            const pontos = chart.series[0] ? chart.series[0].points : [];
+
+            pontos.forEach(function(ponto) {
+                const elemento = ponto.graphic && ponto.graphic.element;
+                if (!elemento || elemento.dataset.toqueNavegacao === 'ativo') {
+                    return;
+                }
+
+                elemento.dataset.toqueNavegacao = 'ativo';
+                let inicio = null;
+
+                elemento.addEventListener('touchstart', function(evento) {
+                    const toque = evento.changedTouches[0];
+                    inicio = toque ? { x: toque.clientX, y: toque.clientY } : null;
+                }, { passive: true });
+
+                elemento.addEventListener('touchend', function(evento) {
+                    const toque = evento.changedTouches[0];
+                    if (!inicio || !toque) {
+                        return;
+                    }
+
+                    const movimentoX = Math.abs(toque.clientX - inicio.x);
+                    const movimentoY = Math.abs(toque.clientY - inicio.y);
+                    inicio = null;
+
+                    if (movimentoX <= 12 && movimentoY <= 12) {
+                        abrirGrupo(compras[ponto.index]);
+                    }
+                }, { passive: true });
+            });
         }
 
         document.addEventListener('DOMContentLoaded', renderGrupoChart);

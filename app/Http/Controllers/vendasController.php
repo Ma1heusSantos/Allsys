@@ -229,11 +229,19 @@ class vendasController extends Controller
                 $url .= '?find='.urlencode($request->cliente);
             }
 
-            $response = Http::withHeaders([
+            $headers = [
                 'Authorization' => 'Bearer ' . $this->user->token,
-            ])->put($url, $datas);
+            ];
+            $response = Http::withHeaders($headers)->put($url, $datas);
             $debitos = json_decode($response->body()) ?? [];
             $debitos = is_array($debitos) ? $debitos : [];
+
+            $resumoResponse = Http::withHeaders($headers)
+                ->put($this->url.'faturamento/debitostotal', $datas);
+            $resumoDebitos = json_decode($resumoResponse->body()) ?? new stdClass();
+            if (is_array($resumoDebitos)) {
+                $resumoDebitos = $resumoDebitos[0] ?? new stdClass();
+            }
 
             $qtdPag = 30;
             $currentPage = LengthAwarePaginator::resolveCurrentPage();
@@ -249,6 +257,7 @@ class vendasController extends Controller
                 'dataIni' => $dataIniFormatted,
                 'dataFim' => $dataFimFormatted,
                 'cliente' => $request->cliente,
+                'resumoDebitos' => $resumoDebitos,
             ]);
         } catch (Exception $e) {
             Log::info($e->getMessage());
