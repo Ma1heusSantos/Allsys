@@ -101,6 +101,54 @@
             width: 100%;
         }
 
+        .totais-grid {
+            display: grid;
+            gap: 1rem;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            margin-top: 1.5rem;
+        }
+
+        .total-card {
+            border-radius: 12px;
+            color: #fff;
+            min-height: 165px;
+            overflow: hidden;
+            padding: 1.4rem;
+            position: relative;
+        }
+
+        .total-card.saldo-anterior { background: #3fa7d1; }
+        .total-card.novos-debitos { background: #ca3146; }
+        .total-card.recebimentos { background: #18c978; }
+        .total-card.saldo-final { background: #6259c2; }
+
+        .total-card-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin: 0;
+            padding-right: 2.75rem;
+        }
+
+        .total-card-icon {
+            font-size: 2rem;
+            opacity: .9;
+            position: absolute;
+            right: 1.4rem;
+            top: 1.4rem;
+        }
+
+        .total-card-value {
+            bottom: 1.25rem;
+            font-size: clamp(1.35rem, 2vw, 2rem);
+            font-weight: 800;
+            left: 1.4rem;
+            line-height: 1.1;
+            margin: 0;
+            position: absolute;
+            right: 1.4rem;
+            overflow-wrap: anywhere;
+        }
+
         .debito-card {
             display: flex;
             flex-direction: column;
@@ -183,6 +231,10 @@
             .search-form input[name="cliente"] {
                 grid-column: 1 / -1;
             }
+
+            .totais-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
         }
 
         @media (max-width: 576px) {
@@ -211,6 +263,14 @@
                 min-height: 360px;
                 padding: .5rem;
             }
+
+            .totais-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .total-card {
+                min-height: 145px;
+            }
         }
     </style>
 
@@ -230,6 +290,29 @@
 
     <section aria-label="Resumo dos débitos">
         <div id="debitosTotais" class="debitos-chart"></div>
+
+        <div class="totais-grid">
+            <article class="total-card saldo-anterior">
+                <h2 class="total-card-title">Saldo anterior</h2>
+                <i class="fa-solid fa-clock-rotate-left total-card-icon" aria-hidden="true"></i>
+                <p id="totalSaldoAnterior" class="total-card-value">R$ 0,00</p>
+            </article>
+            <article class="total-card novos-debitos">
+                <h2 class="total-card-title">Novos débitos</h2>
+                <i class="fa-solid fa-file-invoice-dollar total-card-icon" aria-hidden="true"></i>
+                <p id="totalNovosDebitos" class="total-card-value">R$ 0,00</p>
+            </article>
+            <article class="total-card recebimentos">
+                <h2 class="total-card-title">Recebimentos</h2>
+                <i class="fa-solid fa-hand-holding-dollar total-card-icon" aria-hidden="true"></i>
+                <p id="totalRecebimentos" class="total-card-value">R$ 0,00</p>
+            </article>
+            <article class="total-card saldo-final">
+                <h2 class="total-card-title">Saldo final</h2>
+                <i class="fa-solid fa-wallet total-card-icon" aria-hidden="true"></i>
+                <p id="totalSaldoFinal" class="total-card-value">R$ 0,00</p>
+            </article>
+        </div>
     </section>
 
     <section class="debitos-grid" aria-live="polite">
@@ -270,6 +353,18 @@
                     currency: 'BRL'
                 }).format(valor);
             }
+
+            const totais = {
+                saldoAnterior: numero('saldoAnterior', 'saldoanterior', 'saldo_anterior'),
+                novosDebitos: numero('novosDebitos', 'novosdebitos', 'novos_debitos'),
+                recebimentos: numero('recebimentos'),
+                saldoFinal: numero('saldoFinal', 'saldofinal', 'saldo_final')
+            };
+
+            document.getElementById('totalSaldoAnterior').textContent = moeda(totais.saldoAnterior);
+            document.getElementById('totalNovosDebitos').textContent = moeda(totais.novosDebitos);
+            document.getElementById('totalRecebimentos').textContent = moeda(totais.recebimentos);
+            document.getElementById('totalSaldoFinal').textContent = moeda(totais.saldoFinal);
 
             Highcharts.chart('debitosTotais', {
                 chart: {
@@ -312,10 +407,10 @@
                     colorByPoint: true,
                     colors: ['#6f42c1', '#ca3146', '#2f9e78', '#b995ff'],
                     data: [
-                        numero('saldoAnterior', 'saldoanterior', 'saldo_anterior'),
-                        numero('novosDebitos', 'novosdebitos', 'novos_debitos'),
-                        numero('recebimentos'),
-                        numero('saldoFinal', 'saldofinal', 'saldo_final')
+                        totais.saldoAnterior,
+                        totais.novosDebitos,
+                        totais.recebimentos,
+                        totais.saldoFinal
                     ]
                 }],
                 responsive: {
