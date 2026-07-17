@@ -139,7 +139,7 @@
 
         .total-card-value {
             bottom: 1.25rem;
-            font-size: clamp(1.15rem, 1.5vw, 1.55rem);
+            font-size: clamp(1.25rem, 1.7vw, 1.75rem);
             font-weight: 800;
             left: 1.4rem;
             letter-spacing: -.02em;

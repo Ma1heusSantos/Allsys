@@ -148,6 +148,10 @@
                                                 <li><a href="{{ route('faturamento') }}"
                                                         class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Clientes</a>
                                                 </li>
+                                                <li><a href="{{ route('faturamento.debitos') }}"
+                                                        class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Débitos
+                                                        Cliente</a>
+                                                </li>
                                             </ul>
                                         </div>
                                     </li>
@@ -204,10 +208,6 @@
                                     <li><a href="{{ route('vendas.gerais') }}"
                                             class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Vendas
                                             Gerais</a>
-                                    </li>
-                                    <li><a href="{{ route('faturamento.debitos') }}"
-                                            class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Debitos
-                                            Cliente</a>
                                     </li>
                                 </ul>
                             </div>
