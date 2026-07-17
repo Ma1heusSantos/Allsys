@@ -278,8 +278,7 @@
     <section class="debitos-panel">
         <h1 class="page-title"><i class="fa-solid fa-receipt"></i> Débitos de clientes</h1>
 
-        <form action="{{ route('faturamento.debitos') }}" method="post" class="search-form">
-            @csrf
+        <form action="{{ route('faturamento.debitos') }}" method="get" class="search-form">
             <input name="cliente" type="search" value="{{ $cliente ?? '' }}"
                 placeholder="Pesquise por um cliente" aria-label="Pesquisar cliente">
             <input name="dataIni" type="date" value="{{ $dataIni }}" aria-label="Data inicial">

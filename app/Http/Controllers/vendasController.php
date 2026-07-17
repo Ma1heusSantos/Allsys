@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Str;
 use stdClass;
 use Carbon\Carbon;
 
@@ -216,8 +217,8 @@ class vendasController extends Controller
     }
     public function faturamentoDebitos(Request $request)
     {
-        $dataIni = $request->has('dataIni') ? formatDate($request->dataIni) : Carbon::now()->startOfMonth()->format("d/m/Y");
-        $dataFim = $request->has('dataFim') ? formatDate($request->dataFim) : Carbon::now()->format("d/m/Y");
+        $dataIni = $request->filled('dataIni') ? formatDate($request->dataIni) : Carbon::now()->startOfMonth()->format("d/m/Y");
+        $dataFim = $request->filled('dataFim') ? formatDate($request->dataFim) : Carbon::now()->format("d/m/Y");
         $url = $this->url.'faturamento/debitoscliente';
         $datas = [
             'dataini' => $dataIni,
@@ -225,16 +226,21 @@ class vendasController extends Controller
         ];
 
         try {
-            if ($request->filled('cliente')) {
-                $url .= '?find='.urlencode($request->cliente);
-            }
-
             $headers = [
                 'Authorization' => 'Bearer ' . $this->user->token,
             ];
             $response = Http::withHeaders($headers)->put($url, $datas);
             $debitos = json_decode($response->body()) ?? [];
             $debitos = is_array($debitos) ? $debitos : [];
+
+            $cliente = trim((string) $request->input('cliente', ''));
+            if ($cliente !== '') {
+                $busca = Str::lower(Str::ascii($cliente));
+                $debitos = collect($debitos)->filter(function ($debito) use ($busca) {
+                    $nome = Str::lower(Str::ascii((string) ($debito->nomecliente ?? '')));
+                    return Str::contains($nome, $busca);
+                })->values()->all();
+            }
 
             $resumoResponse = Http::withHeaders($headers)
                 ->put($this->url.'faturamento/debitostotal', $datas);
@@ -256,7 +262,7 @@ class vendasController extends Controller
                 'paginatedDebitos' => $paginatedDebitos,
                 'dataIni' => $dataIniFormatted,
                 'dataFim' => $dataFimFormatted,
-                'cliente' => $request->cliente,
+                'cliente' => $cliente,
                 'resumoDebitos' => $resumoDebitos,
             ]);
         } catch (Exception $e) {
